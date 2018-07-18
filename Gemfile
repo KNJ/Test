@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-ruby '2.3.1'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -84,7 +83,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
   # WEBスクレイピング用
   gem 'mechanize'
-  gem 'nokogiri', '< 1.8.5'
   gem 'open_uri_redirections'
   gem 'structured-data'
 

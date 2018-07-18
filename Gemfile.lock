@@ -367,7 +367,6 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   masonry-rails
   mechanize
-  nokogiri (< 1.8.5)
   omniauth
   omniauth-twitter
   open_uri_redirections
