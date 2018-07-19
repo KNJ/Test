@@ -12,8 +12,8 @@
           <ul>
             <% survey.survey_answers.each do |answer| %>
               <li>
-                <span class="ranking"><%= answer.rank %>位<span>
-                <%= link_to answer.answer,search_path(performer: answer.answer),:class=>"post-performer" %>
+                <span class="post-performer ranking"><%= answer.rank %>位<span>
+                <%= link_to answer.answer,search_path(performer: answer.answer),:class=>"post-performer survey-answer" %>
               </li>
             <% end %>
           </ul>

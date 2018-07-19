@@ -8,9 +8,11 @@
 		<p>イベントの登録はまだありません。</p>
 		<p>情報がまだありませんか？</p>
 		<p>wArally!のライブ情報は誰でも登録することができます！</p>
-		<%= link_to new_event_path,:class=>"new-button" do %>
-			<i class="fa fa-plus-circle"></i>
-			<span>今すぐライブを登録する</span>
-    <% end %>
+		<div class="new-button">
+			<%= link_to new_event_path,:class=>"btn new pink" do %>
+				<i class="fa fa-plus-circle"></i>
+				<span>今すぐライブを登録する</span>
+			<% end %>
+		</div>
 	</div>
 	<% end %>

@@ -27,6 +27,16 @@
     </div>
     <div class="form-item">
       <div class="form-icon">
+        <i class="fas fa-link"></i>
+      </div>
+      <div class="form">
+        <%= f.fields_for :event_links do |urls_form| %>
+          <%= urls_form.text_field :url,:placeholder => "予約URL",:class => "event-edit-form form-long"  %>
+        <% end %>
+      </div>
+    </div>
+    <div class="form-item">
+      <div class="form-icon">
         <i class="fas fa-users"></i>
       </div>
       <div class="form">
@@ -35,24 +45,14 @@
         <% end %>
       </div>
     </div>
-  <%= f.submit '投稿する！', :class => "btn new pink" %>
-  <div class="more-info">もっと詳しく</div>
+    <div class="more-info">もっと詳しく
+    </div>
     <div class="form-item">
       <div class="form-icon">
         <i class="fas fa-file-alt"></i>
       </div>
       <div class="form">
         <%= f.text_area :description,:placeholder => "ライブの説明",:class => "event-edit-form textarea form-long" %>
-      </div>
-    </div>
-    <div class="form-item">
-      <div class="form-icon">
-        <i class="fas fa-link"></i>
-      </div>
-      <div class="form">
-        <%= f.fields_for :event_links do |urls_form| %>
-          <%= urls_form.text_field :url,:placeholder => "予約URL",:class => "event-edit-form form-long"  %>
-        <% end %>
       </div>
     </div>
     <div class="form-item">
@@ -89,15 +89,15 @@
     </div>
     <div class="form-item">
       <div class="form-icon">
-        <i class="fas fa-tickets-alt"></i>
+        <i class="fas fa-clock"></i>
       </div>
       <div class="form">
         <%= f.text_field :presale_start,:placeholder => "先行販売開始日時",:class => "event-edit-form form-short" %>
-        <p>〜</p>
+        〜
         <%= f.text_field :presale_end,:placeholder => "終了日時",:class => "event-edit-form form-short" %>
       </div>
-    </div>   
-    <%= f.submit '投稿する！', :class => "btn new pink" %>
-<% end %>
-    </div>
+    </div>  
+   </div>
+    <%= f.submit '投稿する！', :class => "btn new pink create-post" %>
+    <% end %> 
 </div>
