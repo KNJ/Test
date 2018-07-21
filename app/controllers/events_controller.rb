@@ -4,43 +4,42 @@ class EventsController < ApplicationController
   before_action :set_remote_ip, only: [:create, :update]
 
   def new
-      # イベントを登録
-        @event = Event.new
+    # イベントを登録
+      @event = Event.new
 
-      # 出演者を登録
-        @event.event_performers.build
+    # 出演者を登録
+      @event.event_performers.build
 
-      # リンクを登録
-        @event.event_links.build
+    # リンクを登録
+      @event.event_links.build
 
-      # カテゴリを登録
-        @event.event_categories.build
-
+    # カテゴリを登録
+      @event.event_categories.build
   end
 
   def create
-        # イベント情報を取得
-         @event = Event.new(event_params)
+    # イベント情報を取得
+      @event = Event.new(event_params)
 
-        # Performerを改行コードで分けるために変数に入れる
-         @event_performers = event_params[:event_performers_attributes]
+    # Performerを改行コードで分けるために変数に入れる
+      @event_performers = event_params[:event_performers_attributes]
 
-        # Performerは別途作成するので空欄にする
-         @event.event_performers.clear
+    # Performerは別途作成するので空欄にする
+      @event.event_performers.clear
 
-        # DB保存→詳細画面へリダイレクト
-        if @event.save
-            # イベントが登録されたら、変更履歴テーブルを更新
-            UpdateEventChangeHistoryService.new(@event.id,@remote_ip,@user_id).execute
+    # DB保存→詳細画面へリダイレクト
+    if @event.save
+        # イベントが登録されたら、変更履歴テーブルを更新
+        UpdateEventChangeHistoryService.new(@event.id,@remote_ip,@user_id).execute
 
-            # Event_performersを1行ごとのレコードに分ける
-             EventPerformersSplitService.new(@event_performers,@event.id).execute
+        # Event_performersを1行ごとのレコードに分ける
+        EventPerformersSplitService.new(@event_performers,@event.id).execute
 
-            redirect_to event_path(@event.id), notice: 'ありがとうございます！ライブ登録が完了しました！'
-        else
-            flash.now[:error] = 'ライブ登録に失敗しました...。お手数ですが最初からやり直してください。'
-            render :new
-        end
+        redirect_to event_path(@event.id), notice: 'ありがとうございます！ライブ登録が完了しました！'
+    else
+        flash.now[:error] = 'ライブ登録に失敗しました...。お手数ですが最初からやり直してください。'
+        render :new
+    end
   end
 
   def index
@@ -69,7 +68,10 @@ class EventsController < ApplicationController
   end
 
   def edit
-
+    # 出演者を取得する
+    @event_performers = EventPerformer.where(event_id: @event.id).pluck(:performer)
+    @text_area = TextareaConcatService.new(@event_performers,@event.id).execute
+    @event_info = @event, @text_area
   end
 
   def update

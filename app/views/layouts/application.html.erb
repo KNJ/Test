@@ -127,7 +127,7 @@
     <nav class="user-menu-sm">
       <ul class="user-menu-button-sm">
         <li>
-          <%= link_to search_path do %>
+          <%= link_to events_path do %>
             <span class="fas fa-search user-menu-icon"></span>
             <span class="user-menu-button-text">探す</span>
           <% end %>
@@ -151,7 +151,7 @@
           <% end %>
         </li>
         <li>
-          <%= link_to survey_path do %>
+          <%= link_to user_path(current_user.id) do %>
             <span class="fa fa-user-o user-menu-icon"></span>
             <span class="user-menu-button-text">Myページ</span>
           <% end %>
