@@ -70,7 +70,7 @@ class EventsController < ApplicationController
   def edit
     # 出演者を取得する
     @event_performers = EventPerformer.where(event_id: @event.id).pluck(:performer)
-    @text_area = TextareaConcatService.new(@event_performers,@event.id).execute
+    @text_area = TextareaConcatService.new(@event_performers).execute
     @event_info = @event, @text_area
   end
 

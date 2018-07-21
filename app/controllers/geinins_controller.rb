@@ -45,7 +45,13 @@ class GeininsController < ApplicationController
   end
 
   def edit
+    @geinin_tags = GeininTag.where(geinin_id: @geinin.id).pluck(:tag)
+    @text_area = TextareaConcatService.new(@geinin_tags).execute
 
+    # 芸人メンバーのIDをとる
+    @geinin_members = GeininMember.where(geinin_id: @geinin_id).pluck(:id)
+    @geinin_member_tags = GeininMemberTag.where(geinin_id: @geinin_id,geinin_member_id: @geinin_members)
+    @text_area = TextareaConcatService.new(@geinin_tags).execute
   end
 
   def update

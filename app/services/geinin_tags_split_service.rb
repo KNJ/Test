@@ -1,4 +1,4 @@
-class EventPerformersSplitService
+class GeininTagsSplitService
 
     def initialize(event_performer_param,event_id)
         @event_id = event_id
