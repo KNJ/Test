@@ -3,6 +3,9 @@ class Geinin < ApplicationRecord
   has_many :geinin_members, dependent: :destroy
   accepts_nested_attributes_for :geinin_members, allow_destroy: true,reject_if: :all_blank
 
+  has_many :geinin_member_tags, through: :geinin_members
+  accepts_nested_attributes_for :geinin_member_tags, allow_destroy: true,reject_if: :all_blank
+
   # 複数タグ付けできる
   has_many :geinin_tags, dependent: :destroy
   accepts_nested_attributes_for :geinin_tags, allow_destroy: true,reject_if: :all_blank
@@ -16,8 +19,8 @@ class Geinin < ApplicationRecord
     validates :yomi, presence: true
 
   # あいうえお順の昇順に並べ換える
-    scope :including_geinin_info, -> { includes(:geinin_members, :geinin_tags, :followings)
-                .references(:geinin_members, :geinin_tags, :followings)}
+    scope :including_geinin_info, -> { includes(:geinin_members, :geinin_member_tags, :geinin_tags, :followings,geinin_members: :geinin_member_tags)
+                .references(:geinin_members, :geinin_member_tags, :geinin_tags, :followings,geinin_members: :geinin_member_tags)}
   # あいうえお順の昇順に並べ換える
     scope :order_by_yomi, -> { order(yomi: :asc) }
 

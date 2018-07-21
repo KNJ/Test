@@ -1,11 +1,24 @@
-<div class="profile-container"><br><Br><br>
-    <h3 class="profile-name">
-    <p><%= @user.nickname %></p>
-    <%= @user.name %></h3> 
-    <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "https://pbs.twimg.com/profile_images/958803950391541760/ABdXMZLE.jpg" %>
-	<% if @user.id == current_user.id %>
-        <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "pull-right" %></p>
-    <% end %>
-</div>
+<section class="main">
+  <div class="page-info hard-shadows">
+    <p>Myページ</p>
+  </div>
+  <div class="post hard-shadows">
+    <div class="post-wrapper">
+      <div class="post-content">
+        <%= @user.nickname %>
+        <%= @user.name %><br>
 
-<%= render :partial => "events/event_list", locals: { events: @events, user: @user } %>
+        <span class="fas fa-file-alt"></span><%= @user.description %><br>
+        <span class="fas fa-link"></span><%= @user.url %>
+        フォローしている芸人一覧
+        ライブ登録数
+      </div>
+      <div class="following-box">
+        <% if @user.id == current_user.id %>
+          <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "btn following" %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <%= render :partial => "events/event_list", locals: { events: @events, user: @user } %>
+</section>

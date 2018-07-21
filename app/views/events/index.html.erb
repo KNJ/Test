@@ -37,18 +37,15 @@
           <p class="lp-panel-item-text">自分が好きな芸人さんを<strong>「フォロー」</strong>することで、フォローした芸人さんが出るライブの情報だけをタイムライン上に表示させることが可能です。</p>
         </div>
       </div>
+      <div class="lp-panel-item">
+        <div class="lp-panel-item-body">
+          <h2 class="lp-panel-item-site-title">wArally!</h2>
+          <p class="lp-panel-item-text" style="text-align:center">ログインするとwArally!のすべての機能をご利用いただけます！</p>
+          <%= link_to user_twitter_omniauth_authorize_path, :class =>"twitter-button" do %>
+            <i class="fa fa-twitter"></i> さっそく使い始める!
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
-
-  <div class="lp-footer">
-    <div class="inner">
-      <div class="logo">wArally!</div>
-      <p>ログインするとwArally!のすべての機能をご利用いただけます！</p>
-        <%= link_to user_twitter_omniauth_authorize_path,class: "twitter-button-large" do %>
-          <i class="fa fa-twitter"></i> さっそく使い始める
-        <% end %>
-  </div>
-</div>
-</main>
-</div>
 </section>

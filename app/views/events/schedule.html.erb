@@ -1,24 +1,40 @@
-<section class="sct-color-1 slice">
-  <div class="container-fluid masonry-container">
-    <div class="row">
-      <div class="col-md-8 col-sm-offset-2">
-        <div class="masonry-wrapper-cols">
-        <!--「参加中」を押したライブだけ表示-->
-        <% @event_participates = @results[0] %>
-        <% @event_pengings = @results[1] %>
-        <% @geinin_followings = @results[2] %>
-        <% if @event_participates.present? && @event_pendings.present? %>
-          <h2>参加する＋検討中のライブ一覧</h2>
-          <% @events = @event_participates + @event_pengings %>
-          <% @events = @events.uniq %>
-        <%= render :partial => "events/event_list", locals: { events: @events } %>
-        <% end %>
-         <h2>参加するライブ一覧</h2>
-            <%= render :partial => "events/event_list", locals: { events: @event_participates } %>
-         <h2>検討中のライブ一覧</h2>
-            <%= render :partial => "events/event_list", locals: { events: @event_pendings } %>
-            </div>
-      </div>
+<% @events_participates = @results[0] %>
+<% @events_pengings = @results[1] %>
+<% @events_followings = @results[2].uniq %>
+<% @events_posted = @results[3] %>
+<% if @event_participates.present? && @event_pendings.present? %>
+  <% @events = @event_participates + @event_pengings %>
+  <% @events = @events.uniq %>
+<% end %>
+
+<section class="main">
+  <div class="element page-info hard-shadows">
+    <p>スケジュール</p>
+  </div>
+  <div class="tabs">  
+    <input id="tab-1" type="radio" name="tab-radio">
+    <label class="tab-label" for="tab-1">フォロー中</label>
+
+    <input id="tab-2" type="radio" name="tab-radio" checked>
+    <label class="tab-label" for="tab-2">参加する</label>
+  
+    <input id="tab-3" type="radio" name="tab-radio">
+    <label class="tab-label" for="tab-3">検討中</label>
+
+    <input id="tab-4" type="radio" name="tab-radio">
+    <label class="tab-label" for="tab-4">自分の投稿</label>
+
+    <div class="tab-content tab-1-content hard-shadows">
+        <%= render :partial => "events/event_list", locals: { events: @events_followings } %>
+    </div>
+    <div class="tab-content tab-2-content hard-shadows">
+      <%= render :partial => "events/event_list", locals: { events: @events_participates } %>
+    </div>
+    <div class="tab-content tab-3-content hard-shadows">
+      <%= render :partial => "events/event_list", locals: { events: @events_pendings } %>
+    </div>
+    <div class="tab-content tab-4-content hard-shadows">
+      <%= render :partial => "events/event_list", locals: { events: @events_posted } %>
     </div>
   </div>
 </section>

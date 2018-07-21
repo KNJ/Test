@@ -1,0 +1,220 @@
+<div class="event-box">
+  <%= form_for(@geinin, method: :post) do |f| %>
+  <div class="form-item">
+    <div class="form-icon">
+      <i class="fas fa-user"></i>
+    </div>
+    <div class="form">
+      <%= f.text_field :name,:placeholder => "芸人名 *",:class => "event-edit-form form-long",:required=>"true" %>
+    </div>    
+  </div>
+  <div class="form-item">
+    <div class="form-icon">
+      <i class="fas fa-address-card"></i>
+    </div>
+    <div class="form">
+      <%= f.text_field :yomi,:placeholder => "ふりがな *",:class => "event-edit-form form-long",:required=>"true" %>
+    </div>    
+  </div>
+  <div class="form-item">
+    <div class="form-icon">
+      <i class="fas fa-bookmark"></i>
+    </div>
+    <div class="form">
+      <%= f.text_field :agency,:placeholder => "事務所",:class => "event-edit-form form-long" %><br>
+    </div>
+  </div>
+  <div class="form-item">
+    <div class="form-icon">
+      <i class="fab fa-twitter-square"></i>
+    </div>
+    <div class="form">
+      <%= f.text_field :twitter_id,:placeholder => "Twitter ID",:class => "event-edit-form form-long"  %>
+    </div>
+  </div>
+  <div class="form-item">
+    <div class="form-icon">
+      <i class="fab fa-youtube"></i>
+    </div>
+    <div class="form">
+      <%= f.text_field :youtube_url,:placeholder => "Youtube URL",:class => "event-edit-form form-long"  %>
+    </div>
+  </div>
+  <div class="form-item">
+    <div class="form-icon">
+      <i class="fas fa-tags"></i>
+    </div>
+    <div class="form">
+      <%= f.fields_for :geinin_tags do |tags_form| %>
+        <%= tags_form.text_area :tag,:placeholder => "タグ",:class => "event-edit-form form-long"  %>
+      <% end %>
+    </div>
+  </div>
+  <div class="more-info">
+    メンバー1
+  </div>
+  <%= f.fields_for :geinin_member do |member_form| %>
+    <div class="form-item">
+      <div class="form-icon">
+        <i class="fas fa-address-book"></i>
+      </div>
+      <div class="form">
+        <%= member_form.text_field :name,:placeholder => "名前*",:class => "event-edit-form form-long"  %>
+      </div>
+    </div>
+    <div class="form-item">
+      <div class="form-icon">
+        <i class="fas fa-address-card"></i>
+      </div>
+      <div class="form">
+        <%= member_form.text_field :yomi,:placeholder => "ふりがな*",:class => "event-edit-form form-long"  %>
+      </div>
+    </div>
+    <div class="form-item">
+      <div class="form-icon">
+        <i class="fab fa-twitter-square"></i>
+      </div>
+      <div class="form">
+        <%= member_form.text_field :twitter_id,:placeholder => "Twitter ID",:class => "event-edit-form form-long"  %>
+      </div>
+    </div>
+    <div class="form-item">
+      <div class="form-icon">
+        <i class="fab fa-instagram"></i>
+      </div>
+      <div class="form">
+        <%= member_form.text_field :instagram_id,:placeholder => "Insgram ID",:class => "event-edit-form form-long"  %>
+      </div>
+    </div>
+    <div class="form-item">
+      <div class="form-icon">
+        <i class="fas fa-pen-nib"></i>
+      </div>
+      <div class="form">
+        <%= member_form.text_field :blog_url,:placeholder => "ブログ URL",:class => "event-edit-form form-long"  %><br>
+      </div>
+    </div>
+  <% end %>
+  <div class="form-item">
+    <div class="form-icon">
+      <i class="fas fa-tags"></i>
+    </div>
+    <div class="form">
+      <%= f.fields_for :geinin_members_tags do |member_tags_form| %>
+        <%= member_tags_form.text_area :tag,:placeholder => "タグ",:class => "event-edit-form form-long"  %>
+      <% end %>
+    </div>
+  </div>
+  <div class="more-info">
+    メンバー2
+  </div>
+  <%= f.fields_for :geinin_member do |member_form| %>
+    <div class="form-item">
+      <div class="form-icon">
+        <i class="fas fa-address-book"></i>
+      </div>
+      <div class="form">
+        <%= member_form.text_field :name,:placeholder => "名前*",:class => "event-edit-form form-long"  %>
+      </div>
+    </div>
+    <div class="form-item">
+      <div class="form-icon">
+        <i class="fas fa-address-card"></i>
+      </div>
+      <div class="form">
+        <%= member_form.text_field :yomi,:placeholder => "ふりがな*",:class => "event-edit-form form-long"  %>
+      </div>
+    </div>
+    <div class="form-item">
+      <div class="form-icon">
+        <i class="fab fa-twitter-square"></i>
+      </div>
+      <div class="form">
+        <%= member_form.text_field :twitter_id,:placeholder => "Twitter ID",:class => "event-edit-form form-long"  %>
+      </div>
+    </div>
+    <div class="form-item">
+      <div class="form-icon">
+        <i class="fab fa-instagram"></i>
+      </div>
+      <div class="form">
+        <%= member_form.text_field :instagram_id,:placeholder => "Insgram ID",:class => "event-edit-form form-long"  %>
+      </div>
+    </div>
+    <div class="form-item">
+      <div class="form-icon">
+        <i class="fas fa-pen-nib"></i>
+      </div>
+      <div class="form">
+        <%= member_form.text_field :blog_url,:placeholder => "ブログ URL",:class => "event-edit-form form-long"  %><br>
+      </div>
+    </div>
+  <% end %>
+  <div class="form-item">
+    <div class="form-icon">
+      <i class="fas fa-tags"></i>
+    </div>
+    <div class="form">
+      <%= f.fields_for :geinin_members_tags do |member_tags_form| %>
+        <%= member_tags_form.text_area :tag,:placeholder => "タグ",:class => "event-edit-form form-long"  %>
+      <% end %>
+    </div>
+  </div>
+  <div class="more-info">
+    メンバー3
+  </div>
+  <%= f.fields_for :geinin_member do |member_form| %>
+    <div class="form-item">
+      <div class="form-icon">
+        <i class="fas fa-address-book"></i>
+      </div>
+      <div class="form">
+        <%= member_form.text_field :name,:placeholder => "名前*",:class => "event-edit-form form-long"  %>
+      </div>
+    </div>
+    <div class="form-item">
+      <div class="form-icon">
+        <i class="fas fa-address-card"></i>
+      </div>
+      <div class="form">
+        <%= member_form.text_field :yomi,:placeholder => "ふりがな*",:class => "event-edit-form form-long"  %>
+      </div>
+    </div>
+    <div class="form-item">
+      <div class="form-icon">
+        <i class="fab fa-twitter-square"></i>
+      </div>
+      <div class="form">
+        <%= member_form.text_field :twitter_id,:placeholder => "Twitter ID",:class => "event-edit-form form-long"  %>
+      </div>
+    </div>
+    <div class="form-item">
+      <div class="form-icon">
+        <i class="fab fa-instagram"></i>
+      </div>
+      <div class="form">
+        <%= member_form.text_field :instagram_id,:placeholder => "Insgram ID",:class => "event-edit-form form-long"  %>
+      </div>
+    </div>
+    <div class="form-item">
+      <div class="form-icon">
+        <i class="fas fa-pen-nib"></i>
+      </div>
+      <div class="form">
+        <%= member_form.text_field :blog_url,:placeholder => "ブログ URL",:class => "event-edit-form form-long"  %><br>
+      </div>
+    </div>
+  <% end %>
+  <div class="form-item">
+    <div class="form-icon">
+      <i class="fas fa-tags"></i>
+    </div>
+    <div class="form">
+      <%= f.fields_for :geinin_members_tags do |member_tags_form| %>
+        <%= member_tags_form.text_area :tag,:placeholder => "タグ",:class => "event-edit-form form-long"  %>
+      <% end %>
+    </div>
+  </div>
+</div>
+  <%= f.submit '登録する！', :class => "btn new pink create-post" %>
+  <% end %> 

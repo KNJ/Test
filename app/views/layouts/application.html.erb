@@ -31,7 +31,7 @@
     <!--Google Font "Roboto"のインストール-->
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link rel="alternate" hreflang="ja" href="http://warally.info">
-    <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,600,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
     <!--Internet Explorerの互換性を無視-->
@@ -127,7 +127,7 @@
     <nav class="user-menu-sm">
       <ul class="user-menu-button-sm">
         <li>
-          <%= link_to search_path do %>
+          <%= link_to events_path do %>
             <span class="fas fa-search user-menu-icon"></span>
             <span class="user-menu-button-text">探す</span>
           <% end %>
@@ -151,7 +151,7 @@
           <% end %>
         </li>
         <li>
-          <%= link_to survey_path do %>
+          <%= link_to user_path(current_user.id) do %>
             <span class="fa fa-user-o user-menu-icon"></span>
             <span class="user-menu-button-text">Myページ</span>
           <% end %>

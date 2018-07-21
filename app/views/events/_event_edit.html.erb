@@ -1,12 +1,9 @@
-<div class="container">
-  <div class="event-box">
-    <%= form_for(@event, method: :post) do |f| %>
     <div class="form-item">
       <div class="form-icon">
         <i class="fas fa-calendar-alt"></i>
       </div>
       <div class="form">
-        <%= f.text_field :datetime, :placeholder =>"開演日時 *", :class=>"SearchCalendar event-edit-form form-long", data: {min_date: 'today'},:required=>"true" %>
+        <%= f.datetime_select :datetime, :placeholder =>"開演日時 *", :class=>"SearchCalendar event-edit-form form-long", data: {min_date: 'today'},:required=>"true" %>
       </div>
     </div>
     <div class="form-item">
@@ -27,32 +24,31 @@
     </div>
     <div class="form-item">
       <div class="form-icon">
-        <i class="fas fa-users"></i>
-      </div>
-      <div class="form">
-        <%= f.fields_for :event_performers do |performers_form| %>
-          <%= performers_form.text_area :performer,:placeholder => "出演者（改行でタグになります）",:class => "event-edit-form textarea form-long"  %><br>
-        <% end %>
-      </div>
-    </div>
-  <%= f.submit '投稿する！', :class => "btn new pink" %>
-  <div class="more-info">もっと詳しく</div>
-    <div class="form-item">
-      <div class="form-icon">
-        <i class="fas fa-file-alt"></i>
-      </div>
-      <div class="form">
-        <%= f.text_area :description,:placeholder => "ライブの説明",:class => "event-edit-form textarea form-long" %>
-      </div>
-    </div>
-    <div class="form-item">
-      <div class="form-icon">
         <i class="fas fa-link"></i>
       </div>
       <div class="form">
         <%= f.fields_for :event_links do |urls_form| %>
           <%= urls_form.text_field :url,:placeholder => "予約URL",:class => "event-edit-form form-long"  %>
         <% end %>
+      </div>
+    </div>
+    <div class="form-item">
+      <div class="form-icon">
+        <i class="fas fa-users"></i>
+      </div>
+      <div class="form">
+        <textarea placeholder="出演者（改行でタグになります）" class="event-edit-form textarea form-long" name="event[event_performers_attributes][0][performer]" id="event_event_performers_attributes_0_performer"><%= event_performers %></textarea>    
+      </div>
+    </div>
+    <%= f.submit '投稿する！', :class => "btn new pink" %>
+    <div class="more-info">もっと詳しく
+    </div>
+    <div class="form-item">
+      <div class="form-icon">
+        <i class="fas fa-file-alt"></i>
+      </div>
+      <div class="form">
+        <%= f.text_area :description,:placeholder => "ライブの説明",:class => "event-edit-form textarea form-long" %>
       </div>
     </div>
     <div class="form-item">
@@ -89,15 +85,12 @@
     </div>
     <div class="form-item">
       <div class="form-icon">
-        <i class="fas fa-tickets-alt"></i>
+        <i class="fas fa-clock"></i>
       </div>
       <div class="form">
         <%= f.text_field :presale_start,:placeholder => "先行販売開始日時",:class => "event-edit-form form-short" %>
-        <p>〜</p>
+        〜
         <%= f.text_field :presale_end,:placeholder => "終了日時",:class => "event-edit-form form-short" %>
       </div>
-    </div>   
-    <%= f.submit '投稿する！', :class => "btn new pink" %>
-<% end %>
     </div>
-</div>
+    <%= f.submit '投稿する！', :class => "btn new pink create-post" %>

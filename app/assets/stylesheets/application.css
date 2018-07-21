@@ -34,6 +34,9 @@ header{
 .inner{
   margin:0;
   padding:0 10px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .user-menu{
   margin:0 auto;
@@ -201,11 +204,15 @@ header{
     margin-right: 5px
 }
 .main{
-    margin:0px 50px;
     padding: 0px 80px;
     display:block;
     overflow: hidden;
     position: relative;
+    margin:0 auto;
+    margin-top:60px;
+    margin-bottom:20px;
+    max-width:600px;
+    min-height:800px;
 }
 
 @media(min-width:972px){
@@ -288,14 +295,18 @@ header{
 }
 .post-performer{
   line-height: 1.5;
+  display:block;
+  overflow:hidden;
 }
 .post-performer a{
   text-decoration:none;
   display:inline-block;
   color:#595959;
-  height: 20px;
-  line-height: 20px;
-  padding: 0 10px;
+  height: 15px;
+  line-height: 15px;
+  padding: 3px 10px;
+  margin-right:2px;
+  margin-bottom:5px;
   background-color: #fff;
   border: 1px solid #aaa;
   border-radius: 3px;
@@ -332,16 +343,16 @@ header{
 .post-tag a:hover{
   color:#f22e58;
 }
-.post-options>div {
+.post-options {
     line-height: 20px;
     cursor: pointer;
-    float:left;
     font-size:12px;
 }
 .post-option{
   background-color:#f22e58;
   width:25%;
   text-align:center;
+  float:left;
 }
 .post-option a{
   color:#f7f7f7;
@@ -367,16 +378,16 @@ header{
 /* 検索フォーム　*/
 .search-form-container{
     margin-top: 12px;
-    background-color: #272727;
+    /* background-color: #272727; */
     color: #f7f7f7;
-    width:350px;
     z-index: 2;
-    box-shadow: 0 0 1px 1px rgba(0,0,0,.05);
+    /* box-shadow: 0 0 1px 1px rgba(0,0,0,.05); */
     display: block;
     padding: 0;
     border: 0;
     font: inherit;
     /* vertical-align: baseline; */
+    margin:0 auto;
 }
 .search-form-inner{
     padding: 12px 2px 10px 5px;
@@ -384,10 +395,11 @@ header{
     font: inherit;
     vertical-align: baseline;
     overflow: hidden;
+    margin:0 auto;
+    background-color: #3c3c3c;
 }
 .search-categories{
     padding:2px 2px 10px 2px;
-    margin-bottom:5px;
     clear:both; 
 }
 .search-label{
@@ -432,16 +444,15 @@ header{
 .search-performer-box{
     position:left;
     padding-top:5px;
+    padding-left:10px;
 }
 .search-form-area{
     position:left;
-    float:left;
     padding-left:10px;
-    margin-bottom:10px;
 }
 .categories{
-    display: block;
-    padding: 6px 12px;
+    display: inline-block;
+    padding: 4px 12px;
     color: #f7f7f7;
     background-color: #333;
     margin: 0 6px 6px 0;
@@ -505,9 +516,14 @@ footer{
 } */
 .new{
     padding:10px 40px;
-    margin:0 auto;    
     width:200px;
+    margin:0 auto;
+    margin-top:20px;
+    margin-bottom:20px;
     display:block;
+}
+.new-button{
+    margin:10px;
 }
 .navigation-link{
     display: inline-block;
@@ -529,6 +545,7 @@ footer{
 .event-no-result{
     padding:60px 40px;
     text-align:center;
+    background-color:#fff;
 }
 
 @media(min-width:800px){
@@ -618,9 +635,6 @@ footer{
         margin-top:10px;
         margin-bottom:10px;
     }
-    .post{
-        padding:10 10px;
-    }
     .search-form-container{
         margin:0 auto;
     }
@@ -647,8 +661,8 @@ footer{
     border:solid 1px #f22e58;
 }
 .form-short{
-    width:130px;
-    float:left;
+    width:127px;
+    display:inline-block;
 }
 .block{
     display:block;
@@ -661,7 +675,8 @@ textarea{
 .event-box{
     width:375px;
     margin:0 auto;
-    text-align:center;
+    margin-top:20px;
+    margin-bottom:20px;
 }
 .form-item{
     clear:both;
@@ -715,6 +730,9 @@ textarea{
 .survey-result{
     padding: .25em 0 .5em .80em;
 }
+.ranking{
+    position:left;
+}
 .pink{
     background-color:#f22e58;
     color: #fbfbfb;
@@ -745,7 +763,6 @@ textarea{
     box-shadow: 0 2px 3px 0 rgba(0,0,0,.1);
     cursor: pointer;
     transition: all .2s ease 0s;
-    display: inline-block;
     text-decoration: none;
 }
 /* 芸人wiki */
@@ -810,4 +827,152 @@ textarea{
 }
 .facebook{
     color:#3B5998;
+}
+.lp-panel {
+    position: relative;
+    width:100%;
+    margin:0 auto;
+    margin:10px 0;
+    background-color:white;
+}
+.lp-panel-item{
+    padding:10px;
+}
+.lp-panel-item-body {
+    width: 100%;
+    margin-top: 5px;
+}
+.lp-panel-item-title {
+    color: #f22e58;
+    font-weight: normal;
+    font-size: 20px;
+    margin: 0;
+}
+.lp-panel-item-text {
+    margin: 8px 0;
+    font-size: .875rem;
+}
+.lp-panel-item-image {
+    width: 100%;
+    height: 160px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    border: 1px solid #eee;
+    border-radius: 10px;
+}
+.lp-panel-item-site-title{
+    color: #f22e58;
+    font-weight: normal;
+    font-size: 30px;
+    margin: 0;
+    text-align:center;
+}
+/* タブ表示　*/
+/* タブの外枠 */
+.tabs {
+  margin: 0;
+}
+input{
+    margin:0;
+}
+/* タブのスタイル */
+.tabs .tab-label {
+  display: inline-block;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  background-color: #f22e58;
+  color:#f7f7f7;
+  padding: 10px 5px;
+  font-size: 13px;
+  text-align:center;
+  margin:0;
+}
+.tab-label{
+    width:21%;
+}
+ 
+/* タブにマウスカーソルがのったときフッター */
+.tabs .tab-label:hover {
+  opacity: 0.7;
+  background-color:#f22e58;
+  color: #f7f7f7;
+  border:1px solid #f7f7f7;
+}
+ 
+/* ラジオボタンと内容を非表示 */
+.tabs input[name="tab-radio"],
+.tabs .tab-content {
+  display: none;
+  margin:0;
+}
+ 
+/* タブ内容のスタイル */
+.tabs .tab-content{
+  padding: 10px;
+  min-height: 200px;
+  background-color:#fff;
+}
+ 
+/* 選択されているタブのコンテンツのみを表示 */
+.tabs #tab-1:checked ~ .tab-1-content,
+.tabs #tab-2:checked ~ .tab-2-content,
+.tabs #tab-3:checked ~ .tab-3-content,
+.tabs #tab-4:checked ~ .tab-4-content,
+.tabs #tab-5:checked ~ .tab-5-content {
+  display: block;
+}
+ 
+/* 選択されているタブのスタイルを変える */
+.tabs input[name="tab-radio"]:checked + .tab-label {
+  background-color: #f7f7f7;
+  color:#f22e58;
+  border:1px solid #f22e58;
+}
+}
+.twitter-button-large{
+    font-size: 20px;
+    width: 300px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+    transition-duration: 0.5s;
+    margin: 0px auto;
+    position: relative;
+    border: none;
+    padding: 0 10px;
+    background-repeat: no-repeat;
+    background-position: 10px 10px;
+    display: block;
+    margin: 40px auto;
+    position: relative;
+    color: white;
+    background-color: #1B95E0;
+    border: 1px solid #1B95E0;
+    -webkit-border-radius: 10px;
+    text-decoration: none;
+}
+
+.twitter-large-button a:hover {
+    color: #1B95E0;
+    background-color: white;
+    opacity: 1.0;
+}
+
+.twitter-large-button a {
+    color:#FFFFFF;
+}
+@media(max-width:320px){
+    .categories{
+    display: inline-block;
+    padding: 4px 6px;
+    color: #f7f7f7;
+    background-color: #f22e58;
+    margin: 0 3px 3px 0;
+    transition: all 300ms ease;
+    float: left;
+    margin-top:5px;
+    }
 }
