@@ -111,7 +111,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   gem 'jquery-turbolinks'
   # modal windowをいい感じにする
   gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
-
+  gem 'nokogiri'
   gem 'squasher'
 
 group :production do

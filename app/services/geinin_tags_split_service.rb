@@ -11,11 +11,11 @@ class GeininTagsSplitService
     	@geinin_tags_list = @geinin_tags.split("\r\n")
 
         # 1回消して、もう1回登録する
-        EventPerformer.where(event_id: @event_id).delete_all
+        GeininTag.where(geinin_id: @geinin_id).delete_all
         
-        @event_performer_list.each do |performer|
+        @geinin_tags_list.each do |tag|
             # 登録する
-            EventPerformer.create(event_id: @event_id, performer: performer)
+            GeininTag.create(geinin_id: @geinin_id, tag: tag)
         end
         
     end

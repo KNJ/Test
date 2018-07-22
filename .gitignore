@@ -32,3 +32,4 @@ doc/
 .secret
 /.env
 /vendor/bundle/**/*
+/vendor/bundler/**/*
