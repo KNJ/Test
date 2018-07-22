@@ -1,14 +1,14 @@
 class GeininTagsSplitService
 
-    def initialize(event_performer_param,event_id)
-        @event_id = event_id
-        @event_performer_param = event_performer_param
-        @event_performer = @event_performer_param.to_h['0']["performer"]
+    def initialize(geinin_tag_param,geinin_id_param)
+        @geinin_id = geinin_id_param
+        @geinin_tag_param = geinin_tag_param
+        @geinin_tags = @geinin_tag_param.to_h['0']["tag"]
     end
 
     def execute        
         # 改行コードで分割して、改行分レコードを作成する
-    	@event_performer_list = @event_performer.split("\r\n")
+    	@geinin_tags_list = @geinin_tags.split("\r\n")
 
         # 1回消して、もう1回登録する
         EventPerformer.where(event_id: @event_id).delete_all
