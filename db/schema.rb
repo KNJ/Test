@@ -50,12 +50,12 @@ ActiveRecord::Schema.define(version: 20180713111621) do
   end
 
   create_table "events", force: :cascade do |t|
+    t.datetime "datetime"
     t.string "title"
+    t.string "place"
     t.string "description"
     t.string "tel"
     t.string "email"
-    t.datetime "datetime"
-    t.string "place"
     t.datetime "general_sale"
     t.datetime "presale_start"
     t.datetime "presale_end"
@@ -180,6 +180,18 @@ ActiveRecord::Schema.define(version: 20180713111621) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "provider"
+    t.string "uid"
+    t.string "nickname"
+    t.string "image_url"
+    t.string "profile_image_id"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.string "name"
+    t.string "url"
+    t.string "description"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
