@@ -112,6 +112,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   # modal windowをいい感じにする
   gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
 
+  gem 'squasher'
+
 group :production do
  gem 'rails_12factor'
  ruby '2.5.1'

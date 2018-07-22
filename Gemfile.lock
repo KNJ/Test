@@ -299,6 +299,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    squasher (0.6.0)
     structured-data (0.2.1)
       actionpack
     thor (0.20.0)
@@ -381,6 +382,7 @@ DEPENDENCIES
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
+  squasher
   structured-data
   tod
   turbolinks (~> 5)

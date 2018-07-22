@@ -3,7 +3,7 @@ class CreateGeinins < ActiveRecord::Migration[5.1]
     create_table :geinins do |t|
       t.string :name
       t.string :yomi
-      t.string :production
+      t.string :agency
       t.integer :start_year
       t.string :twitter_id
       t.string :instagram_id

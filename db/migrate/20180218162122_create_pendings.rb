@@ -1,9 +1,9 @@
 class CreatePendings < ActiveRecord::Migration[5.1]
   def change
     create_table :pendings do |t|
-      t.integer :pending_id
-      t.string :uid
-      t.integer :live_id
+      t.references :event, foreign_key: true
+      t.references :user, foreign_key: true
+
       t.timestamps
     end
   end
