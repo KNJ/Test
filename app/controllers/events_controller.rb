@@ -161,11 +161,11 @@ private
   end
 
   def set_current_user
-      if current_user.present?
-          @user = current_user
-          # ログインユーザーを取得
-          @user_id = current_user.id
-      end
+    if current_user.present?
+        @user = current_user
+        # ログインユーザーを取得
+        @user_id = current_user.id
+    end
   end
 
   def set_remote_ip

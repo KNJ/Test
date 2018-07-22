@@ -151,9 +151,16 @@
           <% end %>
         </li>
         <li>
-          <%= link_to user_path(current_user.id) do %>
-            <span class="fa fa-user-o user-menu-icon"></span>
-            <span class="user-menu-button-text">Myページ</span>
+          <% if current_user.present? %>
+            <%= link_to user_path(current_user.id) do %>
+              <span class="fa fa-user-o user-menu-icon"></span>
+              <span class="user-menu-button-text">Myページ</span>
+            <% end %>
+          <% else %>
+            <%= link_to events_path do %>
+              <span class="fa fa-user-o user-menu-icon"></span>
+              <span class="user-menu-button-text">Myページ</span>
+            <% end %>
           <% end %>
         </li>
       </ul>
