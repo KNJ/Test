@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180718065842) do
+ActiveRecord::Schema.define(version: 20180713111621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20180718065842) do
   end
 
   create_table "event_change_histories", force: :cascade do |t|
-    t.integer "event_id"
-    t.integer "user_id"
+    t.bigint "event_id"
+    t.bigint "user_id"
     t.string "user_ip", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20180718065842) do
   end
 
   create_table "event_links", force: :cascade do |t|
-    t.integer "event_id"
+    t.bigint "event_id"
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20180718065842) do
   end
 
   create_table "event_performers", force: :cascade do |t|
-    t.integer "event_id"
+    t.bigint "event_id"
     t.string "performer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -50,8 +50,6 @@ ActiveRecord::Schema.define(version: 20180718065842) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "image_id"
     t.string "title"
     t.string "description"
@@ -62,44 +60,46 @@ ActiveRecord::Schema.define(version: 20180718065842) do
     t.datetime "general_sale"
     t.datetime "presale_start"
     t.datetime "presale_end"
-  end
-
-  create_table "followings", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "geinin_id"
+  end
+
+  create_table "geinin_followings", force: :cascade do |t|
     t.bigint "user_id"
-    t.index ["geinin_id"], name: "index_followings_on_geinin_id"
-    t.index ["user_id"], name: "index_followings_on_user_id"
+    t.bigint "geinin_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["geinin_id"], name: "index_geinin_followings_on_geinin_id"
+    t.index ["user_id"], name: "index_geinin_followings_on_user_id"
   end
 
   create_table "geinin_member_tags", force: :cascade do |t|
+    t.bigint "geinin_id"
+    t.bigint "geinin_member_id"
     t.string "tag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "geinin_id"
-    t.bigint "geinin_member_id"
     t.index ["geinin_id"], name: "index_geinin_member_tags_on_geinin_id"
     t.index ["geinin_member_id"], name: "index_geinin_member_tags_on_geinin_member_id"
   end
 
   create_table "geinin_members", force: :cascade do |t|
+    t.bigint "geinin_id"
     t.string "name"
     t.string "yomi"
     t.string "twitter_id"
-    t.string "instagram_id"
+    t.string "instagra_id"
     t.string "blog_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "geinin_id"
     t.index ["geinin_id"], name: "index_geinin_members_on_geinin_id"
   end
 
   create_table "geinin_tags", force: :cascade do |t|
+    t.bigint "geinin_id"
     t.string "tag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "geinin_id"
     t.index ["geinin_id"], name: "index_geinin_tags_on_geinin_id"
   end
 
@@ -128,48 +128,47 @@ ActiveRecord::Schema.define(version: 20180718065842) do
     t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["provider", "uid"], name: "index_identities_on_provider_and_uid", unique: true
     t.index ["user_id"], name: "index_identities_on_user_id"
   end
 
   create_table "participates", force: :cascade do |t|
+    t.bigint "event_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "event_id"
-    t.integer "user_id"
     t.index ["event_id"], name: "index_participates_on_event_id"
     t.index ["user_id"], name: "index_participates_on_user_id"
   end
 
   create_table "pendings", force: :cascade do |t|
+    t.bigint "event_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "event_id"
-    t.integer "user_id"
     t.index ["event_id"], name: "index_pendings_on_event_id"
     t.index ["user_id"], name: "index_pendings_on_user_id"
   end
 
   create_table "survey_answers", force: :cascade do |t|
-    t.integer "rank"
+    t.bigint "survey_id"
     t.string "answer"
+    t.integer "rank"
+    t.integer "votes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "survey_id"
-    t.integer "votes"
     t.index ["survey_id"], name: "index_survey_answers_on_survey_id"
   end
 
   create_table "surveys", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.date "start"
     t.date "end"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email"
+    t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -181,28 +180,25 @@ ActiveRecord::Schema.define(version: 20180718065842) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "provider"
-    t.string "uid"
-    t.string "nickname"
-    t.string "image_url"
-    t.string "profile_image_id"
-    t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email"
-    t.string "name"
-    t.string "url"
-    t.string "description"
+    t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "event_categories", "events"
-  add_foreign_key "followings", "geinins"
-  add_foreign_key "followings", "users"
+  add_foreign_key "event_change_histories", "events"
+  add_foreign_key "event_change_histories", "users"
+  add_foreign_key "event_links", "events"
+  add_foreign_key "event_performers", "events"
+  add_foreign_key "geinin_followings", "geinins"
+  add_foreign_key "geinin_followings", "users"
   add_foreign_key "geinin_member_tags", "geinin_members"
   add_foreign_key "geinin_member_tags", "geinins"
   add_foreign_key "geinin_members", "geinins"
   add_foreign_key "geinin_tags", "geinins"
   add_foreign_key "identities", "users"
+  add_foreign_key "participates", "events"
+  add_foreign_key "participates", "users"
+  add_foreign_key "pendings", "events"
+  add_foreign_key "pendings", "users"
   add_foreign_key "survey_answers", "surveys"
 end
