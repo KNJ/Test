@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 20180713111621) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.string "image_id"
     t.string "title"
     t.string "description"
     t.string "tel"
@@ -60,6 +59,7 @@ ActiveRecord::Schema.define(version: 20180713111621) do
     t.datetime "general_sale"
     t.datetime "presale_start"
     t.datetime "presale_end"
+    t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20180713111621) do
     t.string "name"
     t.string "yomi"
     t.string "twitter_id"
-    t.string "instagra_id"
+    t.string "instagram_id"
     t.string "blog_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

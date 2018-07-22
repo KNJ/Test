@@ -5,7 +5,7 @@ class CreateGeininMembers < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :yomi
       t.string :twitter_id
-      t.string :instagra_id
+      t.string :instagram_id
       t.string :blog_url
 
       t.timestamps
