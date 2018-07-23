@@ -78,7 +78,6 @@ Rails.application.configure do
 
   # flatpickrの読み込み
   config.assets.precompile += ['application.js']
-  
 
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
