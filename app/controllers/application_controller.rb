@@ -4,29 +4,33 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   helper_method :current_user, :logged_in?
 
+  # ランディングページの表示
+  def lp
+    if current_user.present?
+      redirect_to events_url
+    else
+      render '/lp'
+    end
+  end
+
   # aboutページの表示
   def about
-	render '/about'
+	  render '/about'
   end
 
   # プライバシーポリシーの表示
   def privacy
-	render '/privacy'
+	  render '/privacy'
   end
 
   # 利用規約ページの表示
   def terms
-	render '/terms'
+	  render '/terms'
   end
 
   # 設定ページの表示
   def setting
-  render '/setting'
-  end
-
-  # aboutページの表示
-  def survey
-  render '/survey'
+    render '/setting'
   end
 
   def set_current_user

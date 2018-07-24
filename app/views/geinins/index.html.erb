@@ -3,6 +3,10 @@
     <p>芸人一覧</p>
   </div>
   <%= render :partial => "geinins/search_form",locales: { geinins: @geinins, geinin_tags: @geinin_tags } %>
+	<%= link_to survey_path,:class =>"btn pink categories" do %>
+		<i class="fas fa-file-alt"></i>
+		<span class="user-menu-button-text">アンケート結果</span>
+	<% end %>
 	<div class="geinin-list">
 		<% if @geinins.present? %>
 			<% @geinins.each do |geinin| %>
@@ -15,7 +19,7 @@
 						<div class="geinin-name-box">
 							<%= link_to geinin.name, "geinins/#{geinin.id}", :class => "geinin-name" %>
 						</div>
-						<div class="following-box">
+						<div class="following-box" id="following-button-<%= geinin.id %>">
 							<%= render :partial => "followings/following", locals: { geinin: geinin } %>	
 						</div>
 					</div>

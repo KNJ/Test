@@ -2,33 +2,69 @@
   <div class="search-form-inner">
     <div class="search-categories">
       <div class="search-label">
-        <span><h2>芸人を探す</h2></span>
-        <p class="label-border"></p>
-    <div class="search-categories">
-      <div class="search-label">
-        <h2 class="search-label-name">キーワードで探す</h2>
+        <h2 class="search-label-name"><i class="fas fa-search icon"></i>キーワードで探す</h2>
         <p class="label-border"></p>
       </div>
       <div class="search-form-area">
         <%= form_tag(search_path, method: "get") do %>
           <%= text_field_tag :keyword,"",class: "search-form" %>
         <% end %>
-        <div class="search-performer-box post-performer">
-          <i class="fas fa-chart-line" style="padding-bottom:10px;"> 芸人タグ</i>
-          <% @geinin_tags.each do |tag| %>
-          <ul>
-            <li><%= link_to tag.tag, search_path(:geinin_tag => tag.tag), :class => "post-performer float-left" %></li>
-          </ul>
-          <% end %>      
-        </div>
       </div>
-      <div>
-        <%= link_to survey_path do %>
-          <i class="fas fa-file-alt"></i>
-          <span class="user-menu-button-text">アンケート結果</span>
+      <div class="search-performer-box post-performer">
+        <span class="fas fa-chart-line icon"></span>芸人タグ
+        <% @geinin_tags.each do |tag| %>
+        <ul>
+          <li><%= link_to tag.tag, search_path(:geinin_tag => tag.tag), :class => "post-performer float-left" %></li>
+        </ul>
         <% end %>
       </div>
-    </div>
+      <div class="search-categories">
+        <div class="search-label">
+          <h2 class="search-label-name"><span class="fas fa-search icon"></span>あいうえおで探す</h2>
+          <p class="label-border"></p>
+        </div>  
+        <div class="search-button-box">
+          <%= link_to search_path(:category => '単独ライブ'), :class => "btn categories pink float-left" do %>
+            <span>あ行</span>
+            <%= Event.default.where(event_categories: { category: '単独ライブ'} ).count %>
+          <% end %>
+          <%= link_to search_path(:category => '無料'), :class => "btn categories pink float-left" do %>
+            <span>か行</span>
+            <%= Event.default.where(event_categories: { category: '無料'} ).count %>
+          <% end %>
+          <%= link_to search_path(:category => 'エントリー制'), :class => "btn categories pink float-left" do %>
+            <span>さ行</span>
+            <%= Event.default.where(event_categories: { category: 'エントリー制'} ).count %>
+          <% end %>
+          <%= link_to search_path(:category => 'エントリー制'), :class => "btn categories pink float-left" do %>
+            <span>た行</span>
+            <%= Event.default.where(event_categories: { category: 'エントリー制'} ).count %>
+          <% end %>
+          <%= link_to search_path(:category => 'エントリー制'), :class => "btn categories pink float-left" do %>
+            <span>な行</span>
+            <%= Event.default.where(event_categories: { category: 'エントリー制'} ).count %>
+          <% end %>
+          <%= link_to search_path(:category => 'エントリー制'), :class => "btn categories pink float-left" do %>
+            <span>は行</span>
+            <%= Event.default.where(event_categories: { category: 'エントリー制'} ).count %>
+          <% end %>
+          <%= link_to search_path(:category => 'エントリー制'), :class => "btn categories pink float-left" do %>
+            <span>ま行</span>
+            <%= Event.default.where(event_categories: { category: 'エントリー制'} ).count %>
+          <% end %>
+          <%= link_to search_path(:category => 'エントリー制'), :class => "btn categories pink float-left" do %>
+            <span>や行</span>
+            <%= Event.default.where(event_categories: { category: 'エントリー制'} ).count %>
+          <% end %>
+          <%= link_to search_path(:category => 'エントリー制'), :class => "btn categories pink float-left" do %>
+            <span>ら行</span>
+            <%= Event.default.where(event_categories: { category: 'エントリー制'} ).count %>
+          <% end %>
+          <%= link_to search_path(:category => 'エントリー制'), :class => "btn categories pink float-left" do %>
+            <span>わ行</span>
+            <%= Event.default.where(event_categories: { category: 'エントリー制'} ).count %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

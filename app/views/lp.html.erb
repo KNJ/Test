@@ -1,0 +1,48 @@
+<secition class="lp">
+ <div class="lp-inner">
+    <p>おもしろい！を見つけよう</p>
+ </div>
+</section>
+<section class="main">
+  <div class="lp-panel">
+    <div class="inner">
+      <div class="lp-panel-item">
+        <div class="lp-panel-item-image" style="background-image: url()"></div>
+        <div class="lp-panel-item-body">
+          <h2 class="lp-panel-item-title">気になるライブを見つけよう</h2>
+          <p class="lp-panel-item-text">都内で毎日30〜40件行われているお笑いライブを、<strong>日付</strong>または<strong>キーワード</strong>で横断検索できます。</p>
+        </div>
+      </div>
+      <div class="lp-panel-item">
+        <div class="lp-panel-item-image" style="background-image: url()"></div>
+        <div class="lp-panel-item-body">
+          <h2 class="lp-panel-item-title">ライブ情報を登録・編集する</h2>
+          <p class="lp-panel-item-text">ライブの情報は<strong>誰でも</strong>登録・編集が可能です。好きな芸人さんのファン同士で情報をシェアしましょう！ライブ主催者の方のご登録も大歓迎です。</p>
+        </div>
+      </div>
+      <div class="lp-panel-item">
+        <div class="lp-panel-item-image" style="background-image: url()"></div>
+        <div class="lp-panel-item-body">
+          <h2 class="lp-panel-item-title">ライブの参加予定を管理する</h2>
+          <p class="lp-panel-item-text">自分が気になるライブを<strong>「参加する」</strong>または<strong>「検討中」</strong>のボタンを押してブックマークできます。</p>
+        </div>
+      </div>
+      <div class="lp-panel-item">
+        <div class="lp-panel-item-image" style="background-image: url()"></div>
+        <div class="lp-panel-item-body">
+          <h2 class="lp-panel-item-title">好きな芸人をフォローする</h2>
+          <p class="lp-panel-item-text">自分が好きな芸人を<strong>「フォロー」</strong>することで、フォローした芸人が出るライブの情報だけをタイムライン上に表示させることが可能です。</p>
+        </div>
+      </div>
+      <div class="lp-panel-item">
+        <div class="lp-panel-item-body">
+          <h2 class="lp-panel-item-site-title">wArally!</h2>
+          <p class="lp-panel-item-text" style="text-align:center">ログインするとwArally!のすべての機能をご利用いただけます！</p>
+          <%= link_to user_twitter_omniauth_authorize_path, :class =>"twitter-button" do %>
+            <i class="fa fa-twitter"></i> さっそく使い始める!
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

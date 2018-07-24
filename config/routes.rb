@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'events#index'
-  # Rootはライブ一覧ページ
+  root to: 'root#lp'
 
   # 基礎情報ページの表示
   get '/about', to: 'root#about'

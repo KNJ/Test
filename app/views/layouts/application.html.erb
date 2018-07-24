@@ -42,7 +42,7 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 　  <%= javascript_include_tag 'application',"data-turbolinks-track" => 'reload' %>
-
+    <%= favicon_link_tag('s-favicon.png') %>
     <!-- Google Analytics
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -59,6 +59,12 @@
       <div class="site-title">
         <img class="site-logo" src="/assets/logo_icon.png">
         <a href="/" class="site-title">wArally!<span class="site-sub-title">- お笑いライブ検索</span></a>
+      </div>
+      <div class="login-s">
+        <%= link_to user_twitter_omniauth_authorize_path do %>
+          <div class="btn-icon"><span class="fa fa-twitter"></span></div>
+          <div class="btn-text">ログイン</div>
+        <% end %>
       </div>
         <nav class="user-menu">
           <ul class="user-menu-button">
@@ -115,7 +121,7 @@
           </div>
         <% else %>
           <div class="login-button">
-            <%= link_to user_twitter_omniauth_authorize_path,class: "twitter-button" do %>
+            <%= link_to user_twitter_omniauth_authorize_path,:class => "twitter-button" do %>
             <i class="fa fa-twitter"></i>
             <span>Twitterでログイン</span>
             <% end %>

@@ -4,14 +4,19 @@
   </div>
   <div class="post hard-shadows">
     <div class="post-wrapper">
-      <div class="post-content">
-        <%= @user.nickname %>
-        <%= @user.name %><br>
+      <div class="post-content typography">
+        <p><%= @user.nickname %></p>
+        <p><%= @user.name %></p>
 
-        <span class="fas fa-file-alt"></span><%= @user.description %><br>
-        <span class="fas fa-link"></span><%= @user.url %>
+        <p><span class="fas fa-file-alt"></span><%= @user.description %></p>
+        <p><span class="fas fa-link"></span><%= @user.url %></p>
         フォローしている芸人一覧
         ライブ登録数
+        <li>
+          <%= link_to logout_path, :method => :delete do %>
+            <i class="fa fa-sign-out-alt"></i> ログアウト
+          <% end %>
+        </li>
       </div>
       <div class="following-box">
         <% if @user.id == current_user.id %>

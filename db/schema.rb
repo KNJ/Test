@@ -64,13 +64,13 @@ ActiveRecord::Schema.define(version: 20180713111621) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "geinin_followings", force: :cascade do |t|
+  create_table "followings", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "geinin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["geinin_id"], name: "index_geinin_followings_on_geinin_id"
-    t.index ["user_id"], name: "index_geinin_followings_on_user_id"
+    t.index ["geinin_id"], name: "index_followings_on_geinin_id"
+    t.index ["user_id"], name: "index_followings_on_user_id"
   end
 
   create_table "geinin_member_tags", force: :cascade do |t|
@@ -201,8 +201,8 @@ ActiveRecord::Schema.define(version: 20180713111621) do
   add_foreign_key "event_change_histories", "users"
   add_foreign_key "event_links", "events"
   add_foreign_key "event_performers", "events"
-  add_foreign_key "geinin_followings", "geinins"
-  add_foreign_key "geinin_followings", "users"
+  add_foreign_key "followings", "geinins"
+  add_foreign_key "followings", "users"
   add_foreign_key "geinin_member_tags", "geinin_members"
   add_foreign_key "geinin_member_tags", "geinins"
   add_foreign_key "geinin_members", "geinins"
