@@ -308,9 +308,6 @@ header{
   font-size: 14px;
   margin:10px 0;
 }
-.inline-block{
-    display:inline-block;
-}
 .post-performer{
   line-height: 1.5;
   display:block;
@@ -737,7 +734,7 @@ textarea{
     font-size:12px;
 }
 .geinin-icon{
-    display: inline-block;¥
+    display: inline-block;
 }
 .twitter{
     color:#1da1f2;
