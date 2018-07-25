@@ -1,10 +1,18 @@
-  <div class="message">
+<div class="message">
+  <div class="message-inner">
     <p class="message-text">おもしろい！を見つけよう</p>
-    <p class="message-text-sub">
+    <p class="message-text-sub">あなたの好きな<br>お笑いライブを探せるSNS</p>
+    <p class="message-text-count">
     登録ライブ数：<span class="accent number-large"><%= Event.all.count %></span> 件<br>
     登録芸人数：<span class="accent number-large"><%= Geinin.all.count %></span> 組</p>
-    <%= render :partial => "events/search_form_mini",locales: { events: @events } %>
+    <%= link_to user_twitter_omniauth_authorize_path, :class =>"btn twitter-fill radius new-login" do %>
+        <i class="fa fa-twitter"></i> さっそく使い始める!
+    <% end %>
+    <div class="no-login">
+      <%= link_to 'ログインせずに使う', events_path,:class=>"no-login" %>
+    </div>
   </div>
+</div>
 <section class="lp-panels">
     <div class="lp-panel">
         <div class="inner">

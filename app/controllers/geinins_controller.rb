@@ -52,19 +52,18 @@ class GeininsController < ApplicationController
     @geinin_members = GeininMember.where(geinin_id: @geinin_id).pluck(:id)
     @geinin_member_tags = GeininMemberTag.where(geinin_id: @geinin_id,geinin_member_id: @geinin_members)
     @text_area = TextareaConcatService.new(@geinin_tags).execute
-
 　end
 
   def update
-      # エラーチェック＆DB保存→詳細画面へリダイレクト
-      if @geinin.update(geinin_params)
-          # イベントが編集されたら、変更履歴テーブルを更新
-          @geinin_id = @geinin.id
-          redirect_to geinin_path(params[:id]) , notice: 'ありがとうございます！芸人wikiの編集が完了しました！'
-      else
-          flash.now[:error] = '芸人wikiの編集に失敗しました。お手数ですが最初からやり直してください。'
-          render :edit
-      end
+    # エラーチェック＆DB保存→詳細画面へリダイレクト
+    if @geinin.update(geinin_params)
+        # イベントが編集されたら、変更履歴テーブルを更新
+        @geinin_id = @geinin.id
+        redirect_to geinin_path(params[:id]) , notice: 'ありがとうございます！芸人wikiの編集が完了しました！'
+    else
+        flash.now[:error] = '芸人wikiの編集に失敗しました。お手数ですが最初からやり直してください。'
+        render :edit
+    end
   end
 
   def destroy
@@ -112,12 +111,12 @@ class GeininsController < ApplicationController
                 :geinin_id,
                 :tag],
         )
-    end
+        end
 
-    #ユーザー情報
-    def user_params
-        params.require(:user).permit(:id, :name, :profile_image, :uid, :email, :password)
-    end
+        #ユーザー情報
+        def user_params
+            params.require(:user).permit(:id, :name, :profile_image, :uid, :email, :password)
+        end
 
   #ライブ情報
   def event_params
@@ -152,8 +151,8 @@ class GeininsController < ApplicationController
               :event_id,
               :category]
       )
-		end
-			
+    end
+
     def set_current_user
         if current_user.present?
             @user = current_user
@@ -165,4 +164,5 @@ class GeininsController < ApplicationController
     def set_geinin
         @geinin = Geinin.find(params[:id])
     end
+  end
 end

@@ -47,6 +47,14 @@ header{
   margin-left: auto;
   margin-right: auto;
 }
+.btn{
+    font-size: 13px;
+    text-align: center;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,.1);
+    cursor: pointer;
+    transition: all .2s ease 0s;
+    text-decoration: none;
+}
 .user-menu{
   margin:0 auto;
   display:inline-block;
@@ -353,7 +361,7 @@ header{
 .post-tag a:hover{
   color:#f22e58;
 }
-.post-options {
+.post-options,.geinin-card-options{
     line-height: 20px;
     cursor: pointer;
     font-size:12px;
@@ -363,16 +371,21 @@ header{
   text-align:center;
   float:left;
 }
-.post-option a{
+.geinin-card-option{
+  width:calc(100% / 3);
+  text-align:center;
+  float:left;
+}
+.post-option a,.geinin-card-option a{
   color:#657786;
   text-decoration:none;
   display:block;
   padding: 5px 5px;
 }
-.post-option a:hover{
+.post-option a:hover,.geinin-card-option a:hover{
     color: #f22e58;
 }
-.post-option-text{
+.post-option-text,.geinin-card-option-text{
     display:inline-block;
     margin:0 auto;
     font-size:11px;
@@ -520,9 +533,19 @@ footer{
     padding:10px 40px;
     width:200px;
     margin:0 auto;
+    font-size:16px;
     margin-top:20px;
     margin-bottom:20px;
     display:block;
+}
+.new-login{
+    padding:10px 40px;
+    width:200px;
+    margin:0 auto;
+    font-size:18px;
+    margin-top:20px;
+    margin-bottom:10px;
+    display:block; 
 }
 .new-button{
     margin:10px;
@@ -665,20 +688,6 @@ textarea{
     background-color:#f22e58;
     color: #fbfbfb;
 }
-.following{
-    border-radius:20px;
-    padding:5px 15px;
-    float:left;
-    margin:0 5px;
-}
-.btn{
-    font-size: 13px;
-    text-align: center;
-    box-shadow: 0 2px 3px 0 rgba(0,0,0,.1);
-    cursor: pointer;
-    transition: all .2s ease 0s;
-    text-decoration: none;
-}
 /* 芸人wiki */
 .geinin-list{
     margin:10px 0;
@@ -690,7 +699,8 @@ textarea{
   overflow: hidden;
 }
 .geinin-wrapper{
-  padding:10px 10px;
+  padding:2px 5px;
+  overflow:hidden;
 }
 .geinin-box{
   padding:5px;
@@ -702,20 +712,19 @@ textarea{
     font-size:16px;
     display:block;
     float:left;
-    padding:10px 0;
+    padding:2px 0;
 }
 .geinin-name:hover{
     color:#f22e58;
 }
 .geinin-image-box{
     float:left;
+    padding:2px 0;
+    margin-right:5px;
 }
 .geinin-name-box{
     padding:5px;
     float:left;
-}
-.following-box{
-    display:inline-block;
 }
 .geinin-image-box img{
     width:30px;
@@ -728,11 +737,15 @@ textarea{
     font-size:12px;
 }
 .geinin-icon{
-    font-size:35px;
-    display: inline-block;
+    display: inline-block;¥
 }
 .twitter{
     color:#1da1f2;
+}
+.twitter-fill{
+    background-color:#1da1f2;
+    color:#f7f7f7;
+    border: 1px solid #1B95E0;
 }
 .instagram{
     color: #8a3ab9;
@@ -783,21 +796,18 @@ textarea{
     margin: 0;
     text-align:center;
 }
+.radius{
+    transition-duration: 0.5s;
+    -webkit-border-radius: 10px;
+}
 .twitter-button-large{
     font-size: 20px;
     width: 300px;
     height: 50px;
     line-height: 50px;
     text-align: center;
-    vertical-align: middle;
-    display: inline-block;
     transition-duration: 0.5s;
-    margin: 0px auto;
-    position: relative;
-    border: none;
     padding: 0 10px;
-    background-repeat: no-repeat;
-    background-position: 10px 10px;
     display: block;
     margin: 40px auto;
     position: relative;
@@ -856,23 +866,30 @@ textarea{
   width: 100%;
   background-image:url('lp.jpeg');
   background-size:cover;
-  height: 100vh;
-  min-height: 400px;
-  max-height: 400px;
+  height: 45vh;
+  position:relative;
+}
+.message-inner{
+  padding:5vh 1vw 5vh 1vw;
 }
 .message-text{
   text-align:center;
-  padding:30px 10px 0px 10px;
   color:#fff;
   font-size:30px;
   font-weight:bold;
   line-height:30px;
 }
 .message-text-sub{
+  font-size:22px;
+  line-height:28px;
   text-align:center;
   color:#fff;
-  font-size:20px;
-  line-height:35px;
+}
+.message-text-count{
+  text-align:center;
+  color:#fff;
+  font-size:16px;
+  line-height:28px;
 }
 .btn-icon{
   margin:0;
@@ -890,6 +907,17 @@ textarea{
   color:#f7f7f7;
   height:10px;
   line-height:6px;
+}
+
+/* フォローボタン */
+.following-box{
+    float:right;
+}
+.following{
+    border-radius:20px;
+    padding:5px 15px;
+    float:left;
+    margin:0 5px;
 }
 /* フォローボタンのフォロー中・フォロー解除切り替え　*/
 a.following span.shown{ display:inline; }
@@ -1097,7 +1125,21 @@ input[name="tab_item"] {
       margin-top:5px;
     }
     .message-text{
-      font-size:25px;
+      font-size:22px;
+      line-height:22px;
+    }
+    .message-text-sub{
+      font-size:18px;
+      text-align:center;
+      color:#fff;
+      line-height:22px;
+    }
+    .message-text-count{
+      font-size:16px;
+      line-height:22px;
+    }
+    .number-large{
+      font-size:28px;
     }
 }
 .geinin-card {
@@ -1109,7 +1151,7 @@ input[name="tab_item"] {
     overflow: hidden;
 }
 .geinin-card-content {
-    margin: 13px 15px;
+    margin: 10px 15px 2px 15px;
     position: relative;
     line-height:20px;
 }
@@ -1125,12 +1167,37 @@ input[name="tab_item"] {
     position: relative;
     vertical-align: bottom;
     z-index: 1;
+    display:none;
 }
-.geinin-card-options{
-  color:#657786;
+.geinin-card-name a{
+    color:#000;
+    font-size:16px;
+    display:block;
+    float:left;
+    padding:6px 0;
+    margin-right:5px;
+}
+.geinin-card-name a:hover{
+    color:#f22e58;
+}
+.geinin-card-descriptions{
+  color: #14171a;
   text-align:left;
 }
 .number-large{
-  font-size:38px;
+  font-size:32px;
   font-weight:bold;
+}
+.no-login{
+  text-align:center;
+  width:auto;
+  color:#fff;
+}
+.no-login a{
+  border-bottom:1px solid #f7f7f7;
+}
+.geinin-card-sns{
+  font-size:24px;
+  float:left;
+  padding:3px 3px;
 }
