@@ -217,7 +217,7 @@ header{
     margin-top:30px;
     margin-bottom:20px;
     max-width:600px;
-    min-height:800px;
+    min-height:80vh;
 }
 
 @media(min-width:972px){
@@ -410,8 +410,8 @@ header{
     display:inline-block;
     overflow: hidden;
     margin: 10px;
-    padding:10px 2px;
-    background-color:#fff;
+    /* padding:5px 2px; */
+    /* background-color:#fff; */
     border-radius: 15px;
     -webkit-border-radius: 15px;
 }
@@ -466,7 +466,7 @@ header{
 }
 .categories{
     display: inline-block;
-    padding: 4px 10px;
+    padding: 4px 8px;
     color: #f7f7f7;
     background-color: #333;
     margin: 0 5px 5px 0;
@@ -807,7 +807,15 @@ textarea{
     -webkit-border-radius: 10px;
     text-decoration: none;
 }
-
+.lp-panels{
+  padding:0 15px;
+  display:block;
+  overflow: hidden;
+  position: relative;
+  margin:0 auto;
+  max-width:600px;
+  min-height:800px;
+}
 .twitter-large-button a:hover {
     color: #1B95E0;
     background-color: white;
@@ -854,16 +862,17 @@ textarea{
 }
 .message-text{
   text-align:center;
-  padding:40px 10px 0px 10px;
+  padding:30px 10px 0px 10px;
   color:#fff;
   font-size:30px;
   font-weight:bold;
+  line-height:30px;
 }
 .message-text-sub{
   text-align:center;
-  padding:5px;
   color:#fff;
   font-size:20px;
+  line-height:35px;
 }
 .btn-icon{
   margin:0;
@@ -940,9 +949,6 @@ input[name="tab_item"] {
   background-color: #fff;
   border-bottom: 3px solid #f22e58;
 }
-.lp-panels{
-  margin-top:10px;
-}
 @media(min-width:800px){
     .user-menu-sm{
         display:none;
@@ -1012,7 +1018,7 @@ input[name="tab_item"] {
         margin:0 auto;
         font-size:20px;
         padding-top:10px;
-        padding-bottom:7px;
+        padding-bottom:6px;
     }
     .user-menu-text{
         display:inline-block;
@@ -1123,4 +1129,8 @@ input[name="tab_item"] {
 .geinin-card-options{
   color:#657786;
   text-align:left;
+}
+.number-large{
+  font-size:38px;
+  font-weight:bold;
 }

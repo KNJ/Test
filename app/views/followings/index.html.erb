@@ -15,8 +15,8 @@
             <div class="following-box" id="following-button-<%= geinin.id %>">
               <%= render :partial => "followings/following", locals: { geinin: geinin} %>	
             </div>
-            <div class="post-options">
-              <%= link_to geinin_event_path(event.id) do %>
+            <div class="post-option">
+              <%= link_to edit_geinin_path(geinin.id) do %>
                 <i class="fas fa-edit"></i>
                 <span class="post-option-text">編集する</span>
               <% end %>

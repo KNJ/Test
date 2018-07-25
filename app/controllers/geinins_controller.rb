@@ -52,7 +52,8 @@ class GeininsController < ApplicationController
     @geinin_members = GeininMember.where(geinin_id: @geinin_id).pluck(:id)
     @geinin_member_tags = GeininMemberTag.where(geinin_id: @geinin_id,geinin_member_id: @geinin_members)
     @text_area = TextareaConcatService.new(@geinin_tags).execute
-  end
+
+　end
 
   def update
       # エラーチェック＆DB保存→詳細画面へリダイレクト
