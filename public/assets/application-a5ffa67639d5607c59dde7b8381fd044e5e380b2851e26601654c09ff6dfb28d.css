@@ -8,14 +8,12 @@ form, input, div {
   padding: 0;
 }
 h2 {
+    font-size:18px;
     font-weight:normal;
 }
 li {
   display: list-item;
   list-style: none;
-}
-*{
-    font-family: 'Quicksand', sans-serif;
 }
 a{
     color:#f22e58;
@@ -23,28 +21,40 @@ a{
 }
 body{
     background-image:url('background.png');
-}
+    font-family: 'Quicksand',sans-serif;
+    color: #14171a;
+    font-size: 14px;
+    line-height: 20px;
+  }
 /* ここからCSSを記述してください */
 header{
-  background-color:#272727;
-  color:#f7f7f7;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, メイリオ, Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
-  height:60px;
+  background-color:#fff;
+  color:#66757f;
+  font-family: 'Quicksand',sans-serif;
+  height:46px;
   position:fixed;
   top:0;
   left:0;
   z-index:10;
   width:100%;
-  line-height:60px;
+  line-height:46px;
   display:block;
   overflow:hidden; 
+  border-bottom: 1px solid #ccd6dd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 .inner{
   margin:0;
-  padding:0 10px;
-  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+}
+.btn{
+    font-size: 13px;
+    text-align: center;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,.1);
+    cursor: pointer;
+    transition: all .2s ease 0s;
+    text-decoration: none;
 }
 .user-menu{
   margin:0 auto;
@@ -64,49 +74,44 @@ header{
 .user-menu-button a{
   display:block;
   font-size:14px;
-  line-height:60px;
-  height:60px;
+  line-height:46px;
+  height:46px;
+  color:#66757f;
   text-align:center;
-  background:#272727;
-  color:#f7f7f7;
-  border-right:1px solid #666666;
   text-decoration:none;
-}
-.user-menu-button li:first-child a{
-  border-left:1px solid #666666;
 }
 .user-menu-button a:hover{
   background-color: #f7f7f7;
-  color:#272727;
+  color:#f22e58;
+  border-bottom:3px solid #f22e58;
 }
 .user-menu-button-text{
   padding-left:2px;
 }
 .site-logo{
-    margin-left:25px;
-    padding:5px 0;
-    height:50px;
+    padding:3px 0;
     float:left;
+    vertical-align:middle;
+    margin-left:25px;
 }
 .site-title div{
   font-size:28px;
   line-height:60px;
   float:left;
 }
-.site-title a{
-    margin:0px 10px 0px 10px;
-    font-size:28px;
-    line-height:60px;
-    display:block;
-    float:left;
-}
 .site-sub-title{
   padding-left:10px;
   font-size:14px;
+  color:#272727;
 }
 .site-title a{
+  margin:0px 10px 0px 10px;
+  font-size:28px;
+  line-height:46px;
+  display:block;
+  float:left;
+  color:#272727;
   text-decoration:none;
-  color:#f7f7f7;
   display:block;
   float:left;
 }
@@ -115,6 +120,7 @@ header{
 }
 .login-button{
   padding-right:20px;
+  line-height:46px;
   float:right;
 }
 .twitter-button{
@@ -125,10 +131,9 @@ header{
     text-align: center;
     display: inline-block;
     transition-duration: 0.5s;
-    margin: 12px auto;
+    margin: 7px auto;
     position: relative;
     border: none;
-    padding: 0 10px;
     background-repeat: no-repeat;
     background-position: 10px 10px;
     display: block;
@@ -139,10 +144,11 @@ header{
     border-radius: 10px;
     -webkit-border-radius: 10px;
     text-decoration: none;
+    z-index: 3;
 }
 .twitter-button a{
   text-decoration:none;
-  color:f7f7f7;
+  color:#f7f7f7;
 }
 .login-button a:hover {
     color: #1B95E0;
@@ -217,10 +223,10 @@ header{
     overflow: hidden;
     position: relative;
     margin:0 auto;
-    margin-top:60px;
+    margin-top:30px;
     margin-bottom:20px;
     max-width:600px;
-    min-height:800px;
+    min-height:80vh;
 }
 
 @media(min-width:972px){
@@ -277,7 +283,7 @@ header{
   font-size:16px;
 }
 .post-wrapper{
-  padding:5px 20px;
+  padding:5px 10px;
 }
 .post-title{
   text-align:center;
@@ -303,9 +309,6 @@ header{
   font-size: 14px;
   margin:10px 0;
 }
-.inline-block{
-    display:inline-block;
-}
 .post-performer{
   line-height: 1.5;
   display:block;
@@ -317,8 +320,8 @@ header{
   color:#595959;
   height: 15px;
   line-height: 15px;
-  padding: 3px 10px;
-  margin-right:2px;
+  padding: 3px 5px;
+  margin-right:5px;
   margin-bottom:5px;
   background-color: #fff;
   border: 1px solid #aaa;
@@ -356,28 +359,31 @@ header{
 .post-tag a:hover{
   color:#f22e58;
 }
-.post-options {
+.post-options,.geinin-card-options{
     line-height: 20px;
     cursor: pointer;
     font-size:12px;
 }
 .post-option{
-  background-color:#f22e58;
   width:25%;
   text-align:center;
   float:left;
 }
-.post-option a{
-  color:#f7f7f7;
+.geinin-card-option{
+  width:calc(100% / 3);
+  text-align:center;
+  float:left;
+}
+.post-option a,.geinin-card-option a{
+  color:#657786;
   text-decoration:none;
   display:block;
   padding: 5px 5px;
 }
-.post-option a:hover{
-    background-color: #fbfbfb;
+.post-option a:hover,.geinin-card-option a:hover{
     color: #f22e58;
 }
-.post-option-text{
+.post-option-text,.geinin-card-option-text{
     display:inline-block;
     margin:0 auto;
     font-size:11px;
@@ -390,9 +396,9 @@ header{
 }
 /* 検索フォーム　*/
 .search-form-container{
-    margin-top: 12px;
     /* background-color: #272727; */
-    color: #f7f7f7;
+    /* color: #f7f7f7; */
+    color:#272727;
     z-index: 2;
     /* box-shadow: 0 0 1px 1px rgba(0,0,0,.05); */
     display: block;
@@ -401,29 +407,36 @@ header{
     font: inherit;
     /* vertical-align: baseline; */
     margin:0 auto;
+    margin-top: 12px;
+    margin-bottom:10px;
+    width:350px;
+    background:rgba(255,255,255,0.5);
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
 }
 .search-form-inner{
-    padding: 12px 2px 10px 5px;
     border: 0;
     font: inherit;
     vertical-align: baseline;
+    display:inline-block;
     overflow: hidden;
-    margin:0 auto;
-    background-color: #3c3c3c;
+    margin: 10px;
+    /* padding:5px 2px; */
+    /* background-color:#fff; */
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
 }
 .search-categories{
-    padding:2px 2px 10px 2px;
+    padding:2px 2px 2px 2px;
     clear:both; 
 }
 .search-label{
-    font-family: 'Gibson', sans-serif;
-    width:330px;
-    border-bottom:solid #ffffff 2px;
-    border-color: #676767;
+    width:310px;
+    border-bottom:solid #ccd6dd 2px;
     font-size: 16px;
     border-bottom: 1px solid #CCC;
     padding-left: 8px;
-    margin: 0 0 5px;
+    margin: 0 0 2px;
 }
 .label-border{
     border-bottom: 1px solid #CCC;
@@ -432,15 +445,14 @@ header{
 .search-form{
     border:0;
     height:32px;
-    width:350px;
     display:inline-flex;
     border-style: none;
     background-color: #f2f2f2;
     vertical-align:middle;
     border:solid 1px #ccc;
     border-radius: 3px;
-    padding:2px 0px;
-    margin:5px 0px;
+    padding:2px 5px;
+    margin:2px 0px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;    -moz-box-shadow: inset 1px 4px 9px -6px rgba(0,0,0,0.5);
     -webkit-box-shadow: inset 1px 4px 9px -6px rgba(0, 0, 0, 0.5);box-shadow: inset 1px 4px 9px -6px rgba(0,0,0,0.5);width: 260px;
@@ -452,7 +464,7 @@ header{
 .search-button-box{
     position:left;
     padding-left:10px;
-    margin-bottom:10px;
+    overflow:hidden;
 }
 .search-performer-box{
     position:left;
@@ -465,16 +477,15 @@ header{
 }
 .categories{
     display: inline-block;
-    padding: 4px 12px;
+    padding: 4px 8px;
     color: #f7f7f7;
     background-color: #333;
-    margin: 0 6px 6px 0;
+    margin: 0 5px 5px 0;
     transition: all 300ms ease;
     float: left;
     margin-top:5px;
 }
 .search-label{
-    width:320px;
     text-align: left;
     font-size: 12px;
     padding-left:10px;
@@ -486,54 +497,53 @@ header{
 
 /* footerのCSS */
 footer{
-    background-color: #111111;
-    color: #eee;
+    background-color: #fff;
+    border-top:1px solid #ccd6dd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color:#66757f;
     text-align:center;
-    display:inline-block;
     width:100%;
+    padding-top:10px;
+    margin:0;
 }
-.footer-menu{
-    color:#f7f7f7;
+.copyright span {
+    display: block;
+    font-size: 13px;
+    line-height: 13px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom:10px;
 }
 .footer-menu a{
     text-decoration:none;
+    color:#66757f;
 }
-.copyright>div>span {
-    display: block;
-    font-size: 13px;
-    line-height: 1;
-    padding: 15px 20px;
+.footer-menu a:hover{
+    color:#f22e58;
 }
 .navigation-block{
-    margin: 0 auto;
     width: 100%;
     text-align: center;
     margin:0 auto;
     display:inline-block;
 }
-/* .btn{
-    background-color:#f22e58;
-    font-size: 13px;
-    text-align: center;
-    color: #fbfbfb;
-    border: 3px solid #f22e58;
-    box-shadow: 0 2px 3px 0 rgba(0,0,0,.1);
-    cursor: pointer;
-    transition: all .2s ease 0s;
-    display: inline-block;
-    text-decoration: none;
-}
-.btn:hover{
-    background-color: #fbfbfb;
-    color: #f22e58;
-} */
 .new{
     padding:10px 40px;
     width:200px;
     margin:0 auto;
+    font-size:16px;
     margin-top:20px;
     margin-bottom:20px;
     display:block;
+}
+.new-login{
+    padding:10px 40px;
+    width:200px;
+    margin:0 auto;
+    font-size:18px;
+    margin-top:20px;
+    margin-bottom:10px;
+    display:block; 
 }
 .new-button{
     margin:10px;
@@ -560,98 +570,10 @@ footer{
     text-align:center;
     background-color:#fff;
 }
+.login-s{
+  display:none;
+}
 
-@media(min-width:800px){
-    .user-menu-sm{
-        display:none;
-    }
-    .user-menu-button-sm{
-        display:none;
-    }
-}
-@media(max-width:1070px){
-    .site-logo{
-        margin-left:10px;
-        padding:5px 0;
-        height:50px;
-        float:left;
-    }
-    .site-title div{
-        font-size:24px;
-        line-height:60px;
-        float:left;
-    }
-    .site-sub-title{
-        font-size:10px;
-    }
-    .user-menu-button li{
-        font-size:15px;
-        width:100px;  
-    }
-}
-@media(max-width:800px){
-    .user-menu-button{
-        display:none;
-    }
-    .user-menu-button li{
-        display:none;
-    }
-    .user-menu-sm{
-        display:inline-block;
-        position:fixed;
-        bottom:0;
-        left:0;
-        width:100%;
-    }
-    .user-menu-button-sm li{
-        float:left;
-        width:20%;
-    }
-    .user-menu-button-sm a{
-        display:block;
-        height:60px;
-        font-size:10px;
-        text-align:center;
-        background:#272727;
-        color:#f7f7f7;
-        border-right:1px solid #f7f7f7;
-        text-decoration:none;
-    }
-    .user-menu-button-sm li:first-child a{
-        border-left:1px solid #f7f7f7;
-    }
-    .user-menu-button-sm a:hover{
-        background-color: #f7f7f7;
-        color:#272727;
-    }
-    .user-menu-icon{
-        display:block;
-        margin:0 auto;
-        font-size:18px;
-        padding-top:12px;
-        padding-bottom:8px;
-    }
-    .user-menu-text{
-        display:inline-block;
-        margin:0 auto;
-        padding-top:10px;
-    }
-    .main{
-        margin:0 auto;
-        margin-top:45px;
-        padding:0 10px;
-    }
-    .page-info{
-        margin: 0 auto;
-        padding:20px;
-        text-align:center;
-        margin-top:10px;
-        margin-bottom:10px;
-    }
-    .search-form-container{
-        margin:0 auto;
-    }
-}
 .event-edit-form{
     border:0;
     padding:10px;
@@ -749,7 +671,7 @@ textarea{
 .pink{
     background-color:#f22e58;
     color: #fbfbfb;
-    border: 3px solid #f22e58;
+    border: 1px solid #f22e58;
 }
 .pink:hover{
     background-color: #fbfbfb;
@@ -764,20 +686,6 @@ textarea{
     background-color:#f22e58;
     color: #fbfbfb;
 }
-.following{
-    border-radius:20px;
-    padding:5px 15px;
-    float:left;
-    margin:0 5px;
-}
-.btn{
-    font-size: 13px;
-    text-align: center;
-    box-shadow: 0 2px 3px 0 rgba(0,0,0,.1);
-    cursor: pointer;
-    transition: all .2s ease 0s;
-    text-decoration: none;
-}
 /* 芸人wiki */
 .geinin-list{
     margin:10px 0;
@@ -787,10 +695,10 @@ textarea{
   background-color:#fff;
   margin:0 auto;
   overflow: hidden;
-  padding-bottom:15px;
 }
 .geinin-wrapper{
-  padding:10px 10px;
+  padding:2px 5px;
+  overflow:hidden;
 }
 .geinin-box{
   padding:5px;
@@ -800,22 +708,24 @@ textarea{
     text-decoration:none;
     color:#000;
     font-size:16px;
+    display:block;
+    float:left;
+    padding:2px 0;
 }
 .geinin-name:hover{
     color:#f22e58;
 }
 .geinin-image-box{
     float:left;
+    padding:2px 0;
+    margin-right:5px;
 }
 .geinin-name-box{
     padding:5px;
     float:left;
 }
-.following-box{
-    display:inline-block;
-}
 .geinin-image-box img{
-    width:40px;
+    width:30px;
     border-radius:50%;
 }
 .geinin-name-title{
@@ -825,12 +735,15 @@ textarea{
     font-size:12px;
 }
 .geinin-icon{
-    font-size:35px;
     display: inline-block;
-    margin-top:5px;
 }
 .twitter{
     color:#1da1f2;
+}
+.twitter-fill{
+    background-color:#1da1f2;
+    color:#f7f7f7;
+    border: 1px solid #1B95E0;
 }
 .instagram{
     color: #8a3ab9;
@@ -881,66 +794,9 @@ textarea{
     margin: 0;
     text-align:center;
 }
-/* タブ表示　*/
-/* タブの外枠 */
-.tabs {
-  margin: 0;
-}
-input{
-    margin:0;
-}
-/* タブのスタイル */
-.tabs .tab-label {
-  display: inline-block;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  background-color: #f22e58;
-  color:#f7f7f7;
-  padding: 10px 5px;
-  font-size: 13px;
-  text-align:center;
-  margin:0;
-}
-.tab-label{
-    width:21%;
-}
- 
-/* タブにマウスカーソルがのったときフッター */
-.tabs .tab-label:hover {
-  opacity: 0.7;
-  background-color:#f22e58;
-  color: #f7f7f7;
-  border:1px solid #f7f7f7;
-}
- 
-/* ラジオボタンと内容を非表示 */
-.tabs input[name="tab-radio"],
-.tabs .tab-content {
-  display: none;
-  margin:0;
-}
- 
-/* タブ内容のスタイル */
-.tabs .tab-content{
-  padding: 10px;
-  min-height: 200px;
-  background-color:#fff;
-}
- 
-/* 選択されているタブのコンテンツのみを表示 */
-.tabs #tab-1:checked ~ .tab-1-content,
-.tabs #tab-2:checked ~ .tab-2-content,
-.tabs #tab-3:checked ~ .tab-3-content,
-.tabs #tab-4:checked ~ .tab-4-content,
-.tabs #tab-5:checked ~ .tab-5-content {
-  display: block;
-}
- 
-/* 選択されているタブのスタイルを変える */
-.tabs input[name="tab-radio"]:checked + .tab-label {
-  background-color: #f7f7f7;
-  color:#f22e58;
-  border:1px solid #f22e58;
+.radius{
+    transition-duration: 0.5s;
+    -webkit-border-radius: 10px;
 }
 .twitter-button-large{
     font-size: 20px;
@@ -948,15 +804,8 @@ input{
     height: 50px;
     line-height: 50px;
     text-align: center;
-    vertical-align: middle;
-    display: inline-block;
     transition-duration: 0.5s;
-    margin: 0px auto;
-    position: relative;
-    border: none;
     padding: 0 10px;
-    background-repeat: no-repeat;
-    background-position: 10px 10px;
     display: block;
     margin: 40px auto;
     position: relative;
@@ -966,7 +815,15 @@ input{
     -webkit-border-radius: 10px;
     text-decoration: none;
 }
-
+.lp-panels{
+  padding:0 15px;
+  display:block;
+  overflow: hidden;
+  position: relative;
+  margin:0 auto;
+  max-width:600px;
+  min-height:800px;
+}
 .twitter-large-button a:hover {
     color: #1B95E0;
     background-color: white;
@@ -976,23 +833,16 @@ input{
 .twitter-large-button a {
     color:#FFFFFF;
 }
-@media(max-width:320px){
-    .categories{
-    display: inline-block;
-    padding: 4px 6px;
-    color: #f7f7f7;
-    background-color: #f22e58;
-    margin: 0 3px 3px 0;
-    transition: all 300ms ease;
-    float: left;
-    margin-top:5px;
-    }
-}
 .long-post{
     color: #434343;
     background-color: #fff;
     width: 100%;
     margin: 15px auto;
+}
+.long-post-header{
+    background-color:#f22e58;
+    color:#f7f7f7;
+    padding: 10px 15px;
 }
 .long-post-wrapper{
     padding:20px;
@@ -1009,4 +859,343 @@ input{
 .terms li{
     display: list-item;
     list-style:disc;
+}
+.message{
+  width: 100%;
+  background-image:url('lp.jpeg');
+  background-size:cover;
+  height: 45vh;
+  position:relative;
+}
+.message-inner{
+  padding:5vh 1vw 5vh 1vw;
+}
+.message-text{
+  text-align:center;
+  color:#fff;
+  font-size:30px;
+  font-weight:bold;
+  line-height:30px;
+}
+.message-text-sub{
+  font-size:22px;
+  line-height:28px;
+  text-align:center;
+  color:#fff;
+}
+.message-text-count{
+  text-align:center;
+  color:#fff;
+  font-size:16px;
+  line-height:28px;
+}
+.btn-icon{
+  margin:0;
+  font-size:25px;
+  vertical-align:top;
+  line-height:40px;
+  height:30px;
+}
+.btn-text{
+  font-family:'Quicksand';
+  font-style:normal;
+  text-decoration:none;
+  margin-top:5px;
+  font-size:5px;
+  color:#f7f7f7;
+  height:10px;
+  line-height:6px;
+}
+
+/* フォローボタン */
+.following-box{
+    float:right;
+}
+.following{
+    border-radius:20px;
+    padding:5px 15px;
+    float:left;
+    margin:0 5px;
+}
+/* フォローボタンのフォロー中・フォロー解除切り替え　*/
+a.following span.shown{ display:inline; }
+a.following:hover span.shown{ display:none; }
+a.following span.hover-shown{ display:none; }
+a.following:hover span.hover-shown{ display:inline; }
+
+/*タブ切り替え全体のスタイル*/
+.tabs {
+  padding-bottom: 40px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+  margin-top: 10px;
+}
+/*タブのスタイル*/
+.tab_item {
+  width: calc(100%/4);
+  height: 40px;
+  border-bottom: 1px solid #ccd6dd;
+  background-color: #fff;
+  line-height: 40px;
+  font-size: 15px;
+  text-align: center;
+  color: #ccd6dd;
+  display: block;
+  float: left;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+.tab_item:hover {
+  opacity: 0.75;
+  color:#f22e58;
+}
+/*ラジオボタンを全て消す*/
+input[name="tab_item"] {
+  display: none;
+}
+/*タブ切り替えの中身のスタイル*/
+.tab_content {
+  display: none;
+  padding: 40px 40px 0;
+  clear: both;
+  overflow: hidden;
+}
+/*選択されているタブのコンテンツのみを表示*/
+#following-tab:checked ~ #following_content,
+#participates-tab:checked ~ #participates_content,
+#pendings-tab:checked ~ #pendings_content,
+#my-posts-tab:checked ~ #my-posts_content{
+  display: block;
+}
+/*選択されているタブのスタイルを変える*/
+.tabs input:checked + .tab_item {
+  color:#f22e58;
+  background-color: #fff;
+  border-bottom: 3px solid #f22e58;
+}
+@media(min-width:800px){
+    .user-menu-sm{
+        display:none;
+    }
+    .user-menu-button-sm{
+        display:none;
+    }
+}
+@media(max-width:1070px){
+    .site-logo{
+        margin-left:10px;
+        padding:5px 0;
+        line-height:46px;
+        float:left;
+    }
+    .site-title div{
+        font-size:24px;
+        line-height:46px;
+        float:left;
+    }
+    .site-sub-title{
+        font-size:14px;
+    }
+    .user-menu-button li{
+        font-size:15px;
+        width:100px;  
+    }
+    .login-button-s{
+      display:none;
+    }
+}
+@media(max-width:800px){
+    .user-menu-button{
+        display:none;
+    }
+    .user-menu-button li{
+        display:none;
+    }
+    .user-menu-sm{
+        display:inline-block;
+        position:fixed;
+        bottom:0;
+        left:0;
+        width:100%;
+        border-top: 1px solid #ccd6dd;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    .user-menu-button-sm li{
+        float:left;
+        width:20%;
+    }
+    .user-menu-button-sm a{
+        display:block;
+        height:60px;
+        font-size:11px;
+        text-align:center;
+        background:#fff;
+        color: #262626;
+        text-decoration:none;
+    }
+    .user-menu-button-sm a:hover{
+        background-color: #f7f7f7;
+        color:#f22e58;
+    }
+    .user-menu-icon{
+        display:block;
+        margin:0 auto;
+        font-size:20px;
+        padding-top:10px;
+        padding-bottom:6px;
+    }
+    .user-menu-text{
+        display:inline-block;
+        margin:0 auto;
+        padding-top:10px;
+    }
+    .main{
+        margin:0 auto;
+        margin-top:30px;
+        padding:0 10px;
+    }
+    .page-info{
+        margin: 0 auto;
+        padding:20px;
+        text-align:center;
+    }
+    .search-form-container{
+        margin:0 auto;
+        margin-bottom:10px;
+    }
+    .login-button{
+      display:none;
+    }
+    .login-s{
+      border-radius:50%;
+      background-color:#f22e58;
+      color:#f7f7f7;
+      float:right;
+      z-index:12;
+      display: inline-block;
+      text-decoration: none;
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+      overflow: hidden;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+      transition: .4s;
+      margin:5px;
+      margin-top:8px;
+      margin-right:10px;
+    }
+    .login-s:active{
+        -ms-transform: translateY(2px);
+        -webkit-transform: translateY(2px);
+        transform: translateY(2px);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+        border-bottom: none;
+    }
+    .login-s a{
+      color:#f7f7f7;
+      text-decoration:none;
+      display:block;
+      overflow:hidden;
+    }
+    .login-s a:hover{
+      color: #1B95E0;
+      background-color: white;
+      opacity: 1.0;
+      display:block;
+    }
+    .message-text{
+      font-size:28px;
+    }
+}
+/* iPhone5用 */
+@media(max-width:320px){
+    .categories{
+      display: inline-block;
+      padding: 4px 6px;
+      color: #f7f7f7;
+      background-color: #f22e58;
+      margin: 0 3px 3px 0;
+      transition: all 300ms ease;
+      float: left;
+      margin-top:5px;
+    }
+    .message-text{
+      font-size:22px;
+      line-height:22px;
+    }
+    .message-text-sub{
+      font-size:18px;
+      text-align:center;
+      color:#fff;
+      line-height:22px;
+    }
+    .message-text-count{
+      font-size:16px;
+      line-height:22px;
+    }
+    .number-large{
+      font-size:28px;
+    }
+}
+.geinin-card {
+    background-color: #fff;
+    border: 1px solid #e6ecf0;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: left;
+    overflow: hidden;
+}
+.geinin-card-content {
+    margin: 10px 15px 2px 15px;
+    position: relative;
+    line-height:20px;
+}
+.geinin-card-header{
+  overflow: hidden;
+}
+.geinin-card-image {
+    background-color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    margin: -45px 2px 0 -3px;
+    padding: 3px;
+    position: relative;
+    vertical-align: bottom;
+    z-index: 1;
+    display:none;
+}
+.geinin-card-name a{
+    color:#000;
+    font-size:16px;
+    display:block;
+    float:left;
+    padding:6px 0;
+    margin-right:5px;
+}
+.geinin-card-name a:hover{
+    color:#f22e58;
+}
+.geinin-card-descriptions{
+  color: #14171a;
+  text-align:left;
+}
+.number-large{
+  font-size:32px;
+  font-weight:bold;
+}
+.no-login{
+  text-align:center;
+  width:auto;
+  color:#fff;
+}
+.no-login a{
+  border-bottom:1px solid #f7f7f7;
+}
+.geinin-card-sns{
+  font-size:24px;
+  float:left;
+  padding:3px 3px;
 }
