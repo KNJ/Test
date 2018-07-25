@@ -114,9 +114,6 @@ header{
   padding-right:20px;
   float:right;
 }
-.login-s{
-  display:none;
-}
 .twitter-button{
     font-size: 13px;
     width: 150px;
@@ -1045,7 +1042,6 @@ a.following:hover span.hover-shown{ display:inline; }
   text-align: center;
   font-weight: bold;
   transition: all 0.2s ease;
-  font-family:
 }
 .tab_item:hover {
   opacity: 0.75;
@@ -1074,4 +1070,7 @@ input[name="tab_item"] {
   color:#f22e58;
   background-color: #fff;
   border-bottom: 3px solid #f22e58;
+}
+.login-s{
+  display:none;
 }
