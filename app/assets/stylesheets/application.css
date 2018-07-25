@@ -14,21 +14,19 @@ li {
   display: list-item;
   list-style: none;
 }
-*{
-    font-family: 'Quicksand', sans-serif;
-}
 a{
     color:#f22e58;
     text-decoration:none;
 }
 body{
     background-image:url('background.png');
+    font-family: 'Quicksand',sans-serif;
 }
 /* ここからCSSを記述してください */
 header{
   background-color:#272727;
   color:#f7f7f7;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, メイリオ, Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  font-family: 'Quicksand',sans-serif;
   height:60px;
   position:fixed;
   top:0;
@@ -466,10 +464,10 @@ header{
 }
 .categories{
     display: inline-block;
-    padding: 4px 12px;
+    padding: 4px 10px;
     color: #f7f7f7;
     background-color: #333;
-    margin: 0 6px 6px 0;
+    margin: 0 5px 5px 0;
     transition: all 300ms ease;
     float: left;
     margin-top:5px;
@@ -922,67 +920,6 @@ textarea{
     margin: 0;
     text-align:center;
 }
-/* タブ表示　*/
-/* タブの外枠 */
-.tabs {
-  margin: 0;
-}
-input{
-    margin:0;
-}
-/* タブのスタイル */
-.tabs .tab-label {
-  display: inline-block;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  background-color: #f22e58;
-  color:#f7f7f7;
-  padding: 10px 5px;
-  font-size: 13px;
-  text-align:center;
-  margin:0;
-}
-.tab-label{
-    width:21%;
-}
- 
-/* タブにマウスカーソルがのったときフッター */
-.tabs .tab-label:hover {
-  opacity: 0.7;
-  background-color:#f22e58;
-  color: #f7f7f7;
-  border:1px solid #f7f7f7;
-}
- 
-/* ラジオボタンと内容を非表示 */
-.tabs input[name="tab-radio"],
-.tabs .tab-content {
-  display: none;
-  margin:0;
-}
- 
-/* タブ内容のスタイル */
-.tabs .tab-content{
-  padding: 10px;
-  min-height: 200px;
-  background-color:#fff;
-}
- 
-/* 選択されているタブのコンテンツのみを表示 */
-.tabs #tab-1:checked ~ .tab-1-content,
-.tabs #tab-2:checked ~ .tab-2-content,
-.tabs #tab-3:checked ~ .tab-3-content,
-.tabs #tab-4:checked ~ .tab-4-content,
-.tabs #tab-5:checked ~ .tab-5-content {
-  display: block;
-}
- 
-/* 選択されているタブのスタイルを変える */
-.tabs input[name="tab-radio"]:checked + .tab-label {
-  background-color: #f7f7f7;
-  color:#f22e58;
-  border:1px solid #f22e58;
-}
 .twitter-button-large{
     font-size: 20px;
     width: 300px;
@@ -1084,3 +1021,57 @@ a.following span.shown{ display:inline; }
 a.following:hover span.shown{ display:none; }
 a.following span.hover-shown{ display:none; }
 a.following:hover span.hover-shown{ display:inline; }
+
+/*タブ切り替え全体のスタイル*/
+.tabs {
+  padding-bottom: 40px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+  margin-top: 10px;
+}
+/*タブのスタイル*/
+.tab_item {
+  width: calc(100%/4);
+  height: 40px;
+  border-bottom: 1px solid #ccd6dd;
+  background-color: #fff;
+  line-height: 40px;
+  font-size: 15px;
+  text-align: center;
+  color: #ccd6dd;
+  display: block;
+  float: left;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  font-family:
+}
+.tab_item:hover {
+  opacity: 0.75;
+  color:#f22e58;
+}
+/*ラジオボタンを全て消す*/
+input[name="tab_item"] {
+  display: none;
+}
+/*タブ切り替えの中身のスタイル*/
+.tab_content {
+  display: none;
+  padding: 40px 40px 0;
+  clear: both;
+  overflow: hidden;
+}
+/*選択されているタブのコンテンツのみを表示*/
+#following-tab:checked ~ #following_content,
+#participates-tab:checked ~ #participates_content,
+#pendings-tab:checked ~ #pendings_content,
+#my-posts-tab:checked ~ #my-posts_content{
+  display: block;
+}
+/*選択されているタブのスタイルを変える*/
+.tabs input:checked + .tab_item {
+  color:#f22e58;
+  background-color: #fff;
+  border-bottom: 3px solid #f22e58;
+}
