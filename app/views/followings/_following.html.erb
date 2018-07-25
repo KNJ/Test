@@ -1,13 +1,13 @@
 <% if user_signed_in? %>
-	<% if geinin.followed_by?(current_user) %>
-	    <%= link_to geinin_followings_path(geinin), method: :delete, class: "btn pink following", remote: true, :protocol => 'https' do %>
-				<span class="shown">フォロー中</span>
-				<span class="hover-shown">フォロー解除</span>
-	    <% end %>
+	<% if geinin.followed_by?(geinin,current_user) %>
+		<%= link_to geinin_followings_path(geinin), method: :delete, class: "btn pink following", remote: true, :protocol => 'https' do %>
+			<span class="shown">フォロー中</span>
+			<span class="hover-shown">フォロー解除</span>
+		<% end %>
 	<% else %>
-	    <%= link_to geinin_followings_path(geinin), method: :post, class: "btn pink-blank following", remote: true, :protocol => 'https' do %>
-				<span>フォローする</span>
-	    <% end %>
+		<%= link_to geinin_followings_path(geinin), method: :post, class: "btn pink-blank following", remote: true, :protocol => 'https' do %>
+			<span>フォローする</span>
+		<% end %>
 	<% end %>
 <% else %>
 	<!--ログインしていない場合、「ログインするとフォロー機能が使えます」のメッセージを出す-->

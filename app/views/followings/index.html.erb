@@ -1,16 +1,35 @@
-<main class="content">
-  <div class="snackbar">
-    <span>
-      <h2</h2>
-    </span>
+<section class="main">
+  <div class="page-info hard-shadows">
+    <p>フォロー一覧</p>
   </div>
-  <div class="lp-timeline">
-    <div class="lp-timeline-wrap">
-      <% if @geinins.present? %>
-        <% @geinins.each do |geinin| %>
-          <%= link_to geinin.name, "geinins/#{geinin.id}" %>
-          <%= render :partial => "followings/following", locals: { geinin: geinin } %>
-        <% end %>
-      <% else %>
-        <p>まだ誰もフォローしていません。</p>
-      <% end %>
+  <% if @geinins.present? %>
+    <% @geinins.each do |geinin| %>
+      <div class="geinin-card">
+        <div class="geinin-card-content">
+          <div class="geinin-card-header">
+            <div class="geinin-card-image">
+              <img src="">
+            </div>
+            <%= link_to geinin.name, "geinins/#{geinin.id}", :class=>"geinin-name" %>
+            <%= render :partial => "geinins/geinin_sns", locals: { geinin: geinin } %>
+            <div class="following-box" id="following-button-<%= geinin.id %>">
+              <%= render :partial => "followings/following", locals: { geinin: geinin} %>	
+            </div>
+            <div class="post-options">
+              <%= link_to geinin_event_path(event.id) do %>
+                <i class="fas fa-edit"></i>
+                <span class="post-option-text">編集する</span>
+              <% end %>
+            </div>
+          </div>
+          <div class="geinin-card-options">
+            <span class="as fa-birthday-cake"></span><%= geinin.start_year %>年結成
+            <span class="fas fa-map-marker-alt icon"></span><%= geinin.agency %>
+          </div>
+        </div>
+      </div>
+    <% end %> 
+  <% else %>
+      <p>まだ誰もフォローしていません。</p>
+  <% end %>
+</section>

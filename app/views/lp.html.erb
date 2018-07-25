@@ -1,9 +1,11 @@
-<secition class="lp">
- <div class="lp-inner">
-    <p>おもしろい！を見つけよう</p>
- </div>
-</section>
-<section class="main">
+  <div class="message">
+    <p class="message-text">おもしろい！を見つけよう</p>
+    <p class="message-text-sub">
+    登録ライブ数： <span class="accent"><%= Event.all.count %></span>件
+    登録芸人数： <span class="accent"><%= Geinin.all.count %></span>組</p>
+    <%= render :partial => "events/search_form_mini",locales: { events: @events } %>
+  </div>
+<section class="main lp-panels">
   <div class="lp-panel">
     <div class="inner">
       <div class="lp-panel-item">

@@ -57,15 +57,17 @@
     <header class="header">
      <div class="inner">
       <div class="site-title">
-        <img class="site-logo" src="/assets/logo_icon.png">
+        <img class="site-logo" src="/assets/logo-s.png">
         <a href="/" class="site-title">wArally!<span class="site-sub-title">- お笑いライブ検索</span></a>
       </div>
-      <div class="login-s">
-        <%= link_to user_twitter_omniauth_authorize_path do %>
-          <div class="btn-icon"><span class="fa fa-twitter"></span></div>
-          <div class="btn-text">ログイン</div>
-        <% end %>
-      </div>
+      <% if user_signed_in? %>
+      <% else %>
+        <div class="login-s">
+          <%= link_to user_twitter_omniauth_authorize_path do %>
+            <span class="fas fa-sign-in-alt"></span>
+          <% end %>
+        </div>
+      <% end %>
         <nav class="user-menu">
           <ul class="user-menu-button">
             <li>
@@ -151,22 +153,22 @@
           <% end %>
         </li>
         <li>
-          <%= link_to geinins_path do %>
-            <span class="fas fa-address-book user-menu-icon"></span>
-            <span class="user-menu-button-text">芸人Wiki</span>
-          <% end %>
-        </li>
-        <li>
           <% if current_user.present? %>
             <%= link_to user_path(current_user.id) do %>
               <span class="fa fa-user-o user-menu-icon"></span>
-              <span class="user-menu-button-text">Myページ</span>
+              <span class="user-menu-button-text">通知</span>
             <% end %>
           <% else %>
             <%= link_to events_path do %>
               <span class="fa fa-user-o user-menu-icon"></span>
               <span class="user-menu-button-text">Myページ</span>
             <% end %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to geinins_path do %>
+            <span class="fas fa-address-book user-menu-icon"></span>
+            <span class="user-menu-button-text">芸人Wiki</span>
           <% end %>
         </li>
       </ul>

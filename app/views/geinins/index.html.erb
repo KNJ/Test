@@ -10,23 +10,24 @@
 	<div class="geinin-list">
 		<% if @geinins.present? %>
 			<% @geinins.each do |geinin| %>
-			<div class="geinin hard-shadows">
-				<div class="geinin-wrapper">
-					<div class="geinin-box">
-						<div class="geinin-image-box">
-							<img src="https://pbs.twimg.com/profile_images/981910291565834240/We9YESpz_400x400.jpg">
+				<div class="geinin hard-shadows">
+					<div class="geinin-wrapper">
+							<div class="geinin-box">
+								<div class="geinin-image-box">
+									<img src="https://pbs.twimg.com/profile_images/981910291565834240/We9YESpz_400x400.jpg">
+								</div>
+								<div class="geinin-name-box">
+									<%= link_to geinin.name, "geinins/#{geinin.id}", :class => "geinin-name" %>
+								</div>
+								<div class="following-box" id="following-button-<%= geinin.id %>">
+									<%= render :partial => "followings/following", locals: { geinin: geinin } %>	
+								</div>
+							</div>
 						</div>
-						<div class="geinin-name-box">
-							<%= link_to geinin.name, "geinins/#{geinin.id}", :class => "geinin-name" %>
-						</div>
-						<div class="following-box" id="following-button-<%= geinin.id %>">
-							<%= render :partial => "followings/following", locals: { geinin: geinin } %>	
-						</div>
-					</div>
-				</div>
-			</div>
-	<% end %>
-</div>
+			  </div>
+		   <% end %>		
+		</div>
+	</div>
 	<% else %>
 			<p>芸人の登録はまだありません。</p>
 			<p>wArally!の芸人wikiは誰でも登録することができます！

@@ -39,13 +39,13 @@ class Event < ApplicationRecord
       scope :default, ->{ order_by_datetime.display_after_today.including_event_info }
     
     #　参加するになってるかチェック
-    def participated_by?(user)
-      participates.where(user_id: user.id).exists?
+    def participated_by?(event,user)
+      participates.where(event_id: event.id, user_id: user.id).exists?
     end
 
     # 検討中になってるかチェック
-    def pending_by?(user)
-      pendings.where(user_id: user.id).exists?
+    def pending_by?(event,user)
+      pendings.where(event_id: event.id,user_id: user.id).exists?
     end
 
     # リンクの件数をチェック

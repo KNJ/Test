@@ -13,7 +13,7 @@
       </div>
       <div class="search-form-area">
         <%= form_tag(search_path, method: "get") do %>
-          <%= text_field_tag ':date', '',:type=>"text", :placeholder =>"日付を指定する", :id=>"SearchCalendar", data: {min_date: 'today'},data:{ provide:'flatpickr' }, class:"search-form" %>
+          <%= text_field_tag ':date', '',:type=>"text", :placeholder =>"日付を指定する(カレンダーで選択)", :id=>"SearchCalendar", data: {min_date: 'today'},data:{ provide:'flatpickr' }, class:"search-form" %>
         <% end %>
       </div>
     </div>
@@ -24,7 +24,7 @@
       </div>
       <div class="search-form-area">
         <%= form_tag(search_path, method: "get") do %>
-          <%= text_field_tag :keyword,"",class: "search-form" %>
+          <%= text_field_tag :keyword,"",class: "search-form",:placeholder => "キーワード(例:東京03、新宿、単独ライブ)" %>
         <% end %>
       </div>
       <div class="search-performer-box post-performer">

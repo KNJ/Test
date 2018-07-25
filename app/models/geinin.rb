@@ -27,8 +27,8 @@ class Geinin < ApplicationRecord
     scope :default, -> { order_by_yomi.including_geinin_info }
     
     #　フォローするになってるかチェック
-    def followed_by?(user)
-      Following.where(user_id: user.id).exists?
+    def followed_by?(geinin,user)
+      Following.where(geinin_id: geinin.id, user_id: user.id).exists?
     end
 
 end
