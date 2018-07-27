@@ -3,10 +3,8 @@
         <span>ライブ登録</span>
   </div>
   <div class="container">
-    <div class="event-box">
-      <%= form_for(@event, method: :post) do |f| %>
-        <%= render :partial => "event_edit", locals: { event: @event, f: f, event_performers: "" } %>
-      <% end %>
-    </div>
+    <%= form_for(@event, method: :post) do |f| %>
+      <%= render :partial => "event_edit", locals: { event: @event, f: f, event_performers: "" } %>
+    <% end %>
   </div>
 </section>

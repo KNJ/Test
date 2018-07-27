@@ -6,7 +6,8 @@
 <section class="main">
 	<div class="page-info hard-shadows">
 		<% if @datetime.present? %>
-			<span class="accent"><%= @datetime.strftime("%Y年%m月%d日(%a)") %></span>のお笑いライブ一覧
+      <% wd = ["日", "月", "火", "水", "木", "金", "土"] %>
+			<span class="accent"><%= @datetime.strftime("%Y年%m月%d日(%a)"+"("+%w(日 月 火 水 木 金 土)[@datetime.wday]+")") %></span>のお笑いライブ一覧
 		<% else %>
 			<span class="accent"><%= @keyword %></span>の検索結果
 		<% end %>

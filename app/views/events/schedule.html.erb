@@ -1,7 +1,7 @@
 <% @events_participates = @results[0] %>
 <% @events_pengings = @results[1] %>
 <% @events_followings = @results[2].uniq %>
-<% @events_posted = @results[3] %>
+
 <% if @event_participates.present? && @event_pendings.present? %>
   <% @events = @event_participates + @event_pendings %>
   <% @events = @events.uniq %>
@@ -20,10 +20,7 @@
   
     <input id="pendings-tab" type="radio" name="tab_item">
     <label class="tab_item" for="pendings-tab">気になる</label>
-
-    <input id="my-posts-tab" type="radio" name="tab_item">
-    <label class="tab_item" for="my-posts-tab">自分の投稿</label>
-
+ 
     <div class="hard-shadows tab-content tab-1-content" id="following_content">
       <div class="tab_content_description">
         <%= render :partial => "events/event_list", locals: { events: @events_followings } %>
@@ -38,11 +35,6 @@
       <div class="tab_content_description">
         <%= render :partial => "events/event_list", locals: { events: @events_pendings } %>
       </div>
-    </div>
-    <div class="hard-shadows tab-content tab-4-content" id="my_posts_content">
-      <div class="tab_content_description">
-        <%= render :partial => "events/event_list", locals: { events: @events_posted } %>
-      </div>  
     </div>
   </div>
 </section>

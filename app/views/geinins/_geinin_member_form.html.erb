@@ -5,7 +5,7 @@
     </div>
     <div class="form">
       <%= member_form.text_field :family_name,:placeholder => "姓*",:class => "event-edit-form form-short"  %>
-      <%= member_form.text_field :first_name,:placeholder => "名*",:class => "event-edit-form form-short"  %>     </div>
+      <%= member_form.text_field :first_name,:placeholder => "名*",:class => "event-edit-form form-short"  %>
     </div>
   </div>
   <div class="form-item">
@@ -14,7 +14,7 @@
     </div>
     <div class="form">
       <%= member_form.text_field :family_name_yomi,:placeholder => "ふりがな(姓)*",:class => "event-edit-form form-short"  %>
-      <%= member_form.text_field :first_name_yomi,:placeholder => "ふりがな(名)*",:class => "event-edit-form form-short"  %>     </div>
+      <%= member_form.text_field :first_name_yomi,:placeholder => "ふりがな(名)*",:class => "event-edit-form form-short"  %>
     </div>
   </div>
   <div class="form-item">
@@ -48,7 +48,7 @@
   </div>
   <div class="form">
     <%= f.fields_for :geinin_members_tags do |member_tags_form| %>
-      <%= member_tags_form.text_area :tag,:placeholder => "タグ",:class => "event-edit-form form-long"  %>
+      <%= member_tags_form.text_area :tag,:placeholder => "タグ (例:芸風(ボケ、ツッコミ)、特技、趣味、逸話などなんでも)",:class => "event-edit-form form-long"  %>
     <% end %>
   </div>
 </div>

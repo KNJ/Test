@@ -6,9 +6,12 @@
   </div>
   <%= render :partial => "events/search_form" %>
   <div class="element page-info hard-shadows">
-    <p>今日のライブ一覧</p>
+    <% wd = ["日", "月", "火", "水", "木", "金", "土"] %> 
+    <p>今日のライブ一覧 - <span class="accent"><%= @datetime.strftime("%Y年%m月%d日"+"("+%w(日 月 火 水 木 金 土)[@datetime.wday]+")") %></span></p>
   </div>
   <% if @events.present? %>
     <%= render :partial => "events/event_list", locals: { events: @events } %>
+  <% else %>
+    <%= render 'events/no_result' %>
   <% end %>
 </section>
