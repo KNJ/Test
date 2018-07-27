@@ -2,9 +2,5 @@
   <div class="element page-info hard-shadows">
     <p>ライブ詳細</p>
   </div>
-  <div class="event-list-box">
-    <div class="event-list-wrap">
-      <%= render 'events/event_info', event: @event, user: @user %>
-    </div>
-  </div>
+  <%= render 'events/event_info', event: @event, user: @user %>
 </section>

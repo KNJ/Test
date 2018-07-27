@@ -53,6 +53,16 @@
     </div>
     <div class="form-item">
       <div class="form-icon">
+        <i class="fas fa-link"></i>
+      </div>
+      <div class="form">
+        <%= f.fields_for :event_categories do |categories_form| %>
+          <%= categories_form.text_field :category,:placeholder => "カテゴリ",:class => "event-edit-form form-long"  %>
+        <% end %>
+      </div>
+    </div>
+    <div class="form-item">
+      <div class="form-icon">
         <i class="fas fa-envelope"></i>
       </div>
       <div class="form">

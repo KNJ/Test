@@ -44,21 +44,17 @@
   </head>
   <body>
     <header class="header">
-     <div class="inner">
       <div class="site-title">
-        <img class="site-logo" src="/assets/logo-s.png">
         <a href="/" class="site-title">wArally!<span class="site-sub-title">- お笑いライブ検索</span></a>
       </div>
-      <% if user_signed_in? %>
-      <% else %>
-        <div class="login-s">
-          <%= link_to user_twitter_omniauth_authorize_path do %>
-            <span class="fas fa-sign-in-alt"></span>
-          <% end %>
-        </div>
-      <% end %>
         <nav class="user-menu">
           <ul class="user-menu-button">
+            <li>
+              <%= link_to events_path do %>
+                <i class="fas fa-search"></i>
+                <span>探す</span>
+              <% end %>
+            </li>
             <li>
               <%= link_to new_event_path do %>
                 <i class="fa fa-plus-circle"></i>
@@ -69,7 +65,14 @@
               <li>
                 <%= link_to my_schedule_path do %>
                   <i class="fas fa-heart"></i>
-                  <span class="user-menu-button-text">参加予定</span>
+                  <span class="user-menu-button-text">スケジュール</span>
+                  <% end %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to my_schedule_path do %>
+                  <i class="fas fa-heart"></i>
+                  <span class="user-menu-button-text">スケジュール</span>
                   <% end %>
               </li>
             <% end %>
@@ -91,11 +94,11 @@
           <div class="user-menu-right">
             <div class="pulldown">
               <div class="user-icon">
-                <span style="background-image:url(<%= current_user.image_url %>)"></span>
+                <img src="<%= current_user.image_url %>" class="avater">
               </div>
               <div class="pulldown-content">
                 <p><%= current_user.nickname %></p>
-                <ul>
+                <ul class="">
                   <li>
                     <%= link_to user_path(current_user) do %>
                       <i class="fa fa-user-o"></i> Myページ
@@ -105,6 +108,18 @@
                     <%= link_to logout_path, :method => :delete do %>
                       <i class="fa fa-sign-out-alt"></i> ログアウト
                     <% end %>
+                  </li>
+                  <li>
+                    <a href="/about" class="footer-menu">当サイトについて</a>
+                  </li>
+                  <li>
+                    <a href="/terms" class="footer-menu">利用規約</a>
+                  </li>
+                  <li>
+                    <a href="/privacy" class="footer-menu">プライバシーポリシー</a>
+                  </li>
+                  <li>
+                    <a href="https://twitter.com/warally_info" class="footer-menu">Twitter</a>
                   </li>
                 </ul>
               </div>
@@ -117,8 +132,13 @@
             <span>Twitterでログイン</span>
             <% end %>
           </div>
+          <div class="login-s clearfix">
+            <%= link_to user_twitter_omniauth_authorize_path do %>
+              <span class="fas fa-sign-in-alt login-s-icon"></span>
+              <span class="login-s-text">ログイン</span>
+            <% end %>
+          </div>
         <% end %>
-      </div>
     </header> 
     <%= yield %>
     <nav class="user-menu-sm">
@@ -144,7 +164,7 @@
         <li>
           <% if current_user.present? %>
             <%= link_to user_path(current_user.id) do %>
-              <span class="fa fa-user-o user-menu-icon"></span>
+              <span class="fas fa-bell user-menu-icon"></span>
               <span class="user-menu-button-text">通知</span>
             <% end %>
           <% else %>
@@ -166,7 +186,7 @@
       <div class="copyright">
         <div class="full-row footer">
           <span class="footer-menu">
-            <a href="/about" class="footer-menu">ABOUT</a> | 
+            <a href="/about" class="footer-menu">当サイトについて</a> | 
             <a href="/terms" class="footer-menu">利用規約</a> | 
             <a href="/privacy" class="footer-menu">プライバシーポリシー</a> | 
             <a href="https://twitter.com/warally_info" class="footer-menu">Twitter</a>

@@ -1,8 +1,14 @@
+<% @events = @results[0] %>
+<% @datetime = @results[1] %>
 <section class="main">
-  <%= render :partial => "events/search_form",locales: { events: @events } %>
-  <% if @results.present? %>
-  <% end %>
+  <div class="element page-info hard-shadows">
+    <p>ライブを探す</p>
+  </div>
+  <%= render :partial => "events/search_form" %>
   <div class="element page-info hard-shadows">
     <p>今日のライブ一覧</p>
   </div>
+  <% if @events.present? %>
+    <%= render :partial => "events/event_list", locals: { events: @events } %>
+  <% end %>
 </section>

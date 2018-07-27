@@ -1,13 +1,13 @@
 <% if user_signed_in? %>
   <% if event.participated_by?(event,current_user) %>
     <%= link_to event_participates_path(event), method: :delete, remote: true, :protocol => 'https' do %>
-        <span class="fa fa-heart accent" aria-hidden="true"></span>
+        <span class="fas fa-heart accent"></span>
         <%= event.participates.where(event_id: event.id).count %>
         <span class="post-option-text">参加する</span>
     <% end %>
   <% else %>
     <%= link_to event_participates_path(event), method: :post, remote: true, :protocol => 'https' do %>
-        <span class="fa fa-heart-o" aria-hidden="true"></span>
+        <span class="far fa-heart"></span>
         <%= event.participates.where(event_id: event.id).count %>
       <span class="post-option-text">参加する</span>
     <% end %>
@@ -15,7 +15,7 @@
 <% else %>
 		<!--ログインしていない場合、「ログインするといいね機能が使えます」のメッセージを出す-->
 		<a id="modal-open" class="button-link">
-			<i class="fa fa-heart-o" aria-hidden="true"></i>
+			<i class="far fa-heart"></i>
 			<%= event.participates.where(event_id: event.id).count %>
 			<span class="post-option-text">参加する</span>
 		</a>
