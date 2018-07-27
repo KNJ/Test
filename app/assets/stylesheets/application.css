@@ -23,7 +23,7 @@ body{
     font-family: 'Quicksand',sans-serif;
     color: #595959;
     font-size: 14px;
-    line-height: 20px;
+    line-height: 1.4;
   }
 .btn{
     font-size: 13px;
@@ -118,12 +118,12 @@ header{
     align-items: center;
     z-index:12;
     overflow:hidden;
-    padding:6px 5px;
+    padding:9px 8px 7px 8px;
     margin:0 30px;
 }
 .avater{
   border-radius:50%;
-  height:35px;
+  height:30px;
 }
 .pulldown {
     position: relative
@@ -258,7 +258,7 @@ header{
 }
 .post-performer-icon{
     float:left;
-    margin: - -3px 0 5px;
+    margin: 0 0 0 5px;
 }
 .post-performer{
   line-height: 1.5;
@@ -748,6 +748,7 @@ textarea{
 }
 .radius{
     transition-duration: 0.5s;
+    border-radius:10px;
     -webkit-border-radius: 10px;
 }
 .twitter-button-large{
@@ -764,6 +765,7 @@ textarea{
     color: white;
     background-color: #1B95E0;
     border: 1px solid #1B95E0;
+    border-radius:10px;
     -webkit-border-radius: 10px;
     text-decoration: none;
 }
@@ -808,6 +810,8 @@ textarea{
 .typography li,p{
     margin: 0.4em 0;
     text-align: -webkit-match-parent;
+    word-wrap: break-word;
+    word-break : break-all;
 }
 .terms li{
     display: list-item;
@@ -1012,7 +1016,69 @@ input[name="tab_item"] {
     margin-bottom:20px;
     display:block;
 }
-
+/* User Profile */
+.user-name{
+    font-size:16px;
+    font-weight:bold;
+    display:block;
+}
+.user-nickname{
+    display:block;
+    color:#66757f;
+}
+.profile-header{
+    overflow: hidden;
+    margin-top:10px;
+}
+.profile-image-box{
+    float:left;
+    margin:0px 5px 0 0;
+    z-index:2;
+}
+.profile-image{
+    border-radius:50%;
+    width:90%;
+}
+.profile-name{
+    float:left;
+}
+.profile-nav{
+    height: 60px;
+    position: relative;
+    overflow:hidden;
+}
+.profile-nav-item{
+    display:inline-block;
+    width:32%;
+    text-align:center;
+}
+.profile-nav-label{
+    color: #657786;
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: .02em;
+    transition: color .15s ease-in-out;
+    display:block;
+}
+.profile-value{
+    color: #66757f;
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 3px;
+}
+.profile-value a:hover{
+    color:#f22e58;
+}
+.geinin-title{
+    font-size:18px;
+    font-weight:bold;
+    display:block;    
+}
+.geinin-yomi{
+    font-size:12px;
+    display:block;
+    color:#66757f;
+}
 @media(min-width:800px){
     .user-menu-sm{
         display:none;
@@ -1154,6 +1220,14 @@ input[name="tab_item"] {
     .number-large{
       font-size:32px;
     }
+    .profile-nav{
+      height: 40px;
+      position: relative;
+      overflow:hidden;
+    }
+    .profile-nav-label{
+        display:inline-block;
+    }
 }
 /* iPhone5用 */
 @media(max-width:320px){
@@ -1164,7 +1238,6 @@ input[name="tab_item"] {
       background-color: #f22e58;
       margin: 0 3px 3px 0;
       transition: all 300ms ease;
-      float: left;
       margin-top:5px;
     }
     .message-text{
@@ -1184,8 +1257,17 @@ input[name="tab_item"] {
     .number-large{
       font-size:28px;
     }
+    .post-header span{
+        font-size:15px;
+    }
     .user-menu-button-sm a{
       font-size:9px;
+    }
+    .profile-nav{
+        height:60px;
+    }
+    .profile-nav-label{
+        display:block;
     }
 }
 @media(min-width:972px){

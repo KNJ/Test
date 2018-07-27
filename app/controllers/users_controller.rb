@@ -15,12 +15,12 @@ class UsersController < ApplicationController
 	    redirect_to user_path(@user.id)
 	end
 	def show
-	    @user = current_user
-	    @events = Event.all.includes(:event_performers, :event_links, :event_categories).reverse_order
+		@user = current_user
+		
+		# 自分の投稿を表示する
+		@events_user = EventChangeHistory.where(user_id: @user.id)
+		@events = Event.default.where(id: @events_user.pluck(:event_id).uniq)
 
-	    #　ログインユーザーが登録したライブ一覧だけ表示
-   		#@events = @user.events.page(params[:page])
-   		# @events = @user.events
 	end
 
 	def profile

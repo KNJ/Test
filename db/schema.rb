@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180713111621) do
+ActiveRecord::Schema.define(version: 20180727093541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,13 +85,15 @@ ActiveRecord::Schema.define(version: 20180713111621) do
 
   create_table "geinin_members", force: :cascade do |t|
     t.bigint "geinin_id"
-    t.string "name"
-    t.string "yomi"
     t.string "twitter_id"
     t.string "instagram_id"
     t.string "blog_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "family_name", null: false
+    t.string "first_name", null: false
+    t.string "family_name_yomi"
+    t.string "first_name_yomi"
     t.index ["geinin_id"], name: "index_geinin_members_on_geinin_id"
   end
 
@@ -109,10 +111,8 @@ ActiveRecord::Schema.define(version: 20180713111621) do
     t.string "agency"
     t.integer "start_year"
     t.string "twitter_id"
-    t.string "instagram_id"
     t.string "youtube_url"
     t.string "facebook_url"
-    t.string "blog_url"
     t.string "official_profile_url"
     t.date "end_date"
     t.datetime "created_at", null: false

@@ -7,6 +7,8 @@ class SearchEventPerformerService
     def execute
         # 出演者とキーワードが一致する
         @events = Event.default.where(event_performers: { performer: "#{Event.escape_like(@performer)}"} )
-        @results = @events, nil,@performer
+        @geinin = Geinin.default.where(name: @performer)
+                
+        @results = @events, nil,@performer,@geinin
     end
 end

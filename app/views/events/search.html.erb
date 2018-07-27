@@ -1,6 +1,7 @@
 <% @events = @results[0] %>
 <% @datetime = @results[1] %>
 <% @keyword = @results[2] %>
+<% @geinin = @results[3] %>
 
 <section class="main">
 	<div class="page-info hard-shadows">
@@ -10,6 +11,12 @@
 			<span class="accent"><%= @keyword %></span>の検索結果
 		<% end %>
 	</div>
+  <% if @geinin.present? %>
+    <% @geinin.each do |geinin| %>
+      <%= render 'geinins/geinin_info', geinin: geinin, user: current_user %>
+    <% end %>
+  <% end %>
+  
   <%= render :partial => "events/event_list", locals: { events: @events, user: @user  } %>
  
   <% if @datetime.present? %>

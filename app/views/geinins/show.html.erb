@@ -1,42 +1,11 @@
 <section class="main">
   <div class="page-info hard-shadows">
-    <div class="geinin-name-title">
-      <p><%= @geinin.name %></p>
-    </div>
-    <div class="geinin-yomi">
-      <p><%= @geinin.yomi %></p>
-    </div>
-    <%= render :partial => "geinins/geinin_sns", locals: { geinin: @geinin } %>
-    <div class="following-box" id="following-button-<%= @geinin.id %>">
-			<%= render :partial => "followings/following", locals: { geinin: @geinin } %>	
-		</div>
+    <p>芸人詳細</p>
   </div>
-  <article class="post hard-shadows">
-    <div class="post-wrapper">
-      <div class="post-place">
-        <span class="fas fa-map-marker-alt icon"></span><%= @geinin.agency %>
-      </div>
-      <div class="post-content">
-        <% if @geinin.start_year.present? %>
-          <p>結成年：<%= geinin.start_year %></p>
-        <% end %>
-        <% if @geinin.end_date.present? %>
-          <p>解散日：<%= @geinin.end_date %></p>
-        <% end %>
-        <% if @geinin.official_profile_url.present? %>
-          <p>公式プロフィール：<%= link_to @geinin.official_profile_url, @geinin.official_profile_url %></p>
-        <% end %>
-      </div>
-      <div class="post-tag">
-        <% @geinin.geinin_tags.each do |tag| %>
-          <%= link_to search_path(tag: tag.tag) do %>
-            <span><i class="fas fa-tag icon-tag"></i><%= tag.tag %></span>
-          <% end %>
-        <% end %>
-        </a>
-      </div>
-    </div>
-  </article>
+  
+  <%= render 'geinins/geinin_info', geinin: @geinin, user: @user %>
+  
+  </div>
   <% @geinin.geinin_members.each do |member| %>
     <article class="post hard-shadows">
         <div class="post-header">

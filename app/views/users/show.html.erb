@@ -4,24 +4,45 @@
   </div>
   <div class="post hard-shadows">
     <div class="post-wrapper">
-      <div class="post-content typography">
-        <p><%= @user.nickname %></p>
-        <p><%= @user.name %></p>
-
-        <p><span class="fas fa-file-alt"></span><%= @user.description %></p>
-        <p><span class="fas fa-link"></span><%= @user.url %></p>
-        フォローしている芸人一覧
-        ライブ登録数
-        <li>
-          <%= link_to logout_path, :method => :delete do %>
-            <i class="fa fa-sign-out-alt"></i> ログアウト
+      <div class="profile-header">
+        <div class="profile-image-box">
+         <img src="<%= @user.image_url %>" class="profile-image">
+        </div>
+        <div class="profile-name">
+          <span class="user-name"><%= @user.name %></span>
+          <span class="user-nickname">@<%= @user.nickname %></span>
+        </div>
+        <div class="following-box">
+          <% if @user.id == current_user.id %>
+            <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "btn following pink" %></p>
           <% end %>
-        </li>
+        </div>
       </div>
-      <div class="following-box">
-        <% if @user.id == current_user.id %>
-          <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "btn following" %></p>
-        <% end %>
+      <div class="post-content typography">
+        <p><span class="fas fa-file-alt icon"></span><%= @user.description %></p>
+        <p><span class="fas fa-link icon"></span><%= link_to @user.url, @user.url %></p>
+      </div>
+      <div class="profile-nav">
+        <ul class="profile-nav-list">
+          <li class="profile-nav-item">
+            <%= link_to following_path,:class=>"" do %>
+              <span class="profile-nav-label">ライブ登録数</span>
+              <span class="profile-value"><%= EventChangeHistory.where(user_id: current_user.id).select(:event_id).uniq.count %></span>
+            <% end %>
+          </li>
+          <li class="profile-nav-item">
+            <%= link_to following_path,:class=>"" do %>
+              <span class="profile-nav-label">フォロー</span>
+              <span class="profile-value"><%= Following.where(user_id: current_user.id).count %></span>
+            <% end %>
+          </li>
+          <li class="profile-nav-item">
+            <%= link_to following_path,:class=>"" do %>
+              <span class="profile-nav-label">ログアウト</span>
+              <span class="profile-value fa fa-sign-out-alt"></span>
+            <% end %>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

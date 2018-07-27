@@ -95,7 +95,7 @@ class EventsController < ApplicationController
 
   def destroy
       @event.destroy
-      redirect_to :back
+      redirect_to events_path
   end
 
   # スケジュールの表示

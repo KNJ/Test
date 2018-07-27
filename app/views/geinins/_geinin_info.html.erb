@@ -1,17 +1,35 @@
-<article class="post hard-shadows">
+<div class="post hard-shadows">
   <div class="post-wrapper">
-    <div class="post-place">
-      <span class="fas fa-map-marker-alt icon"></span><%= geinin.agency %>
+    <div class="profile-header">
+      <div class="profile-image-box">
+        <img src="<%= user.image_url %>" class="profile-image">
+      </div>
+      <div class="profile-name">
+        <span class="geinin-title"><%= geinin.name %></span>
+        <span class="geinin-yomi"><%= geinin.yomi %></span>
+      </div>
+      <div class="following-box" id="following-button-<%= geinin.id %>">
+        <%= render :partial => "followings/following", locals: { geinin: geinin } %>	
+      </div>
     </div>
-    <div class="post-content">
+    <div class="post-content typography">
       <% if geinin.start_year.present? %>
-        <p>結成年：<%= geinin.start_year %></p>
+        <p><span class="fas fa-birthday-cake icon"></span><%= geinin.start_year %>年結成</p>
       <% end %>
       <% if geinin.end_date.present? %>
-        <p>解散日：<%= geinin.end_date %></p>
+        <p><span class="fas fa-ban"></span><%= geinin.end_date %></p>
+      <% end %>
+      <% if geinin.agency.present? %>
+        <p><span class="fas fa-map-marker-alt icon"></span><%= geinin.agency %></p>
       <% end %>
       <% if geinin.official_profile_url.present? %>
-        <p>公式プロフィール：<%= link_to geinin.official_profile_url, geinin.official_profile_url %></p>
+        <p><span class="fas fa-link icon"></span><%= link_to geinin.official_profile_url, geinin.official_profile_url %></p>
+      <% end %>
+      <% if geinin.twitter_id.present? %>
+        <p><span class="fab fa-twitter-square icon"></span>@<%= link_to geinin.twitter_id,"https://twitter.com/#{geinin.twitter_id}" %></p>
+      <% end %>
+      <% if geinin.youtube_url.present? %>
+        <p><span class="fab fa-youtube icon"></span><%= link_to geinin.youtube_url,geinin.youtube_url %></p>
       <% end %>
     </div>
     <div class="post-tag">
@@ -22,27 +40,27 @@
       <% end %>
       </a>
     </div>
-  </div>
-</article>
-<% geinin.geinin_members.each do |member| %>
-  <article class="post hard-shadows">
-      <div class="post-header">
-        <span class="geinin-name-title"><%= member.name %></span>
-        <span class="geinin-yomi"><%= member.yomi %></span>
-      </div>
-      <div class="post-wrapper">
-        <div class="post-content">
-          <% if member.twitter_id.present? %>
-            <div>Twitter: @<%= link_to member.twitter_id, member.twitter_id %></p></div>
+    <div class="profile-nav">
+      <ul class="profile-nav-list">
+        <li class="profile-nav-item">
+          <%= link_to following_path do %>
+            <span class="profile-nav-label">ライブ登録数</span>
+            <span class="profile-value"><%= Event.default.where(event_performers: { performer: "#{geinin.name}"} ).count %></span>
           <% end %>
-          <% if member.instagram_id.present? %>
-            <div>Instagram: @<%= link_to member.instagram_id, member.instagram_id %></p></div>
+        </li>
+        <li class="profile-nav-item">
+          <%= link_to following_path do %>
+            <span class="profile-nav-label">フォロワー</span>
+            <span class="profile-value"><%= Following.where(geinin_id: current_user.id).count %></span>
           <% end %>
-          <% if member.blog_url.present? %>
-            <div>Blog: <%= link_to member.blog_url, member.blog_url %></p></div>
+        </li>
+        <li class="profile-nav-item">
+          <%= link_to edit_geinin_path(geinin.id) do %>
+            <span class="profile-nav-label">編集する</span>
+            <span class="profile-value"><i class="fas fa-edit"></i></span>
           <% end %>
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
-  </article>
-<% end %>
+  </div>
+</div>

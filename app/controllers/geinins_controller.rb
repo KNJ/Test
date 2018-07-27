@@ -20,16 +20,16 @@ class GeininsController < ApplicationController
   end
 
   def create
-        # イベント情報を取得
-         @geinin = Geinin.new(geinin_params)
+    # イベント情報を取得
+        @geinin = Geinin.new(geinin_params)
 
-        # DB保存→詳細画面へリダイレクト
-        if @geinin.save
-            redirect_to geinin_path(@geinin.id), notice: 'ありがとうございます！芸人wiki登録が完了しました！'
-        else
-            flash.now[:error] = '芸人wiki登録に失敗しました...。お手数ですが最初からやり直してください。'
-            render :new
-        end
+    # DB保存→詳細画面へリダイレクト
+    if @geinin.save
+        redirect_to geinin_path(@geinin.id), notice: 'ありがとうございます！芸人wiki登録が完了しました！'
+    else
+        flash.now[:error] = '芸人wiki登録に失敗しました...。お手数ですが最初からやり直してください。'
+        render :new
+    end
   end
 
   def index
@@ -40,8 +40,6 @@ class GeininsController < ApplicationController
   end
 
   def show
-		# 出演者とキーワードが一致する
-		@events = Event.default.where(event_performers: { performer: "#{Event.escape_like(@geinin.name)}"} )
   end
 
   def edit
@@ -52,7 +50,7 @@ class GeininsController < ApplicationController
     @geinin_members = GeininMember.where(geinin_id: @geinin_id).pluck(:id)
     @geinin_member_tags = GeininMemberTag.where(geinin_id: @geinin_id,geinin_member_id: @geinin_members)
     @text_area = TextareaConcatService.new(@geinin_tags).execute
-　end
+  end
 
   def update
     # エラーチェック＆DB保存→詳細画面へリダイレクト
@@ -80,7 +78,7 @@ class GeininsController < ApplicationController
     @events_followings = Event.default.where(event_performers: { performer: @geinins.name } )
 
   end
-
+  
   private
     #ライブ情報
     def geinin_params
@@ -111,15 +109,15 @@ class GeininsController < ApplicationController
                 :geinin_id,
                 :tag],
         )
-        end
+    end
 
-        #ユーザー情報
-        def user_params
-            params.require(:user).permit(:id, :name, :profile_image, :uid, :email, :password)
-        end
+    #ユーザー情報
+    def user_params
+        params.require(:user).permit(:id, :name, :profile_image, :uid, :email, :password)
+    end
 
   #ライブ情報
-  def event_params
+    def event_params
       params.require(:event)
       .permit(
           :id,
@@ -154,15 +152,14 @@ class GeininsController < ApplicationController
     end
 
     def set_current_user
-        if current_user.present?
-            @user = current_user
-            # ログインユーザーを取得
-            @user_id = current_user.id
-        end
+      if current_user.present?
+          @user = current_user
+          # ログインユーザーを取得
+          @user_id = current_user.id
+      end
     end
-
+ 
     def set_geinin
         @geinin = Geinin.find(params[:id])
     end
-  end
 end
