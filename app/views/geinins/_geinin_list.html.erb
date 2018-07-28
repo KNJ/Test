@@ -7,8 +7,10 @@
 	      <%= render 'geinins/geinin_info', geinin: geinin, user: @user %>
 	   <% end %>
 	<% else %>
-		<p>芸人の登録はまだありません。</p>
-        <p>情報が登録されていませんか？<br>
-        wArally!のライブ情報は誰でも登録することができます！</p>
-        <% link_to '今すぐ芸人を登録する', new_geinin_path %>
+    <div class="">
+      <p>芸人の登録はまだありません。</p>
+          <p>情報が登録されていませんか？<br>
+          wArally!のライブ情報は誰でも登録することができます！</p>
+          <% link_to '今すぐ芸人を登録する', new_geinin_path %>
+    </div>
 	<% end %>

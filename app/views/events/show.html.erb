@@ -2,5 +2,11 @@
   <div class="element page-info hard-shadows">
     <p>ライブ詳細</p>
   </div>
-  <%= render 'events/event_info', event: @event, user: @user %>
+  <div class="posts">
+    <%= render 'events/event_info', event: @event, user: @user %>
+  </div>
+  <%= link_to new_event_path,:class=>"btn new pink" do %>
+    <span class="fa fa-plus-circle"></span>
+    <span>新しいライブを登録する</span>
+  <% end %>
 </section>

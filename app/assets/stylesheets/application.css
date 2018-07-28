@@ -18,6 +18,9 @@ a{
     color:#f22e58;
     text-decoration:none;
 }
+a:hover{
+    opacity:0.75;
+}
 body{
     background-image:url('background.png');
     font-family: 'Quicksand',sans-serif;
@@ -107,8 +110,9 @@ header{
 }
 .login-button{
   padding-right:20px;
-  line-height:46px;
+  line-height:24px;
   float:right;
+  margin:7px 0 13px;
 }
 .user-menu-right{
     display:block;
@@ -258,6 +262,12 @@ header{
   line-height: 1.5;
   font-size: 14px;
   margin:10px 0;
+}
+.post-place a{
+    color: #595959;;
+}
+.post-place a:hover{
+    color:#f22e58;
 }
 .post-performer-icon{
     float:left;
@@ -436,11 +446,11 @@ header{
     /* padding-left:10px; */
     overflow:hidden;
 }
-.popular-search-words-box{
+.popular-search-words-box,.geinin-tags{
     position:left;
     padding:5px 0 0px 0;
 }
-.popular-search-words-title{
+.popular-search-words-title,.geinin-tags-title{
     padding:5px 0 5px 0;
 }
 .popular-search-words-box ul{
@@ -649,6 +659,31 @@ textarea{
     background-color: #fbfbfb;
     color: #f22e58;
 }
+.green{
+    color:#f7f7f7;
+    background: #5bbc8e;
+    border: 1px solid#5bbc8e;
+}
+.green:hover{
+    background-color: #fbfbfb;
+    color: #5bbc8e;
+}
+.geinin-btns{
+    text-align:center;
+    margin-top:20px;
+    margin-bottom:20px;
+    overflow: hidden;
+}
+.geinin-btn{
+    padding:10px 20px;
+    margin-right:10px;
+    display: inline-block;
+}
+.geinin-btn-2{
+    padding:10px 20px;
+    display: inline-block;
+    margin-right:0;
+}
 .pink-blank{
     background-color: #fbfbfb;
     color: #f22e58;
@@ -663,7 +698,7 @@ textarea{
     margin:10px 0;
 }
 .geinin{
-  width: 95%;
+  width: 100%;
   background-color:#fff;
   margin:0 auto;
   overflow: hidden;
@@ -804,7 +839,6 @@ textarea{
     background-color: white;
     opacity: 1.0;
 }
-
 .twitter-large-button a {
     color:#FFFFFF;
 }
@@ -889,6 +923,18 @@ textarea{
     opacity: 1.0;
     display:block;
 }
+.new-login-s{
+    padding:3px 10px;
+    margin:0 auto;
+    display:block; 
+    float:left;
+}
+.new-login-s:hover {
+    color: #1B95E0;
+    background-color: white;
+    opacity: 1.0;
+    display:block;
+}
 .new-login-description{
   text-align:center;
   width:auto;
@@ -928,11 +974,68 @@ a.following:hover span.shown{ display:none; }
 a.following span.hover-shown{ display:none; }
 a.following:hover span.hover-shown{ display:inline; }
 
+/* User Profile */
+.user-name{
+    font-size:16px;
+    font-weight:bold;
+    display:block;
+}
+.user-nickname{
+    display:block;
+    color:#66757f;
+}
+.profile-header{
+    overflow: hidden;
+    margin-top:10px;
+}
+.profile-image-box{
+    float:left;
+    margin:0px 5px 0 0;
+    width:35px;
+    z-index:2;
+}
+.profile-image{
+    border-radius:50%;
+    width:90%;
+}
+.profile-name{
+    float:left;
+}
+.profile-nav{
+    padding-bottom:10px;
+    position: relative;
+    overflow:hidden;
+}
+.profile-nav-item{
+    display:block;
+    float:left;
+    width:32%;
+    text-align:center;
+    transition: all 0.2s ease;
+    color: #657786;
+    height: 50px;
+}
+.profile-nav-item a{
+    color:#658786;
+}
+.profile-nav-btn{
+    color: #657786;   
+}
+.profile-nav-label{
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: .02em;
+    transition: color .15s ease-in-out;
+    display:block;
+}
+.profile-value{
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 3px;
+}
 /*タブ切り替え全体のスタイル*/
-.tabs {
+.tabs,.indexes {
   padding-bottom: 40px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   margin: 0 auto;
   margin-top: 10px;
 }
@@ -952,18 +1055,32 @@ a.following:hover span.hover-shown{ display:inline; }
   font-weight: bold;
   transition: all 0.2s ease;
 }
-.tab_item:hover,.profile-nav-item:hover {
-  opacity: 0.75;
+.index_item{
+  width: calc(100%/5);
+  height: 40px;
+  border-bottom: 1px solid #ccd6dd;
+  background-color: #fff;
+  line-height: 40px;
+  font-size: 15px;
+  text-align: center;
+  color: #ccd6dd;
+  display: block;
+  float: left;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+.tab_item:hover,.profile-nav-item:hover,.profile-nav-btn:hover,.profile-nav-item a:hover,.index_item:hover {
+  /* opacity: 0.75; */
   color:#f22e58;
 }
 /*ラジオボタンを全て消す*/
-input[name="tab_item"],input[name="profile-nav-item"] {
+input[name="tab_item"],input[name="profile-nav-item"],input[name="index_item"] {
   display: none;
 }
 /*タブ切り替えの中身のスタイル*/
-.tab_content,.profile-nav-content {
+.tab-content,.profile-nav-item-content,.index-content {
   display: none;
-  padding: 40px 40px 0;
   clear: both;
   overflow: hidden;
 }
@@ -972,12 +1089,18 @@ input[name="tab_item"],input[name="profile-nav-item"] {
 #participates-tab:checked ~ #participates_content,
 #pendings-tab:checked ~ #pendings_content,
 #my-posts-tab:checked ~ #my-posts_content,
+#posted-event-tab:checked ~ #posted-event-tab-content,
 #following-geinin-tab:checked ~ #following-geinin-tab-content,
-#posted-event-tab:checked ~ #posted-event-tab-content{
+#a-tab:checked ~ #a-tab_content,
+#i-tab:checked ~ #i-tab_content,
+#u-tab:checked ~ #u-tab_content,
+#e-tab:checked ~ #e-tab-content,
+#o-tab:checked ~ #o-tab-content{
   display: block;
+  overflow:hidden;
 }
 /*選択されているタブのスタイルを変える*/
-.tabs input:checked + .tab_item,.profile-nav-items input:checked + .profile-nav-item  {
+.tabs input:checked + .tab_item,.profile-nav input:checked + .profile-nav-item,.indexes input:checked + .index_item {
   color:#f22e58;
   background-color: #fff;
   border-bottom: 3px solid #f22e58;
@@ -1037,64 +1160,6 @@ input[name="tab_item"],input[name="profile-nav-item"] {
     margin-top:20px;
     margin-bottom:20px;
     display:block;
-}
-/* User Profile */
-.user-name{
-    font-size:16px;
-    font-weight:bold;
-    display:block;
-}
-.user-nickname{
-    display:block;
-    color:#66757f;
-}
-.profile-header{
-    overflow: hidden;
-    margin-top:10px;
-}
-.profile-image-box{
-    float:left;
-    margin:0px 5px 0 0;
-    z-index:2;
-}
-.profile-image{
-    border-radius:50%;
-    width:90%;
-}
-.profile-name{
-    float:left;
-}
-.profile-nav{
-    height: 60px;
-    position: relative;
-    overflow:hidden;
-}
-.profile-nav-item{
-    display:block;
-    float:left;
-    width:32%;
-    text-align:center;
-    transition: all 0.2s ease;
-}
-.profile-nav-item a:hover{
-  color:#f22e58;
-}
-.profile-nav-label{
-    color: #657786;
-    font-weight: bold;
-    font-size: 12px;
-    letter-spacing: .02em;
-    transition: color .15s ease-in-out;
-    display:block;
-}
-.profile-value{
-    color: #657786;
-    font-size: 18px;
-    font-weight: bold;
-    padding-top: 3px;
-}
-.profile-value:hover{
-  color:#f22e58;
 }
 .geinin-title{
     font-size:18px;
@@ -1248,9 +1313,11 @@ input[name="tab_item"],input[name="profile-nav-item"] {
       font-size:32px;
     }
     .profile-nav{
-      height: 40px;
       position: relative;
       overflow:hidden;
+    }
+    .profile-nav-item{
+      height: 40px;
     }
     .profile-nav-label{
         display:inline-block;
@@ -1290,7 +1357,7 @@ input[name="tab_item"],input[name="profile-nav-item"] {
     .user-menu-button-sm a{
       font-size:9px;
     }
-    .profile-nav{
+    .profile-nav-item{
         height:60px;
     }
     .profile-nav-label{

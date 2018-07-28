@@ -2,7 +2,7 @@
   <div class="post-wrapper">
     <div class="profile-header">
       <div class="profile-image-box">
-        <img src="<%= user.image_url %>" class="profile-image">
+        <img src="https://pbs.twimg.com/media/DVQp70hU0AAqLof.jpg" class="profile-image">
       </div>
       <div class="profile-name">
         <span class="geinin-title"><%= geinin.name %></span>
@@ -31,25 +31,22 @@
       <% if geinin.youtube_url.present? %>
         <p><span class="fab fa-youtube icon"></span><%= link_to geinin.youtube_url,geinin.youtube_url %></p>
       <% end %>
-    </div>
-    <div class="post-tag">
       <% geinin.geinin_tags.each do |tag| %>
         <%= link_to search_path(tag: tag.tag) do %>
-          <span><i class="fas fa-tag icon-tag"></i><%= tag.tag %></span>
+          <span class="fas fa-tag icon"></span><%= tag.tag %></span>
         <% end %>
       <% end %>
-      </a>
     </div>
     <div class="profile-nav">
       <ul class="profile-nav-list">
         <li class="profile-nav-item">
-          <%= link_to following_path do %>
+          <%= link_to search_path(:performer => geinin.name) do %>
             <span class="profile-nav-label">ライブ登録数</span>
             <span class="profile-value"><%= Event.default.where(event_performers: { performer: "#{geinin.name}"} ).count %></span>
           <% end %>
         </li>
         <li class="profile-nav-item">
-          <%= link_to following_path do %>
+          <%= link_to geinin_path(geinin.id) do %>
             <span class="profile-nav-label">フォロワー</span>
             <span class="profile-value"><%= Following.where(geinin_id: current_user.id).count %></span>
           <% end %>

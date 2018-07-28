@@ -1,0 +1,21 @@
+<section class="main">
+	<div class="page-info hard-shadows">
+		<span class="accent"><%= @keyword %></span>の検索結果
+	</div>
+  <% if @geinin.present? %>
+    <% @geinin.each do |geinin| %>
+      <%= render 'geinins/geinin_info', geinin: geinin, user: current_user %>
+    <% end %>
+  <% end %>
+  
+  <%= render :partial => "events/event_list", locals: { events: @events, user: @user  } %>
+ 
+  <% if @datetime.present? %>
+    <div class="navigation-block">
+      <% if @datetime.future? %>
+        <%= link_to "« "+@datetime.prev_day.strftime("%m月%d日"), search_path(:date => 'prev_day', :datetime => @datetime),:class => "btn navigation-link pink"  %>
+      <% end %>
+        <%= link_to @datetime.next_day.strftime("%m月%d日")+" »", search_path(:date => 'next_day', :datetime => @datetime),:class => "btn navigation-link pink" %>
+    </div>
+  <% end %>
+</section>

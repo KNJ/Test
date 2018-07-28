@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 	    @user.update(user_params)
 	    redirect_to user_path(@user.id)
 	end
+
 	def show
 		@user = current_user
 		
@@ -21,11 +22,10 @@ class UsersController < ApplicationController
 		@events_user = EventChangeHistory.where(user_id: @user.id)
 		@events = Event.default.where(id: @events_user.pluck(:event_id).uniq)
 
-	end
+    #　ユーザーがフォローしている芸人一覧を取得
+    @geinins = Geinin.default.where(followings: { user_id: current_user.id } )
 
-	def profile
-        @user = current_user
-        redirect_to user_path(@user.uid)
+    @my_info = @events, @geinins
 	end
 
 	private

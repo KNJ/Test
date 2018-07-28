@@ -1,6 +1,8 @@
-<% @events_participates = @results[0] %>
-<% @events_pengings = @results[1] %>
-<% @events_followings = @results[2].uniq %>
+  <% @events_participates = @results[0] %>
+  <% @events_pengings = @results[1] %>
+  <% if @events_followings.present? %>
+    <% @events_followings = @results[2].uniq %>
+  <% end %>
 
 <% if @event_participates.present? && @event_pendings.present? %>
   <% @events = @event_participates + @event_pendings %>
@@ -11,7 +13,15 @@
   <div class="element page-info hard-shadows">
     <p>スケジュール</p>
   </div>
-  <div class="tabs">    
+  <% if current_user.present? %>
+  <% else %>
+    <div class="post">
+      <div class="post-wrapper">
+        <p>スケジュール機能はログインすると使えます！</p>
+      </div>
+    </div>
+  <% end %>
+  <div class="tabs">
     <input id="following-tab" type="radio" name="tab_item" checked>
     <label class="tab_item" for="following-tab">フォロー中</label>
 
@@ -20,18 +30,18 @@
   
     <input id="pendings-tab" type="radio" name="tab_item">
     <label class="tab_item" for="pendings-tab">気になる</label>
- 
-    <div class="hard-shadows tab-content tab-1-content" id="following_content">
+
+    <div class="tab-content" id="following_content">
       <div class="tab_content_description">
         <%= render :partial => "events/event_list", locals: { events: @events_followings } %>
       </div>
     </div>
-    <div class="hard-shadows tab-content tab-2-content" id="participates_content">
+    <div class="tab-content" id="participates_content">
       <div class="tab_content_description">
         <%= render :partial => "events/event_list", locals: { events: @events_participates } %>
       </div>
     </div>
-    <div class="hard-shadows tab-content tab-3-content" id="pendings_content">
+    <div class="tab-content" id="pendings_content">
       <div class="tab_content_description">
         <%= render :partial => "events/event_list", locals: { events: @events_pendings } %>
       </div>

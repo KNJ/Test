@@ -29,4 +29,8 @@
   </article>
   <% end %>
 	<%= render :partial => "events/event_list", locals: { events: @events, user: @user  } %>
+  <%= link_to new_geinin_path,:class=>"btn new pink" do %>
+    <span class="fa fa-plus-circle"></span>
+    <span>新しい芸人を登録する</span>
+  <% end %>
 </section>

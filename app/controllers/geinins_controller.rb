@@ -13,19 +13,27 @@ class GeininsController < ApplicationController
       # タグを登録
         @geinin.geinin_tags.build
 
-      # メンバータグを登録
-       # Geinin_members.geinin_members_tags.build
-       # geinin_members_tags = GeininMembers.GeininMembersTags.new
-       # geinin_members_tags.save
   end
 
   def create
     # イベント情報を取得
-        @geinin = Geinin.new(geinin_params)
+      @geinin = Geinin.new(geinin_params)
+
+    # タグを改行コードで分けるために別途変数に入れる
+      @geinin_tags = geinin_params[:geinin_tags_attributes]
+      binding.pry
+      @geinin_member_tags = geinin_params[:geinin_members_attributes]
+
+    # Performerは別途作成するので空欄にする
+      @geinin.geinin_tags.clear
+      @geinin.geinin_member_tags.clear
 
     # DB保存→詳細画面へリダイレクト
     if @geinin.save
-        redirect_to geinin_path(@geinin.id), notice: 'ありがとうございます！芸人wiki登録が完了しました！'
+        # Event_performersを1行ごとのレコードに分ける
+        GeininTagsSplitService.new(@geinin_tags,@geinin_member_tags,@geinin.id).execute
+
+        redirect_to geinin_path(@geinin.id), notice: 'ありがとうございます！芸人wiki登録が完了しました！'    
     else
         flash.now[:error] = '芸人wiki登録に失敗しました...。お手数ですが最初からやり直してください。'
         render :new
@@ -71,7 +79,7 @@ class GeininsController < ApplicationController
 
   # 芸人スケジュールの表示
   def schedule
-    #　ユーザーがフォローしている芸人一覧を取得
+    # ユーザーがフォローしている芸人一覧を取得
     @geinins = Geinin.default.where(followings: { user_id: @user_id } )
 
     # ユーザーがフォローしている芸人の名前でライブ情報を検索
@@ -94,20 +102,26 @@ class GeininsController < ApplicationController
             :instagram_id,
             :youtube_url,
             :blog_url,
-            geinin_members_attributes: [
-                :id,
-                :geinin_id,
-                :url],
-                #   geinin_members_tags_attributes: [
-                #       :id,
-                #       :geinin_id,
-                #       :geinin_member_id,
-                #       :tag],
-                #   ],
             geinin_tags_attributes: [
                 :id,
                 :geinin_id,
                 :tag],
+            geinin_members_attributes: [
+                :id,
+                :geinin_id,
+                :family_name,
+                :first_name,
+                :family_name_yomi,
+                :first_name_yomi,
+                :twitter_id,
+                :instagram_id,
+                :blog_url,
+                #   geinin_member_tags_attributes: [
+                #       :id,
+                #       :geinin_id,
+                #       :geinin_member_id,
+                #       :tag],
+                  ],
         )
     end
 

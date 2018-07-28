@@ -2,5 +2,9 @@
   <div class="page-info hard-shadows">
     <p>芸人登録</p>
   </div>
-  <%= render :partial => "geinin_new", locals: { geinin: @geinin } %>
+  <div class="event-box">
+    <%= form_for(@geinin, method: :post) do |f| %>
+      <%= render :partial => "geinin_edit", locals: { geinin: @geinin, f: f } %>
+    <% end %>
+  </div>
 </section>

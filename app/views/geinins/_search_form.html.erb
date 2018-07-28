@@ -10,8 +10,10 @@
           <%= text_field_tag :keyword,"",:class => "search-form",:placeholder =>"キーワード(例:バナナマン、M-1グランプリ)" %>
         <% end %>
       </div>
-      <div class="search-performer-box post-performer">
-        <span class="fas fa-chart-line icon"></span>芸人タグ
+      <div class="geinin-tags post-performer">
+        <div class="geinin-tags-title">
+          <span class="fas fa-chart-line icon"></span>芸人タグ
+        </div>
         <% @geinin_tags.each do |tag| %>
         <ul>
           <li><%= link_to tag.tag, search_path(:geinin_tag => tag.tag), :class => "post-performer float-left" %></li>

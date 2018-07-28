@@ -61,31 +61,22 @@
                 <span>ライブ登録</span>
               <% end %>
             </li>
-            <% if user_signed_in? %>
-              <li>
-                <%= link_to my_schedule_path do %>
-                  <i class="fas fa-heart"></i>
-                  <span class="user-menu-button-text">スケジュール</span>
-                  <% end %>
-              </li>
-            <% else %>
-              <li>
-                <%= link_to my_schedule_path do %>
-                  <i class="fas fa-heart"></i>
-                  <span class="user-menu-button-text">スケジュール</span>
-                  <% end %>
-              </li>
-            <% end %>
+            <li>
+              <%= link_to schedule_path do %>
+                <i class="fas fa-heart"></i>
+                <span class="user-menu-button-text">スケジュール</span>
+                <% end %>
+            </li>
+            <li>
+              <%= link_to notification_path do %>
+                <i class="fas fa-bell"></i>
+                <span class="user-menu-button-text">通知</span>
+              <% end %>
+            </li>
             <li>
               <%= link_to geinins_path do %>
                 <i class="fas fa-address-book"></i>
                 <span class="user-menu-button-text">芸人Wiki</span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to survey_path do %>
-                <i class="fas fa-file-alt"></i>
-                <span class="user-menu-button-text">アンケート結果</span>
               <% end %>
             </li>
           </ul>
@@ -127,9 +118,9 @@
           </div>
         <% else %>
           <div class="login-button">
-            <%= link_to user_twitter_omniauth_authorize_path,:class => "twitter-button" do %>
-            <i class="fa fa-twitter"></i>
-            <span>Twitterでログイン</span>
+            <%= link_to user_twitter_omniauth_authorize_path,:class => "btn twitter-fill radius new-login-s" do %>
+              <i class="fab fa-twitter"></i>
+              <span>Twitterでログイン</span>
             <% end %>
           </div>
           <div class="login-s clearfix">
@@ -150,7 +141,7 @@
           <% end %>
         </li>
         <li>
-          <%= link_to my_schedule_path do %>
+          <%= link_to schedule_path do %>
             <span class="fas fa-heart user-menu-icon"></span>
             <span class="user-menu-button-text">スケジュール</span>
             <% end %>
@@ -162,16 +153,9 @@
           <% end %>
         </li>
         <li>
-          <% if current_user.present? %>
-            <%= link_to user_path(current_user.id) do %>
-              <span class="fas fa-bell user-menu-icon"></span>
-              <span class="user-menu-button-text">通知</span>
-            <% end %>
-          <% else %>
-            <%= link_to events_path do %>
-              <span class="fas fa-bell user-menu-icon"></span>
-              <span class="user-menu-button-text">通知</span>
-            <% end %>
+          <%= link_to notification_path do %>
+            <span class="fas fa-bell user-menu-icon"></span>
+            <span class="user-menu-button-text">通知</span>
           <% end %>
         </li>
         <li>

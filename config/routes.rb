@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/terms', to: 'root#terms'
   get '/privacy', to: 'root#privacy'
   get '/survey', to: 'survey#index'
+  get '/lp', to: 'root#lp'
+  get '/notification', to: 'root#notification'
 
   # ユーザー管理
     resources :users, only: [:show, :edit, :update, :create, :destroy]
@@ -43,13 +45,10 @@ Rails.application.routes.draw do
     end
 
     # 参加予定
-    get 'my_schedule', to: 'events#schedule'
+    get 'schedule', to: 'events#schedule'
 
     # ライブ情報検索
     get 'search', to: 'events#search'
-
-    # フォローしてる芸人のライブ一覧を表示する
-    get 'following_event', to: 'events#following'
 
   # 芸人管理
     resources :geinins, only: [:new, :create, :edit, :update, :index, :show, :destroy] do

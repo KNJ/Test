@@ -1,58 +1,59 @@
 <article class="post hard-shadows">
-    <div class="post-header">
-      <% wd = ["日", "月", "火", "水", "木", "金", "土"] %>
-      <span><%= event.datetime.strftime("%Y年%m月%d日"+"("+%w(日 月 火 水 木 金 土)[event.datetime.wday]+") "+" 開演 %H:%M ") %></span>
-      <div class="share-box">
-        <%= link_to '/' do %>
-         <i class="fas fa-share-alt"></i>
-        <% end %>
-      </div>
+  <div class="post-header">
+    <% wd = ["日", "月", "火", "水", "木", "金", "土"] %>
+    <span><%= event.datetime.strftime("%Y年%m月%d日"+"("+%w(日 月 火 水 木 金 土)[event.datetime.wday]+") "+" 開演 %H:%M ") %></span>
+    <div class="share-box">
+      <%= link_to '/' do %>
+        <i class="fas fa-share-alt"></i>
+      <% end %>
     </div>
-    <div class="post-wrapper">
-      <div class="post-title">
-        <h3><%= link_to event.title, event_path(event.id) %></h3>
-      </div>
-      <div class="post-performer">
-        <ul>
-            <% event.event_performers.each do |performer| %>
-					    <li><%= link_to performer.performer, search_path(performer: performer.performer),:class =>"post-performer float-left" %></li>
-					  <% end %>
-        </ul>
-      </div>
-      <div class="post-place">
-        <span class="fas fa-map-marker-alt icon"></span><%= event.place %>
-      </div>
-      <div class="post-content">
-        <%= simple_format(event.description) %>
-      </div>
-      <div class="post-tag">
-        <% event.event_categories.each do |category| %>
-          <%= link_to search_path(category: category.category) do %>
-            <span><i class="fas fa-tag icon-tag"></i><%= category.category %></span>
-          <% end %>
-        <% end %>
-        </a>
-      </div>
-      <div class="post-image">
-        <%= attachment_image_tag event, :image, :fill, 280,280, format: 'jpeg', :class =>"post-image" %>
-      </div>
+  </div>
+  <div class="post-wrapper">
+    <div class="post-title">
+      <h3><%= link_to event.title, event_path(event.id) %></h3>
     </div>
-    <div class="post-options">
-      <div class="post-option">
-        <%= link_to edit_event_path(event.id) do %>
-          <i class="fas fa-edit"></i>
-          <span class="post-option-text">編集する</span>
+    <div class="post-performer">
+      <ul>
+        <% event.event_performers.each do |performer| %>
+          <li><%= link_to performer.performer, search_path(performer: performer.performer),:class =>"post-performer float-left" %></li>
         <% end %>
-      </div>
-      <div class="post-option" id="participate-button-<%= event.id %>">
-        <%= render :partial => "participates/participate", locals: { event: event } %>
-      </div>
-      <div class="post-option" id="pending-button-<%= event.id %>">
-        <%= render :partial => "pendings/pending", locals: { event: event } %>
-      </div>
-      <div class="post-option">
-        <%= render :partial => "events/reserve", locals: { event: event, user: user, event_event_links: event_event_links_url(event.id) } %>
-      </div>
+      </ul>
+    </div>
+    <div class="post-place">
+      <span class="fas fa-map-marker-alt icon"></span>
+      <%= link_to search_path(:place=>"#{event.place}") do %>
+        <%= event.place %>
+      <% end %>
+    </div>
+    <div class="post-content">
+      <%= simple_format(event.description) %>
+    </div>
+    <div class="post-tag">
+      <% event.event_categories.each do |category| %>
+        <%= link_to search_path(category: category.category) do %>
+          <span><i class="fas fa-tag icon-tag"></i><%= category.category %></span>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="post-image">
+      <%= attachment_image_tag event, :image, :fill, 280,280, format: 'jpeg', :class =>"post-image" %>
+    </div>
+  </div>
+  <div class="post-options">
+    <div class="post-option">
+      <%= link_to edit_event_path(event.id) do %>
+        <i class="fas fa-edit"></i>
+        <span class="post-option-text">編集する</span>
+      <% end %>
+    </div>
+    <div class="post-option" id="participate-button-<%= event.id %>">
+      <%= render :partial => "participates/participate", locals: { event: event } %>
+    </div>
+    <div class="post-option" id="pending-button-<%= event.id %>">
+      <%= render :partial => "pendings/pending", locals: { event: event } %>
+    </div>
+    <div class="post-option">
+      <%= render :partial => "events/reserve", locals: { event: event, user: user, event_event_links: event_event_links_url(event.id) } %>
     </div>
   </div>
 </article>
