@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # aboutページの表示
+  # 当サイトについての表示
   def about
 	  render '/about'
   end
@@ -23,14 +23,14 @@ class ApplicationController < ActionController::Base
 	  render '/privacy'
   end
 
-  # 利用規約ページの表示
+  # 利用規約の表示
   def terms
 	  render '/terms'
   end
 
-  # 設定ページの表示
+  # 通知ページの表示
   def setting
-    render '/setting'
+    render '/notification'
   end
 
   def set_current_user

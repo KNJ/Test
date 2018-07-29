@@ -26,45 +26,45 @@
           <p class="label-border"></p>
         </div>  
         <div class="search-button-box">
-          <%= link_to search_path(:category => '単独ライブ'), :class => "btn categories pink float-left" do %>
+          <%= link_to search_path(:index => 'a'), :class => "btn categories pink float-left" do %>
             <span>あ行</span>
-            <%= Event.default.where(event_categories: { category: '単独ライブ'} ).count %>
+            <%= Event.default.where(index: { index: 'a'} ).count %>
           <% end %>
-          <%= link_to search_path(:category => '無料'), :class => "btn categories pink float-left" do %>
+          <%= link_to search_path(:index => 'ka'), :class => "btn categories pink float-left" do %>
             <span>か行</span>
-            <%= Event.default.where(event_categories: { category: '無料'} ).count %>
+            <%= Event.default.where(index: { index: ''} ).count %>
           <% end %>
-          <%= link_to search_path(:category => 'エントリー制'), :class => "btn categories pink float-left" do %>
+          <%= link_to search_path(:index => 'sa'), :class => "btn categories pink float-left" do %>
             <span>さ行</span>
-            <%= Event.default.where(event_categories: { category: 'エントリー制'} ).count %>
+            <%= Event.default.where(index: { index: 'エントリー制'} ).count %>
           <% end %>
-          <%= link_to search_path(:category => 'エントリー制'), :class => "btn categories pink float-left" do %>
+          <%= link_to search_path(:index => 'ta'), :class => "btn categories pink float-left" do %>
             <span>た行</span>
-            <%= Event.default.where(event_categories: { category: 'エントリー制'} ).count %>
+            <%= Event.default.where(index: { index: 'エントリー制'} ).count %>
           <% end %>
-          <%= link_to search_path(:category => 'エントリー制'), :class => "btn categories pink float-left" do %>
+          <%= link_to search_path(:index => 'na'), :class => "btn categories pink float-left" do %>
             <span>な行</span>
-            <%= Event.default.where(event_categories: { category: 'エントリー制'} ).count %>
+            <%= Event.default.where(index: { index: 'エントリー制'} ).count %>
           <% end %>
-          <%= link_to search_path(:category => 'エントリー制'), :class => "btn categories pink float-left" do %>
+          <%= link_to search_path(:index => 'ha'), :class => "btn categories pink float-left" do %>
             <span>は行</span>
-            <%= Event.default.where(event_categories: { category: 'エントリー制'} ).count %>
+            <%= Event.default.where(index: { index: 'エントリー制'} ).count %>
           <% end %>
-          <%= link_to search_path(:category => 'エントリー制'), :class => "btn categories pink float-left" do %>
+          <%= link_to search_path(:index => 'ma'), :class => "btn categories pink float-left" do %>
             <span>ま行</span>
-            <%= Event.default.where(event_categories: { category: 'エントリー制'} ).count %>
+            <%= Event.default.where(index: { index: 'エントリー制'} ).count %>
           <% end %>
-          <%= link_to search_path(:category => 'エントリー制'), :class => "btn categories pink float-left" do %>
+          <%= link_to search_path(:index => 'ya'), :class => "btn categories pink float-left" do %>
             <span>や行</span>
-            <%= Event.default.where(event_categories: { category: 'エントリー制'} ).count %>
+            <%= Event.default.where(index: { index: 'エントリー制'} ).count %>
           <% end %>
-          <%= link_to search_path(:category => 'エントリー制'), :class => "btn categories pink float-left" do %>
+          <%= link_to search_path(:index => 'ra'), :class => "btn categories pink float-left" do %>
             <span>ら行</span>
-            <%= Event.default.where(event_categories: { category: 'エントリー制'} ).count %>
+            <%= Event.default.where(index: { index: 'エントリー制'} ).count %>
           <% end %>
-          <%= link_to search_path(:category => 'エントリー制'), :class => "btn categories pink float-left" do %>
+          <%= link_to search_path(:index => 'wa'), :class => "btn categories pink float-left" do %>
             <span>わ行</span>
-            <%= Event.default.where(event_categories: { category: 'エントリー制'} ).count %>
+            <%= Event.default.where(index: { index: 'エントリー制'} ).count %>
           <% end %>
         </div>
       </div>

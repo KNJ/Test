@@ -1,6 +1,3 @@
-<% @event = @event_info[0] %>
-<% @event_performers = @event_info[1] %>
-
 <section class="main">
     <div class="element page-info hard-shadows">
       <p>ライブ編集</p>
@@ -8,7 +5,7 @@
   <div class="container">
     <div class="event-box">
       <%= form_for(@event) do |f| %>
-        <%= render :partial => "event_edit", locals: { event: @event, event_performers: @event_performers, f: f } %>
+        <%= render :partial => "event_edit", locals: { event: @event, event_performers: @event_performers, event_categories: @event_categories, f: f } %>
       <% end %>
     </div>
   </div>

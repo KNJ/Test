@@ -4,7 +4,7 @@
   </div>
   <div class="container">
     <%= form_for(@event, method: :post) do |f| %>
-      <%= render :partial => "event_edit", locals: { event: @event, f: f, event_performers: "" } %>
+      <%= render :partial => "event_edit", locals: { event: @event, f: f, event_performers: "",event_categories:"" } %>
     <% end %>
   </div>
 </section>

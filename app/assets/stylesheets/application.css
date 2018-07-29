@@ -672,6 +672,7 @@ textarea{
     text-align:center;
     margin-top:20px;
     margin-bottom:20px;
+    font-size:20px;
     overflow: hidden;
 }
 .geinin-btn{
@@ -681,8 +682,8 @@ textarea{
 }
 .geinin-btn-2{
     padding:10px 20px;
+    margin:0 auto;
     display: inline-block;
-    margin-right:0;
 }
 .pink-blank{
     background-color: #fbfbfb;
@@ -710,6 +711,7 @@ textarea{
 .geinin-box{
   padding:5px;
   line-height:20px;
+  overflow:hidden;
 }
 .geinin-name{
     text-decoration:none;
@@ -985,6 +987,7 @@ a.following:hover span.hover-shown{ display:inline; }
     color:#66757f;
 }
 .profile-header{
+    padding-top:5px;
     overflow: hidden;
     margin-top:10px;
 }
@@ -1321,6 +1324,12 @@ input[name="tab_item"],input[name="profile-nav-item"],input[name="index_item"] {
     }
     .profile-nav-label{
         display:inline-block;
+    }
+    .geinin-btn{
+        font-size:14px;
+    }
+    .geinin-btn-2{
+        font-size:14px;
     }
 }
 /* iPhone5用 */

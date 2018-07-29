@@ -41,10 +41,10 @@ class GeininsController < ApplicationController
   end
 
   def index
-
-    @geinins = Geinin.default.all
+    @indexes = ["あ%","い%","う%","え%","お%"]
+    @geinins = Geinin.default.where("(yomi LIKE(?)) OR (yomi LIKE (?)) OR (yomi LIKE (?)) OR (yomi LIKE (?)) OR (yomi LIKE (?))",@indexes[0],@indexes[1],@indexes[2],@indexes[3],@indexes[4])
     @geinin_tags = GeininTag.order("RANDOM()").limit(10)
-
+    
   end
 
   def show
@@ -85,6 +85,14 @@ class GeininsController < ApplicationController
     # ユーザーがフォローしている芸人の名前でライブ情報を検索
     @events_followings = Event.default.where(event_performers: { performer: @geinins.name } )
 
+  end
+
+  def search
+    # キーワードで検索
+    return @results = SearchGeininByKeywordService.new(params[:keyword]).execute if params[:keyword].present?
+
+    # あいうえおで検索
+    return @results = SearchGeininByIndexService.new(params[:index]).execute if params[:index].present?
   end
   
   private

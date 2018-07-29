@@ -2,7 +2,12 @@
   <div class="page-info hard-shadows">
     <p>フォロー一覧</p>
   </div>
-  <% if @geinins.present? %>
+  <% if @geinins.nil? %>
+    <p>まだ誰もフォローしていません。</p>
+   <% else %>
+    <%= render :partial=>"followings/following_list", locals:{ geinins: @geinins } %>
+  <% end %>
+<!--  <% if @geinins.present? %>
     <% @geinins.each do |geinin| %>
       <div class="geinin-card">
         <div class="geinin-card-content">
@@ -51,5 +56,5 @@
     <% end %> 
   <% else %>
       <p>まだ誰もフォローしていません。</p>
-  <% end %>
+  <% end %>-->
 </section>

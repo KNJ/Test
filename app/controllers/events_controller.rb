@@ -18,14 +18,14 @@ class EventsController < ApplicationController
   end
 
   def create
-    binding.pry
+
     # イベント情報を取得
       @event = Event.new(event_params)
 
-    # Performerを改行コードで分けるために変数に入れる
+    # 出演者とカテゴリを改行コードで分けるために変数に入れる
       @event_performers = event_params[:event_performers_attributes]
 
-    # Performerは別途作成するので空欄にする
+    # 出演者とカテゴリは別途作成するので空欄にする
       @event.event_performers.clear
 
     # DB保存→詳細画面へリダイレクト
@@ -33,8 +33,11 @@ class EventsController < ApplicationController
         # イベントが登録されたら、変更履歴テーブルを更新
         UpdateEventChangeHistoryService.new(@event.id,@remote_ip,@user_id).execute
 
-        # Event_performersを1行ごとのレコードに分ける
+        # 出演者を1行ごとのレコードに分ける
         EventPerformersSplitService.new(@event_performers,@event.id).execute
+
+        # カテゴリを1行ごとのレコードに分ける
+        # EventPerformersSplitService.new(@event_performers,@event.id).execute
 
         redirect_to event_path(@event.id), notice: 'ありがとうございます！ライブ登録が完了しました！'
     else
@@ -73,9 +76,13 @@ class EventsController < ApplicationController
 
   def edit
     # 出演者を取得する
-    @event_performers = EventPerformer.where(event_id: @event.id).pluck(:performer)
-    @text_area = TextareaConcatService.new(@event_performers).execute
-    @event_info = @event, @text_area
+    @event_performers_list = EventPerformer.where(event_id: @event.id).pluck(:performer)
+    @event_performers = TextareaConcatService.new(@event_performers_list).execute
+
+    # カテゴリを取得する
+    @event_categories_list = EventCategory.where(event_id: @event.id).pluck(:category)
+    @event_categories = TextareaConcatService.new(@event_categories).execute
+
   end
 
   def update

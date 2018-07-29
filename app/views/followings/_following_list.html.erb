@@ -17,23 +17,27 @@
             </div>
           </div>
           <div class="geinin-card-descriptions">
-            <span class="fas fa-birthday-cake icon"></span><%= geinin.start_year %>年結成<br>
-            <span class="fas fa-map-marker-alt icon"></span><%= geinin.agency %>
+            <% if geinin.start_year.present? %>
+              <span class="fas fa-birthday-cake icon"></span><%= geinin.start_year %>年結成<br>
+            <% end %>
+            <% if geinin.agency.present? %>
+              <span class="fas fa-map-marker-alt icon"></span><%= geinin.agency %>
+            <% end %>
           </div>
         </div>
         <div class="geinin-card-options">
           <div class="geinin-card-option">
-            <%= link_to search_path(:performer => geinin.name) do %>
-              <i class="fas fa-share-alt"></i>
-              <span class="profile-value"><%= Event.default.where(event_performers: { performer: "#{geinin.name}"} ).count %></span>
+            <%= link_to search_path(:performer => geinin.name) do %> 
+              <span class="fas fa-calendar-alt"></span>                 
               <span class="geinin-card-option-text">ライブ登録数</span>
+              <span class="profile-value"><%= Event.default.where(event_performers: { performer: "#{geinin.name}"} ).count %></span>
             <% end %>
           </div>
           <div class="geinin-card-option">
             <%= link_to edit_geinin_path(geinin.id) do %>
               <i class="fas fa-users"></i>
-              <span class="geinin-card-option-text">
-              <%= Following.where(geinin_id: geinin.id).count %> フォロワー</span>
+              <span class="geinin-card-option-text">フォロワー</span>
+              <span class="profile-value"><%= Following.where(geinin_id: geinin.id).count %></span>
             <% end %>
           </div>
           <div class="geinin-card-option">
