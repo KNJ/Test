@@ -20,6 +20,6 @@ class SearchKeywordService
 		    @events = @events + Event.default.where('event_categories.category like ?', "%#{Event.escape_like(@keyword)}%")
         end
         
-        @results = @events, nil,@keyword
+        @results = @events, nil,@keyword,nil,@events.count
     end
 end

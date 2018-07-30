@@ -27,14 +27,14 @@ class SearchDatetimeService
         @day = DateTime.now.wday
         @next_sat = @today + (6-@day).day + 5.hour
       end
-        @next_morning =  0.days.ago.next_week(:saturday)
+        @next_morning =  @next_sat + 1.day + 5.hour
     when 'next_sun' then
       if Date.today.sunday?
         # 1週間後を取る
         @next_sun = @today + 7.day + 5.hour
       else
         @day = DateTime.now.wday
-        @next_sun = 0.days.ago.next_week(:sunday)
+        @next_sun = @today + (7-@day).day + 5.hour
       end
       @next_morning = @next_sun + 1.day + 5.hour
     when 'next_day' then
@@ -81,7 +81,7 @@ class SearchDatetimeService
     @to = @next_morning
     @events = Event.datetime_search(@from,@to)
 
-    return @results = @events, @datetime,nil
+    return @results = @events, @datetime,nil,nil,@events.count
 
   end
 end

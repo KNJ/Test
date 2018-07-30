@@ -1,21 +1,42 @@
 <section class="main">
-	<div class="page-info hard-shadows">
-		<span class="accent"><%= @keyword %></span>の検索結果
-	</div>
-  <% if @geinin.present? %>
-    <% @geinin.each do |geinin| %>
-      <%= render 'geinins/geinin_info', geinin: geinin, user: current_user %>
-    <% end %>
-  <% end %>
+  <div class="page-info hard-shadows">
+    <p>芸人一覧</p>
+  </div>
+  <div class="indexes">
+    <input id="a-tab" type="radio" name="index_item" checked>
+    <label class="index_item" for="a-tab"><%= @a[0] %></label>
+
+    <input id="i-tab" type="radio" name="index_item">
+    <label class="index_item" for="i-tab"><%= @i[0] %></label>
   
-  <%= render :partial => "events/event_list", locals: { events: @events, user: @user  } %>
- 
-  <% if @datetime.present? %>
-    <div class="navigation-block">
-      <% if @datetime.future? %>
-        <%= link_to "« "+@datetime.prev_day.strftime("%m月%d日"), search_path(:date => 'prev_day', :datetime => @datetime),:class => "btn navigation-link pink"  %>
-      <% end %>
-        <%= link_to @datetime.next_day.strftime("%m月%d日")+" »", search_path(:date => 'next_day', :datetime => @datetime),:class => "btn navigation-link pink" %>
-    </div>
-  <% end %>
+    <input id="u-tab" type="radio" name="index_item">
+    <label class="index_item" for="u-tab"><%= @u[0] %></label>
+
+    <input id="e-tab" type="radio" name="index_item">
+    <label class="index_item" for="e-tab"><%= @e[0] %></label>
+
+    <input id="o-tab" type="radio" name="index_item">
+    <label class="index_item" for="o-tab"><%= @o[0] %></label>
+  </div>
+	<div class="geinin-list">
+		<% if @geinins.present? %>
+			<% @geinins.each do |geinin| %>
+				<div class="geinin hard-shadows">
+					<div class="geinin-wrapper">
+							<div class="geinin-box">
+								<div class="geinin-name-box">
+									<%= link_to geinin.name, "geinins/#{geinin.id}", :class => "geinin-name" %>
+								</div>
+								<div class="following-box" id="following-button-<%= geinin.id %>">
+									<%= render :partial => "followings/following", locals: { geinin: geinin } %>	
+								</div>
+							</div>
+						</div>
+			  </div>
+		   <% end %>		
+		</div>
+	</div>
+	<% else %>
+			<%= render :partial=>"geinins/no_result" %>
+	<% end %>
 </section>

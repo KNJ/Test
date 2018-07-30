@@ -1,7 +1,7 @@
 class GeininsController < ApplicationController
-  before_action :set_geinin, only: [:show, :update, :edit, :destroy]
-  before_action :set_current_user, only: [:index, :show, :update, :edit, :destroy, :schedule,:following]
-  before_action :set_remote_ip, only: [:create, :update]
+  before_action :set_geinin, only: %i(show update edit destroy)
+  before_action :set_current_user, only: %i(index show update edit destroy schedule following)
+  before_action :set_remote_ip, only: %i(create update)
 
   def new
       # 芸人を登録
@@ -41,8 +41,26 @@ class GeininsController < ApplicationController
   end
 
   def index
-    @indexes = ["あ%","い%","う%","え%","お%"]
-    @geinins = Geinin.default.where("(yomi LIKE(?)) OR (yomi LIKE (?)) OR (yomi LIKE (?)) OR (yomi LIKE (?)) OR (yomi LIKE (?))",@indexes[0],@indexes[1],@indexes[2],@indexes[3],@indexes[4])
+    @a_indexes = ["あ%","い%","う%","え%","お%"]
+    @ka_indexes = ["か%","き%","く%","け%","こ%"]
+    @sa_indexes = ["さ%","し%","す%","せ%","そ%"]
+    @ta_indexes = ["た%","ち%","つ%","て%","と%"]
+    @na_indexes = ["な%","に%","ぬ%","ね%","の%"]
+    @ha_indexes = ["は%","ひ%","ふ%","へ%","ほ%"]
+    @ma_indexes = ["ま%","み%","む%","め%","も%"]
+    @ya_indexes = ["や%","ゆ%","よ%","",""]
+    @ra_indexes = ["ら%","り%","る%","れ%","ろ%"]
+    @wa_indexes = ["わ%","を%","ん%","",""]
+
+    @indexes = [@a_indexes,@ka_indexes,@sa_indexes,@ta_indexes,@na_indexes,@ha_indexes,@ma_indexes,@ya_indexes,@ra_indexes,@wa_indexes]
+    
+    @counts = []
+
+    @indexes.each do | index |
+        @results = Geinin.index_search(index[0],index[1],index[2],index[3],index[4]).count
+        @counts.push(@results)
+    end
+    
     @geinin_tags = GeininTag.order("RANDOM()").limit(10)
     
   end
@@ -92,8 +110,17 @@ class GeininsController < ApplicationController
     return @results = SearchGeininByKeywordService.new(params[:keyword]).execute if params[:keyword].present?
 
     # あいうえおで検索
-    return @results = SearchGeininByIndexService.new(params[:index]).execute if params[:index].present?
-  end
+    if params[:index].present?
+        results = SearchGeininByIndexService.new(params[:index]).execute
+        @geinins = results[0]
+        @a = results[1]
+        @i = results[2]
+        @u = results[3]
+        @e = results[4]
+        @o = results[5]
+        @geinin_tags = GeininTag.order("RANDOM()").limit(10)
+    end
+end
   
   private
     #ライブ情報

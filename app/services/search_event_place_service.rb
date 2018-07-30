@@ -7,6 +7,6 @@ class SearchEventPlaceService
     def execute
         # 場所が一致する
         @events = Event.default.where(place: @place ) 
-        @results = @events, nil,@place
+        @results = @events, nil,@place,nil,@events.count
     end
 end

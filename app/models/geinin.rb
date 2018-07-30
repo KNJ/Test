@@ -31,4 +31,8 @@ class Geinin < ApplicationRecord
       Following.where(geinin_id: geinin.id, user_id: user.id).exists?
     end
 
+    # あいうえおで検索
+    def self.index_search(a,i,u,e,o)
+      Geinin.default.where("(yomi LIKE(?)) OR (yomi LIKE (?)) OR (yomi LIKE (?)) OR (yomi LIKE (?)) OR (yomi LIKE (?))",a,i,u,e,o)
+    end
 end

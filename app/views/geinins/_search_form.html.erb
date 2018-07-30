@@ -1,6 +1,6 @@
 <div class="search-form-container">
   <div class="search-form-inner">
-    <div class="search-categories">
+    <div class="search-geinin-index">
       <div class="search-label">
         <h2 class="search-label-name"><i class="fas fa-search icon"></i>キーワードで探す</h2>
         <p class="label-border"></p>
@@ -26,45 +26,45 @@
           <p class="label-border"></p>
         </div>  
         <div class="search-button-box">
-          <%= link_to search_path(:index => 'a'), :class => "btn categories pink float-left" do %>
+          <%= link_to search_geinins_path(:index => 'a'), :class => "btn geinin-index pink" do %>
             <span>あ行</span>
-            <%= Event.default.where(index: { index: 'a'} ).count %>
+            <span class="tag-count"><%= @counts[0] %></span>
           <% end %>
-          <%= link_to search_path(:index => 'ka'), :class => "btn categories pink float-left" do %>
+          <%= link_to search_geinins_path(:index => 'ka'), :class => "btn geinin-index pink" do %>
             <span>か行</span>
-            <%= Event.default.where(index: { index: ''} ).count %>
+            <span class="tag-count"><%= @counts[1] %></span>
           <% end %>
-          <%= link_to search_path(:index => 'sa'), :class => "btn categories pink float-left" do %>
+          <%= link_to search_geinins_path(:index => 'sa'), :class => "btn geinin-index pink" do %>
             <span>さ行</span>
-            <%= Event.default.where(index: { index: 'エントリー制'} ).count %>
+            <span class="tag-count"><%= @counts[2] %></span>
           <% end %>
-          <%= link_to search_path(:index => 'ta'), :class => "btn categories pink float-left" do %>
+          <%= link_to search_geinins_path(:index => 'ta'), :class => "btn geinin-index pink" do %>
             <span>た行</span>
-            <%= Event.default.where(index: { index: 'エントリー制'} ).count %>
+            <span class="tag-count"><%= @counts[3]  %></span>
           <% end %>
-          <%= link_to search_path(:index => 'na'), :class => "btn categories pink float-left" do %>
+          <%= link_to search_geinins_path(:index => 'na'), :class => "btn geinin-index pink" do %>
             <span>な行</span>
-            <%= Event.default.where(index: { index: 'エントリー制'} ).count %>
+            <span class="tag-count"><%= @counts[4] %></span>
           <% end %>
-          <%= link_to search_path(:index => 'ha'), :class => "btn categories pink float-left" do %>
+          <%= link_to search_geinins_path(:index => 'ha'), :class => "btn geinin-index pink" do %>
             <span>は行</span>
-            <%= Event.default.where(index: { index: 'エントリー制'} ).count %>
+            <span class="tag-count"><%= @counts[5] %></span>
           <% end %>
-          <%= link_to search_path(:index => 'ma'), :class => "btn categories pink float-left" do %>
+          <%= link_to search_geinins_path(:index => 'ma'), :class => "btn geinin-index pink" do %>
             <span>ま行</span>
-            <%= Event.default.where(index: { index: 'エントリー制'} ).count %>
+            <span class="tag-count"><%= @counts[6] %></span>
           <% end %>
-          <%= link_to search_path(:index => 'ya'), :class => "btn categories pink float-left" do %>
+          <%= link_to search_geinins_path(:index => 'ya'), :class => "btn geinin-index pink" do %>
             <span>や行</span>
-            <%= Event.default.where(index: { index: 'エントリー制'} ).count %>
+            <span class="tag-count"><%= @counts[7] %></span>
           <% end %>
-          <%= link_to search_path(:index => 'ra'), :class => "btn categories pink float-left" do %>
+          <%= link_to search_geinins_path(:index => 'ra'), :class => "btn geinin-index pink" do %>
             <span>ら行</span>
-            <%= Event.default.where(index: { index: 'エントリー制'} ).count %>
+            <span class="tag-count"><%= @counts[8] %></span>
           <% end %>
-          <%= link_to search_path(:index => 'wa'), :class => "btn categories pink float-left" do %>
+          <%= link_to search_geinins_path(:index => 'wa'), :class => "btn geinin-index pink" do %>
             <span>わ行</span>
-            <%= Event.default.where(index: { index: 'エントリー制'} ).count %>
+            <span class="tag-count"><%= @counts[9]  %></span>
           <% end %>
         </div>
       </div>

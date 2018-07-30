@@ -18,9 +18,6 @@ a{
     color:#f22e58;
     text-decoration:none;
 }
-a:hover{
-    opacity:0.75;
-}
 body{
     background-image:url('background.png');
     font-family: 'Quicksand',sans-serif;
@@ -41,6 +38,22 @@ body{
 }
 .hard-shadows {
     box-shadow: 0 0 1px 1px rgba(0,0,0,.05);
+}
+.tag-count{
+  display:inline-block;
+  position: absolute;
+  top: 4px;
+  right: 3px;
+  z-index: 2;
+  width:20px;
+  height:20px;
+  background-color: #fff;
+  border-radius: 50%;
+  color: #f22e58;
+  border: 1px solid #f22e58;
+  text-align: center;
+  -webkit-transition: .2s;
+  transition: .2s;
 }
 /* header */
 header{
@@ -283,11 +296,10 @@ header{
   display:block;
   float:left;
   color:#595959;
-  height: 15px;
-  line-height: 15px;
-  padding: 3px 5px;
+  padding: 0px 5px;
   margin-right:3px;
   margin-bottom:5px;
+  line-height: 1.5;
   background-color: #fff;
   border: 1px solid #aaa;
   border-radius: 3px;
@@ -295,7 +307,6 @@ header{
   text-overflow: ellipsis;
   overflow: hidden;
   font-size: 14px;
-  text-decoration: none;
   -webkit-transition: .2s;
   transition: .2s;
 }
@@ -304,8 +315,9 @@ header{
   border: 1px solid #f22e58;
   color: #f7f7f7;
 }
-.post-performer li{
-  padding-right:2px;
+.post-performer-text{
+    display:inline-block;
+    /* padding:3px 0 2px 0; */
 }
 /* .flex{
         display: -webkit-flex; 
@@ -443,6 +455,7 @@ header{
 }
 .search-button-box{
     position:left;
+    
     /* padding-left:10px; */
     overflow:hidden;
 }
@@ -464,18 +477,30 @@ header{
     /* padding-left:10px; */
 }
 .categories{
-    /* display: inline-block; */
-    /* padding: 4px 8px;
-    margin: 0 5px 5px 0;
-    transition: all 300ms ease;
-    margin-top:5px; */
-    font-size: 14px;
-    display: block;
     padding: 6px 8px;
+    position:relative;
+    font-size: 14px;
     color: #eee;
     margin: 0 5px 5px 0;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-decoration: none;
+    -webkit-transition: .2s;
     transition: all 300ms ease;
-    float: left;
+}
+.geinin-index{
+    padding: 6px 28px 6px 8px;
+    position:relative;
+    font-size: 14px;
+    color: #eee;
+    margin: 0 5px 5px 0;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-decoration: none;
+    -webkit-transition: .2s;
+    transition: all 300ms ease;
 }
 /* footerのCSS */
 footer{
@@ -1336,7 +1361,7 @@ input[name="tab_item"],input[name="profile-nav-item"],input[name="index_item"] {
 @media(max-width:320px){
     .categories{
       display: inline-block;
-      padding: 4px 6px;
+      padding: 6px 4px;
       color: #f7f7f7;
       background-color: #f22e58;
       margin: 0 3px 3px 0;
