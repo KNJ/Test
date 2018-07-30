@@ -13,40 +13,30 @@
 			<span class="user-menu-button-text">アンケート結果</span>
 		<% end %>
 	</div>
-  <div class="indexes">
-    <input id="a-tab" type="radio" name="index_item" checked>
-    <label class="index_item" for="a-tab">あ</label>
+  <div class="indexes">	
+		<input id="index-tab-0" type="radio" name="index_item" checked>
+		<label class="index_item" for="index-tab-0"><%= @indexes[0][0] %></label>
 
-    <input id="i-tab" type="radio" name="index_item">
-    <label class="index_item" for="i-tab">い</label>
+    <input id="index-tab-1" type="radio" name="index_item">
+    <label class="index_item" for="index-tab-1"><%= @indexes[1][0] %></label>
   
-    <input id="u-tab" type="radio" name="index_item">
-    <label class="index_item" for="u-tab">う</label>
+    <input id="index-tab-2" type="radio" name="index_item">
+    <label class="index_item" for="index-tab-2"><%= @indexes[2][0] %></label>
 
-    <input id="e-tab" type="radio" name="index_item">
-    <label class="index_item" for="e-tab">え</label>
+    <input id="index-tab-3" type="radio" name="index_item">
+    <label class="index_item" for="index-tab-3"><%= @indexes[3][0] %></label>
 
-    <input id="o-tab" type="radio" name="index_item">
-    <label class="index_item" for="o-tab">お</label>
+    <input id="index-tab-4" type="radio" name="index_item">
+    <label class="index_item" for="index-tab-4"><%= @indexes[4][0] %></label>
   </div>
-	<div class="geinin-list">
-		<% if @geinins.present? %>
-			<% @geinins.each do |geinin| %>
-				<div class="geinin hard-shadows">
-					<div class="geinin-wrapper">
-							<div class="geinin-box">
-								<div class="geinin-name-box">
-									<%= link_to geinin.name, "geinins/#{geinin.id}", :class => "geinin-name" %>
-								</div>
-								<div class="following-box" id="following-button-<%= geinin.id %>">
-									<%= render :partial => "followings/following", locals: { geinin: geinin } %>	
-								</div>
-							</div>
-						</div>
-			  </div>
-		   <% end %>		
-		</div>
-	</div>
+	<% if @geinins_list.present? %>
+	  <% i = 0 %>
+		<% @geinins_list.each do |geinins| %>
+			<div class="index-content" id="index-tab-<%= "#{i}" %>-content">
+				<%= render :partial=>"geinins/geinins_list", locals: { geinins: geinins} %>
+			</div>
+			<% i = i+1 %>
+		<% end %>
 	<% else %>
 			<%= render :partial=>"geinins/no_result" %>
 	<% end %>

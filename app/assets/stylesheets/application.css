@@ -720,9 +720,9 @@ textarea{
     color: #fbfbfb;
 }
 /* 芸人wiki */
-.geinin-list{
+/* .geinin-list{
     margin:10px 0;
-}
+} */
 .geinin{
   width: 100%;
   background-color:#fff;
@@ -1116,17 +1116,17 @@ input[name="tab_item"],input[name="profile-nav-item"],input[name="index_item"] {
 #following-tab:checked ~ #following_content,
 #participates-tab:checked ~ #participates_content,
 #pendings-tab:checked ~ #pendings_content,
-#my-posts-tab:checked ~ #my-posts_content,
 #posted-event-tab:checked ~ #posted-event-tab-content,
 #following-geinin-tab:checked ~ #following-geinin-tab-content,
-#a-tab:checked ~ #a-tab_content,
-#i-tab:checked ~ #i-tab_content,
-#u-tab:checked ~ #u-tab_content,
-#e-tab:checked ~ #e-tab-content,
-#o-tab:checked ~ #o-tab-content{
+#index-tab-0:checked ~ #index-tab-0-content,
+#index-tab-1:checked ~ #index-tab-1-content,
+#index-tab-2:checked ~ #index-tab-2-content,
+#index-tab-3:checked ~ #index-tab-3-content,
+#index-tab-4:checked ~ #index-tab-4-content{
   display: block;
   overflow:hidden;
 }
+
 /*選択されているタブのスタイルを変える*/
 .tabs input:checked + .tab_item,.profile-nav input:checked + .profile-nav-item,.indexes input:checked + .index_item {
   color:#f22e58;

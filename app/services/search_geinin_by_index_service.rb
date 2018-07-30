@@ -30,18 +30,32 @@ end
       @indexes = "わ%","を%","ん%","",""
     end
 
-    @a = @indexes[0]
-    @i = @indexes[1]
-    @u = @indexes[2]
-    @e = @indexes[3]
-    @o = @indexes[4]
+    @geinins_list = []
 
-    @geinins_aiueo = Geinin.index_search(@a,@i,@u,@e,@o)
-    @geinins_dakuten = Geinin.index_search(@indexes[5],@indexes[6],@indexes[7],@indexes[8],@indexes[9])
-    @geinins_handakuten = Geinin.index_search(@indexes[10],@indexes[11],@indexes[12],@indexes[13],@indexes[14])
+    @indexes.each do |index|
+      geinins = Geinin.index_search(index)
+      @geinins_list.push(geinins)
+    end
+    # @a = @indexes[0]
+    # @i = @indexes[1]
+    # @u = @indexes[2]
+    # @e = @indexes[3]
+    # @o = @indexes[4]
+
+    # @geinins_aiueo = Geinin.index_search(@a,@i,@u,@e,@o)
+    # @geinins_dakuten = []
+    # @geinins_handakuten = []
+
+    # if @indexes[5].present?
+    #     @geinins_dakuten = Geinin.index_search(@indexes[5],@indexes[6],@indexes[7],@indexes[8],@indexes[9])
+    # end
     
-    @geinins = @geinins_aiueo + @geinins_dakuten + @geinins_handakuten
-    @results = @geinins,@a,@i,@u,@e,@o
+    # if @indexes[10].present?
+    #     @geinins_handakuten = Geinin.index_search(@indexes[10],@indexes[11],@indexes[12],@indexes[13],@indexes[14])
+    # end
+
+    # @geinins = @geinins_aiueo + @geinins_dakuten + @geinins_handakuten
+    @results = @geinins_list,@indexes
    
   end
 end

@@ -1,14 +1,3 @@
-  <% @events_participates = @results[0] %>
-  <% @events_pengings = @results[1] %>
-  <% if @events_followings.present? %>
-    <% @events_followings = @results[2].uniq %>
-  <% end %>
-
-<% if @event_participates.present? && @event_pendings.present? %>
-  <% @events = @event_participates + @event_pendings %>
-  <% @events = @events.uniq %>
-<% end %>
-
 <section class="main">
   <div class="element page-info hard-shadows">
     <p>スケジュール</p>

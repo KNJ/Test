@@ -119,19 +119,17 @@ class EventsController < ApplicationController
   # スケジュールの表示
   def schedule
     if current_user.present?
-      @event_participates = Event.default.where(participates: { user_id: current_user.id } )
-      @event_pendings = Event.default.where(pendings: { user_id: current_user.id } )
+      @events_participates = Event.default.where(participates: { user_id: current_user.id } )
+      @events_pendings = Event.default.where(pendings: { user_id: current_user.id } )
       
-      # 自分の投稿を表示する
-      events = EventChangeHistory.where(user_id: @user.id)
-      @events_posted = Event.default.where(id: events.pluck(:event_id).uniq)
+      # # 自分の投稿を表示する
+      # events = EventChangeHistory.where(user_id: @user.id)
+      # @events_posted = Event.default.where(id: events.pluck(:event_id).uniq)
 
       # フォローしてる芸人のIDを取得する
-      # 芸人のIDを取得する
       @geinins = Geinin.default.where(followings: {user_id: @user.id})
       @geinins_names = @geinins.pluck(:name).uniq
-      @event_followings = Event.default.where(event_performers: { performer: @geinins_names } )   
-      @results = @event_participates, @event_pendings, @event_followings,@events_posted
+      @events_followings = Event.default.where(event_performers: { performer: @geinins_names } ).uniq
     else
       @results = nil, nil, nil
     end

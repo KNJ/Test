@@ -21,7 +21,6 @@ class GeininsController < ApplicationController
 
     # タグを改行コードで分けるために別途変数に入れる
       @geinin_tags = geinin_params[:geinin_tags_attributes]
-      binding.pry
       @geinin_member_tags = geinin_params[:geinin_members_attributes]
 
     # Performerは別途作成するので空欄にする
@@ -40,27 +39,12 @@ class GeininsController < ApplicationController
     end
   end
 
-  def index
-    @a_indexes = ["あ%","い%","う%","え%","お%"]
-    @ka_indexes = ["か%","き%","く%","け%","こ%"]
-    @sa_indexes = ["さ%","し%","す%","せ%","そ%"]
-    @ta_indexes = ["た%","ち%","つ%","て%","と%"]
-    @na_indexes = ["な%","に%","ぬ%","ね%","の%"]
-    @ha_indexes = ["は%","ひ%","ふ%","へ%","ほ%"]
-    @ma_indexes = ["ま%","み%","む%","め%","も%"]
-    @ya_indexes = ["や%","ゆ%","よ%","",""]
-    @ra_indexes = ["ら%","り%","る%","れ%","ろ%"]
-    @wa_indexes = ["わ%","を%","ん%","",""]
+  def index 
+    results = SearchGeininByIndexService.new('a').execute
 
-    @indexes = [@a_indexes,@ka_indexes,@sa_indexes,@ta_indexes,@na_indexes,@ha_indexes,@ma_indexes,@ya_indexes,@ra_indexes,@wa_indexes]
-    
-    @counts = []
+    @geinins_list = results[0]
+    @indexes = results[1]
 
-    @indexes.each do | index |
-        @results = Geinin.index_search(index[0],index[1],index[2],index[3],index[4]).count
-        @counts.push(@results)
-    end
-    
     @geinin_tags = GeininTag.order("RANDOM()").limit(10)
     
   end
@@ -113,11 +97,7 @@ class GeininsController < ApplicationController
     if params[:index].present?
         results = SearchGeininByIndexService.new(params[:index]).execute
         @geinins = results[0]
-        @a = results[1]
-        @i = results[2]
-        @u = results[3]
-        @e = results[4]
-        @o = results[5]
+        @indexes = results[1]
         @geinin_tags = GeininTag.order("RANDOM()").limit(10)
     end
 end
