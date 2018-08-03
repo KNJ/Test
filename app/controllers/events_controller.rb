@@ -48,7 +48,14 @@ class EventsController < ApplicationController
 
   def index
 
-    return @results = SearchDatetimeService.new('today',DateTime.now).execute
+    results = SearchDatetimeService.new('today',DateTime.now).execute
+    # tomorrow_results = SearchDatetimeService.new('tomorrow',DateTime.now + 1.day).execute
+    # next_sat_results = SearchDatetimeService.new('next_sat',DateTime.now).execute
+    # next_sun_results = SearchDatetimeService.new('next_sun',DateTime.now).execute
+
+    @events = results[0]
+    @datetime = results[1]
+    # @counts = [results[4],tomorrow_results[4],next_sat_results[4],next_sun_results[4]]
 
   end
 
@@ -76,12 +83,12 @@ class EventsController < ApplicationController
 
   def edit
     # 出演者を取得する
-    @event_performers_list = EventPerformer.where(event_id: @event.id).pluck(:performer)
+    event_performers_list = EventPerformer.where(event_id: @event.id).pluck(:performer)
     @event_performers = TextareaConcatService.new(@event_performers_list).execute
 
     # カテゴリを取得する
-    @event_categories_list = EventCategory.where(event_id: @event.id).pluck(:category)
-    @event_categories = TextareaConcatService.new(@event_categories).execute
+    # event_categories_list = EventCategory.where(event_id: @event.id).pluck(:category)
+    # @event_categories = TextareaConcatService.new(@event_categories).execute
 
   end
 
@@ -112,19 +119,17 @@ class EventsController < ApplicationController
   # スケジュールの表示
   def schedule
     if current_user.present?
-      @event_participates = Event.default.where(participates: { user_id: current_user.id } )
-      @event_pendings = Event.default.where(pendings: { user_id: current_user.id } )
+      @events_participates = Event.default.where(participates: { user_id: current_user.id } )
+      @events_pendings = Event.default.where(pendings: { user_id: current_user.id } )
       
-      # 自分の投稿を表示する
-      @events = EventChangeHistory.where(user_id: @user.id)
-      @events_posted = Event.default.where(id: @events.pluck(:event_id).uniq)
+      # # 自分の投稿を表示する
+      # events = EventChangeHistory.where(user_id: @user.id)
+      # @events_posted = Event.default.where(id: events.pluck(:event_id).uniq)
 
       # フォローしてる芸人のIDを取得する
-      # 芸人のIDを取得する
       @geinins = Geinin.default.where(followings: {user_id: @user.id})
       @geinins_names = @geinins.pluck(:name).uniq
-      @event_followings = Event.default.where(event_performers: { performer: @geinins_names } )   
-      @results = @event_participates, @event_pendings, @event_followings,@events_posted
+      @events_followings = Event.default.where(event_performers: { performer: @geinins_names } ).uniq
     else
       @results = nil, nil, nil
     end

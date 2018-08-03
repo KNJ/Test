@@ -1,0 +1,14 @@
+<% geinins.each do |geinin| %>
+  <div class="geinin hard-shadows">
+    <div class="geinin-wrapper">
+      <div class="geinin-box">
+        <div class="geinin-name-box">
+          <%= link_to geinin.name, "geinins/#{geinin.id}", :class => "geinin-name" %>
+        </div>
+        <div class="following-box" id="following-button-<%= geinin.id %>">
+          <%= render :partial => "followings/following", locals: { geinin: geinin } %>	
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>		

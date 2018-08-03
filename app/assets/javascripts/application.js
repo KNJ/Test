@@ -2,22 +2,11 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require turbolinks
-//= require data-confirm-modal
-//= require flatpickr
-//
-// Locales can be included like so:
-//= require flatpickr/l10n/ja
-
-// const config = {
-//   enableTime: true,
-//   altFormat: "F j, Y",
-//   dateFormat: "Y-m-d",
-// }
-
 
 //flatpickrの初期化
-//flatpickr('#EventCalendar');
-$('#EventCalendar').flatpickr();
+flatpickr('#SearchCalendar';
+// flatpickr('#EventCalendar');
+// $('#SearchCalendar').flatpickr();
 
 // //flatpickrの初期化
 // flatpickr('#EventCalendar',config

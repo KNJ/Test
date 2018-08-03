@@ -1,7 +1,7 @@
 class GeininsController < ApplicationController
-  before_action :set_geinin, only: [:show, :update, :edit, :destroy]
-  before_action :set_current_user, only: [:index, :show, :update, :edit, :destroy, :schedule,:following]
-  before_action :set_remote_ip, only: [:create, :update]
+  before_action :set_geinin, only: %i(show update edit destroy)
+  before_action :set_current_user, only: %i(index show update edit destroy schedule following)
+  before_action :set_remote_ip, only: %i(create update)
 
   def new
       # 芸人を登録
@@ -21,7 +21,6 @@ class GeininsController < ApplicationController
 
     # タグを改行コードで分けるために別途変数に入れる
       @geinin_tags = geinin_params[:geinin_tags_attributes]
-      binding.pry
       @geinin_member_tags = geinin_params[:geinin_members_attributes]
 
     # Performerは別途作成するので空欄にする
@@ -40,9 +39,12 @@ class GeininsController < ApplicationController
     end
   end
 
-  def index
-    @indexes = ["あ%","い%","う%","え%","お%"]
-    @geinins = Geinin.default.where("(yomi LIKE(?)) OR (yomi LIKE (?)) OR (yomi LIKE (?)) OR (yomi LIKE (?)) OR (yomi LIKE (?))",@indexes[0],@indexes[1],@indexes[2],@indexes[3],@indexes[4])
+  def index 
+    results = SearchGeininByIndexService.new('a').execute
+
+    @geinins_list = results[0]
+    @indexes = results[1]
+
     @geinin_tags = GeininTag.order("RANDOM()").limit(10)
     
   end
@@ -92,8 +94,13 @@ class GeininsController < ApplicationController
     return @results = SearchGeininByKeywordService.new(params[:keyword]).execute if params[:keyword].present?
 
     # あいうえおで検索
-    return @results = SearchGeininByIndexService.new(params[:index]).execute if params[:index].present?
-  end
+    if params[:index].present?
+        results = SearchGeininByIndexService.new(params[:index]).execute
+        @geinins = results[0]
+        @indexes = results[1]
+        @geinin_tags = GeininTag.order("RANDOM()").limit(10)
+    end
+end
   
   private
     #ライブ情報

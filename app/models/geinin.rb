@@ -31,4 +31,8 @@ class Geinin < ApplicationRecord
       Following.where(geinin_id: geinin.id, user_id: user.id).exists?
     end
 
+    # 読みがなの最初の文字で検索（あいうえお検索）
+    def self.index_search(first_string)
+      Geinin.default.where("(yomi LIKE(?))","#{first_string}%")
+    end
 end

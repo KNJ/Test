@@ -66,4 +66,7 @@ Rails.application.routes.draw do
     #フォローしてる芸人のスケジュールを表示する
     get 'following', to: 'followings#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+    # 芸人情報検索
+    get 'search/geinins', to: 'geinins#search'
 end
