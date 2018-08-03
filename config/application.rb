@@ -14,7 +14,7 @@ module Test
     config.load_defaults 5.1
 
     # Set Time Zone as in Tokyo タイムゾーンを東京に設定
-	config.time_zone = 'Tokyo'
+	  config.time_zone = 'Tokyo'
     config.i18n.default_locale = :ja
 
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]

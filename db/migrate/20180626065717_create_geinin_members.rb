@@ -5,7 +5,7 @@ class CreateGeininMembers < ActiveRecord::Migration[5.1]
       t.string :family_name, null:false
       t.string :first_name
       t.string :family_name_yomi, null:false
-      t.strgin :first_name_yomi
+      t.string :first_name_yomi
       t.string :twitter_id
       t.string :instagram_id
       t.string :blog_url

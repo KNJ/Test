@@ -1,4 +1,4 @@
-class GetTwitterFollowingList
+class GetTwitterFollowingListService
 
     def initialize(twitter_id,user_id)
         @twitter_id = twitter_id

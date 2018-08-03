@@ -44,7 +44,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :unconfirmed_email
       t.string :name
       t.string :url
-      t.string :description
+      t.text :description
 
     end
 

@@ -1,4 +1,6 @@
  class FollowingsController < ApplicationController
+    before_action :authenticate_user 
+    
     def create
         geinin = Geinin.find(params[:geinin_id])
         following = current_user.followings.new(geinin_id: geinin.id)

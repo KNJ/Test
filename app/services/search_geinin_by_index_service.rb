@@ -34,7 +34,7 @@ end
 
     @indexes.each do |index|
       geinins = Geinin.index_search(index)
-      @geinins_list.push(geinins)
+      @geinins_list << geinins
     end
     # @a = @indexes[0]
     # @i = @indexes[1]
@@ -55,7 +55,7 @@ end
     # end
 
     # @geinins = @geinins_aiueo + @geinins_dakuten + @geinins_handakuten
-    @results = @geinins_list,@indexes
+    return @geinins_list, @indexes
    
   end
 end

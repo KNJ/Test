@@ -15,6 +15,7 @@ class Geinin < ApplicationRecord
   accepts_nested_attributes_for :followings, allow_destroy: true,reject_if: :all_blank
 
   #存在チェック
+  	validates :geinin_id, presence: true
     validates :name, presence: true
     validates :yomi, presence: true
 
@@ -25,7 +26,7 @@ class Geinin < ApplicationRecord
     scope :order_by_yomi, -> { order(yomi: :asc) }
 
     scope :default, -> { order_by_yomi.including_geinin_info }
-    
+
     #　フォローするになってるかチェック
     def followed_by?(geinin,user)
       Following.where(geinin_id: geinin.id, user_id: user.id).exists?

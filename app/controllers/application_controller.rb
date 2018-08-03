@@ -13,6 +13,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  rescue_from ActionView::MissingTemplate, with: :lp
+
   # 当サイトについての表示
   def about
 	  render '/about'
@@ -66,5 +68,10 @@ class ApplicationController < ActionController::Base
   #end
   def after_sign_in_path_for(resource)
     request.env['omniauth.origin'] || geinins_following_url(resource) || root_path
+  end
+
+  private
+  def escape_like(string)
+    string.gsub(/[\\%_]/){|m| "\\#{m}"}
   end
 end

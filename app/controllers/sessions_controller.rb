@@ -8,8 +8,6 @@ class SessionsController < ApplicationController
     @twitter_id = auth[:info][:nickname]
     @friends_count = auth[:extra][:raw_info][:friends_count]
 
-    binding.pry
-
     if @user.sign_in_count == 0
       # 初回ログイン時のみ行いたい処理
       return @geinins = GetTwitterFollowingList.new(@twitter_id,@friends_count).execute

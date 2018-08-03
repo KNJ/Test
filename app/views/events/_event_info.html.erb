@@ -47,13 +47,13 @@
       <% end %>
     </div>
     <div class="post-option" id="participate-button-<%= event.id %>">
-      <%= render :partial => "participates/participate", locals: { event: event } %>
+      <%= render "participates/participate", event: event  %>
     </div>
     <div class="post-option" id="pending-button-<%= event.id %>">
-      <%= render :partial => "pendings/pending", locals: { event: event } %>
+      <%= render "pendings/pending", event: event %>
     </div>
     <div class="post-option">
-      <%= render :partial => "events/reserve", locals: { event: event, user: user, event_event_links: event_event_links_url(event.id) } %>
+      <%= render "events/reserve", event: event, user: user, event_event_links: event_event_links_url(event.id) %>
     </div>
   </div>
 </article>
