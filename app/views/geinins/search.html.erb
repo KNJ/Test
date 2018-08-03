@@ -1,32 +1,45 @@
 <section class="main">
-  <div class="page-info hard-shadows">
-    <p>芸人一覧</p>
-  </div>
-  <div class="indexes">	
-		<input id="index-tab-0" type="radio" name="index_item" checked>
-		<label class="index_item" for="index-tab-0"><%= @indexes[0][0] %></label>
-
-    <input id="index-tab-1" type="radio" name="index_item">
-    <label class="index_item" for="index-tab-1"><%= @indexes[1][0] %></label>
-  
-    <input id="index-tab-2" type="radio" name="index_item">
-    <label class="index_item" for="index-tab-2"><%= @indexes[2][0] %></label>
-
-    <input id="index-tab-3" type="radio" name="index_item">
-    <label class="index_item" for="index-tab-3"><%= @indexes[3][0] %></label>
-
-    <input id="index-tab-4" type="radio" name="index_item">
-    <label class="index_item" for="index-tab-4"><%= @indexes[4][0] %></label>
-  </div>
-	<% if @geinins_list.present? %>
-	  <% i = 0 %>
-		<% @geinins_list.each do |geinins| %>
-			<div class="index-content" id="index-tab-<%= "#{i}" %>-content">
-				<%= render :partial=>"geinins/geinins_list", locals: { geinins: geinins} %>
-			</div>
-			<% i = i+1 %>
+	<% if @indexes.nil? %>
+	<div class="page-info hard-shadows">
+		<span class="accent"><%= @keyword %></span>の検索結果
+	</div>
+		<% if @geinins_list.present? %>
+			<% @geinins_list.each do |geinin| %>
+				<%= render :partial =>"geinins/geinin_info", locals: {geinin: geinin} %>
+			<% end %>
+		<% else %>
+				<%= render :partial=>"geinins/no_result" %>
 		<% end %>
 	<% else %>
-			<%= render :partial=>"geinins/no_result" %>
+	<div class="page-info hard-shadows">
+		<span class="accent"><%= @indexes[0][0] %>行</span>の検索結果
+	</div>
+		<div class="indexes">	
+			<input id="index-tab-0" type="radio" name="index_item" checked>
+			<label class="index_item" for="index-tab-0"><%= @indexes[0][0] %></label>
+
+			<input id="index-tab-1" type="radio" name="index_item">
+			<label class="index_item" for="index-tab-1"><%= @indexes[1][0] %></label>
+		
+			<input id="index-tab-2" type="radio" name="index_item">
+			<label class="index_item" for="index-tab-2"><%= @indexes[2][0] %></label>
+
+			<input id="index-tab-3" type="radio" name="index_item">
+			<label class="index_item" for="index-tab-3"><%= @indexes[3][0] %></label>
+
+			<input id="index-tab-4" type="radio" name="index_item">
+			<label class="index_item" for="index-tab-4"><%= @indexes[4][0] %></label>
+		</div>
+		<% if @geinins_list.present? %>
+			<% i = 0 %>
+			<% @geinins_list.each do |geinins| %>
+				<div class="index-content" id="index-tab-<%= "#{i}" %>-content">
+					<%= render :partial=>"geinins/geinins_list", locals: { geinins: geinins} %>
+				</div>
+				<% i = i+1 %>
+			<% end %>
+		<% else %>
+				<%= render :partial=>"geinins/no_result" %>
+		<% end %>
 	<% end %>
 </section>

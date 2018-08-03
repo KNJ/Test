@@ -2,7 +2,8 @@ class GeininsController < ApplicationController
   before_action :set_geinin, only: %i(show update edit destroy)
   before_action :set_current_user, only: %i(index show update edit destroy schedule following)
   before_action :set_remote_ip, only: %i(create update)
-
+  before_action :ensure_correct_user, only: %i[destroy]
+  
   def new
       # 芸人を登録
         @geinin = Geinin.new
@@ -91,17 +92,33 @@ class GeininsController < ApplicationController
 
   def search
     # キーワードで検索
-    return @results = SearchGeininByKeywordService.new(params[:keyword]).execute if params[:keyword].present?
+    results = SearchGeininByKeywordService.new(params[:keyword]).execute if params[:keyword].present?
+
+    # キーワードで検索
+    results = SearchGeininByTagService.new(params[:tag]).execute if params[:tag].present?
 
     # あいうえおで検索
     if params[:index].present?
         results = SearchGeininByIndexService.new(params[:index]).execute
-        @geinins = results[0]
-        @indexes = results[1]
         @geinin_tags = GeininTag.order("RANDOM()").limit(10)
     end
-end
-  
+
+    @geinins_list = results[0]
+    @indexes = results[1]
+    @keyword = results[2]
+    end
+
+  def ensure_correct_user
+    if current_user
+      @geining = Geinin.find(user_id: current_user.id)
+
+      if current_user.id != @geinin.user_id
+        flash[:notice] = I18n.t('errors.messages.no_authorization')
+        redirect_to geinin_path(@geinin.id)
+      end
+    end
+  end
+
   private
     #ライブ情報
     def geinin_params

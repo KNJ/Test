@@ -1,3 +1,5 @@
+@import "variables";
+
 /* CSSのリセット */
 html, body,
 ul, ol, li,
@@ -39,7 +41,7 @@ body{
 .hard-shadows {
     box-shadow: 0 0 1px 1px rgba(0,0,0,.05);
 }
-.tag-count{
+/* .tag-count{
   display:inline-block;
   position: absolute;
   top: 4px;
@@ -54,7 +56,7 @@ body{
   text-align: center;
   -webkit-transition: .2s;
   transition: .2s;
-}
+} */
 /* header */
 header{
   background-color:#f22e58;
@@ -1198,6 +1200,16 @@ input[name="tab_item"],input[name="profile-nav-item"],input[name="index_item"] {
     font-size:12px;
     display:block;
     color:#66757f;
+}
+.flash {
+  margin-top:16px;
+  padding:20px 0;
+  color: white;
+  background-color: rgb(251, 170, 88);
+  text-align: center;
+  width: 100%;
+  border-radius: 0 0 2px 2px;
+  font-size: 14px;
 }
 @media(min-width:800px){
     .user-menu-sm{

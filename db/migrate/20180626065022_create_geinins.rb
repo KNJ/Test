@@ -11,6 +11,7 @@ class CreateGeinins < ActiveRecord::Migration[5.1]
       t.string :blog_url
       t.string :official_profile_url
       t.date :end_date
+      t.references :user, foreign_key: true
 
       t.timestamps
     end

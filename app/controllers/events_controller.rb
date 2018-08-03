@@ -2,6 +2,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :update, :edit, :destroy]
   before_action :set_current_user, only: [:index, :show, :update, :edit, :destroy, :schedule]
   before_action :set_remote_ip, only: [:create, :update]
+  before_action :ensure_correct_user, only: %i[destroy]
 
   def new
     # イベントを登録
@@ -62,19 +63,24 @@ class EventsController < ApplicationController
   def search
 
     # 日付検索
-    return @results = SearchDatetimeService.new(params[:date],params[:datetime]).execute if params[:date].present?
+    results = SearchDatetimeService.new(params[:date],params[:datetime]).execute if params[:date].present?
     
     # キーワード検索
-    return @results = SearchKeywordService.new(params[:keyword]).execute if params[:keyword].present?
+    results = SearchKeywordService.new(params[:keyword]).execute if params[:keyword].present?
    
     # 出演者検索
-    return @results = SearchEventPerformerService.new(params[:performer]).execute if params[:performer].present?
+    results = SearchEventPerformerService.new(params[:performer]).execute if params[:performer].present?
 
     # 会場検索
-    return @results = SearchEventPlaceService.new(params[:place]).execute if params[:place].present?
+    results = SearchEventPlaceService.new(params[:place]).execute if params[:place].present?
 
     # カテゴリ検索
-    return @results = SearchEventCategoryService.new(params[:category]).execute if params[:category].present?
+    results = SearchEventCategoryService.new(params[:category]).execute if params[:category].present?
+
+    @events = results[0]
+    @datetime = results[1]
+    @keyword = results[2]
+    @geinin = results[3]
 
   end
 
@@ -84,7 +90,7 @@ class EventsController < ApplicationController
   def edit
     # 出演者を取得する
     event_performers_list = EventPerformer.where(event_id: @event.id).pluck(:performer)
-    @event_performers = TextareaConcatService.new(@event_performers_list).execute
+    @event_performers = TextareaConcatService.new(event_performers_list).execute
 
     # カテゴリを取得する
     # event_categories_list = EventCategory.where(event_id: @event.id).pluck(:category)
@@ -119,22 +125,25 @@ class EventsController < ApplicationController
   # スケジュールの表示
   def schedule
     if current_user.present?
+
       @events_participates = Event.default.where(participates: { user_id: current_user.id } )
       @events_pendings = Event.default.where(pendings: { user_id: current_user.id } )
-      
-      # # 自分の投稿を表示する
-      # events = EventChangeHistory.where(user_id: @user.id)
-      # @events_posted = Event.default.where(id: events.pluck(:event_id).uniq)
+      @events_following = GetFollowingEventsService.new(current_user).execute
 
-      # フォローしてる芸人のIDを取得する
-      @geinins = Geinin.default.where(followings: {user_id: @user.id})
-      @geinins_names = @geinins.pluck(:name).uniq
-      @events_followings = Event.default.where(event_performers: { performer: @geinins_names } ).uniq
-    else
-      @results = nil, nil, nil
     end
    end
 
+  def ensure_correct_user
+    if current_user
+      @event = Event.find(user_id: current_user.id)
+
+      if current_user.id != @event.user_id
+        flash[:notice] = I18n.t('errors.messages.no_authorization')
+        redirect_to event_path(@event.id)
+      end
+    end
+  end
+  
 private
   #ライブ情報
   def event_params
@@ -180,13 +189,13 @@ private
       @event = Event.find_by!(id: params[:id])
   end
 
-  def set_current_user
-    if current_user.present?
-        @user = current_user
-        # ログインユーザーを取得
-        @user_id = current_user.id
-    end
-  end
+  # def set_current_user
+  #   if current_user.present?
+  #       @user = current_user
+  #       # ログインユーザーを取得
+  #       @user_id = current_user.id
+  #   end
+  # end
 
   def set_remote_ip
      # ipアドレスを取得

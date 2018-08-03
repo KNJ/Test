@@ -7,13 +7,13 @@
 		 <h2>参加中のライブ一覧</h2>
 		 <% @participates.each do |participate| %>
 			<% @events.where(id: participate.event_id).each do |event| %>
-				<%= render :partial => "events/event_info", locals: { event: event } %>
+				<%= render "events/event_info", event: event %>
 			<% end %>
 		<% end %>
 		<h2>検討中のライブ一覧</h2>
 		 <% @pendings.each do |pending| %>
 			<% @events.where(id: pending.event_id).each do |event| %>
-				<%= render :partial => "events/event_info", locals: { event: event } %>
+				<%= render "events/event_info", event: event %>
 			<% end %>
 		<% end %>
         </div>

@@ -1,0 +1,43 @@
+@import "variables";
+
+/* CSSのリセット */
+html, body,
+ul, ol, li,
+h1, h2, h3, h4, h5, h6, p,
+form, input, div {
+  margin: 0;
+  padding: 0;
+}
+h2 {
+    font-size:16px;
+    font-weight:normal;
+}
+li {
+  display: list-item;
+  list-style: none;
+}
+a{
+    color:#f22e58;
+    text-decoration:none;
+}
+body{
+    background-image:url('background.png');
+    font-family: 'Quicksand',sans-serif;
+    color: #595959;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+.btn{
+    font-size: 13px;
+    text-align: center;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,.1);
+    cursor: pointer;
+    transition: all .2s ease 0s;
+    text-decoration: none;
+}
+.accent{
+  color:#f22e58;
+}
+.hard-shadows {
+    box-shadow: 0 0 1px 1px rgba(0,0,0,.05);
+}

@@ -24,6 +24,7 @@ class Event < ApplicationRecord
     accepts_nested_attributes_for :event_categories, allow_destroy: true,reject_if: :all_blank
 
   #存在チェック
+    validates :event_id, presence: true
     validates :datetime, presence: true
     validates :title, presence: true
 
@@ -56,10 +57,6 @@ class Event < ApplicationRecord
     def user_signed_in?
          # Returns true if the user is logged in, false otherwise.
          !current_user.nil?
-    end
-
-    def escape_like(string)
-      string.gsub(/[\\%_]/){|m| "\\#{m}"}
     end
 
     # 日付で検索

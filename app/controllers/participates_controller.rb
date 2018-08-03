@@ -1,4 +1,6 @@
 class ParticipatesController < ApplicationController
+    before_action :authenticate_user
+
     def create
         event = Event.find(params[:event_id])
         participate = current_user.participates.new(event_id: event.id)

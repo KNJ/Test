@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     #Twitterログイン認証
      get 'auth/:provider/callback', to: 'sessions#create'
     #Twitterからログアウト
-     delete '/logout', to: 'sessions#destroy'
+     get '/logout', to: 'sessions#destroy'
     
     # ユーザー設定
     get '/setting', to: 'users#setting'
@@ -50,6 +50,9 @@ Rails.application.routes.draw do
     # ライブ情報検索
     get 'search', to: 'events#search'
 
+    # 芸人情報検索
+    get '/search/geinins', to: 'geinins#search'
+
   # 芸人管理
     resources :geinins, only: [:new, :create, :edit, :update, :index, :show, :destroy] do
         #メンバー
@@ -65,8 +68,8 @@ Rails.application.routes.draw do
 
     #フォローしてる芸人のスケジュールを表示する
     get 'following', to: 'followings#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-    # 芸人情報検索
-    get 'search/geinins', to: 'geinins#search'
+    # アクセスできないページはトップページにリダイレクト
+    get '*unmatched_route', to: 'events#lp'
 end

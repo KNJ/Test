@@ -9,15 +9,14 @@
       <% end %>
     </div>
   </div>
-  <div class="delete-box">
-  <%= link_to event_path(event.id), method: :delete,
-  data: { confirm: "本当に「#{event.title}」を削除してよろしいですか？",
-                                                "commit" => "削除する",
-                                                "cancel" => "やっぱりやめる",
-                                                }, title: "削除の確認"
-                                                ,:class=>"btn pink" do %>
-    <i class="fas fa-trash-alt"></i>
-    <span class="">削除する</span>
+  <% if @event.user.id == current_user.id %>
+    <%= link_to event_path(@event.id), method: :delete,
+    data: { confirm: "本当に「#{@event.title}」を削除してよろしいですか？",
+                                                  "commit" => "削除する",
+                                                  "cancel" => "やっぱりやめる",
+                                                  }, :class=>"btn pink new" do %>
   <% end %>
-</div>
+  <i class="fas fa-trash-alt"></i>
+  <span class="">削除する</span>
+  <% end %>
 </section>

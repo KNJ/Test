@@ -69,6 +69,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   gem 'omniauth'
   gem 'omniauth-twitter'
   gem 'twitter'
+  gem 'bcrypt'
 
 #デザイン関連
   # ページング

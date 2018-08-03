@@ -4,5 +4,7 @@ class Survey < ApplicationRecord
 
   scope :default, -> { includes(:survey_answers)
                       .references(:survey_answers)
-                      .order(id: :desc) }
+                      .order(end: :desc) }
+  validates :name, presence: true
+
 end
