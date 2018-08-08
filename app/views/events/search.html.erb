@@ -4,7 +4,7 @@
       <% wd = ["日", "月", "火", "水", "木", "金", "土"] %>
 			<span class="accent"><%= @datetime.strftime("%Y年%m月%d日"+"("+%w(日 月 火 水 木 金 土)[@datetime.wday]+")") %></span>のお笑いライブ一覧
 		<% else %>
-			<span class="accent"><%= @keyword %></span>の検索結果
+			<span class="accent"><%= @keyword %></span>の検索結果 <span class="accent"><strong><%= @events.count %></strong></span>件
 		<% end %>
 	</div>
   <% if @geinin.present? %>
@@ -13,14 +13,14 @@
     <% end %>
   <% end %>
   
-  <%= render :partial => "events/event_list", locals: { events: @events, user: @user  } %>
+  <%= render 'events/event_list', events: @events, user: @user %>
  
   <% if @datetime.present? %>
     <div class="navigation-block">
       <% if @datetime.future? %>
-        <%= link_to "« "+@datetime.prev_day.strftime("%m月%d日"), search_path(:date => 'prev_day', :datetime => @datetime),:class => "btn navigation-link pink"  %>
+        <%= link_to "« "+@datetime.prev_day.strftime("%m月%d日"), search_path(date: 'prev_day', datetime: @datetime),:class => "btn navigation-link pink"  %>
       <% end %>
-        <%= link_to @datetime.next_day.strftime("%m月%d日")+" »", search_path(:date => 'next_day', :datetime => @datetime),:class => "btn navigation-link pink" %>
+        <%= link_to @datetime.next_day.strftime("%m月%d日")+" »", search_path(date: 'next_day', datetime: @datetime),:class => "btn navigation-link pink" %>
     </div>
   <% end %>
 </section>

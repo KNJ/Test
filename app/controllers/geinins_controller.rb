@@ -3,7 +3,7 @@ class GeininsController < ApplicationController
   before_action :set_current_user, only: %i(index show update edit destroy schedule following)
   before_action :set_remote_ip, only: %i(create update)
   before_action :ensure_correct_user, only: %i[destroy]
-  
+
   def new
       # 芸人を登録
         @geinin = Geinin.new
@@ -21,17 +21,25 @@ class GeininsController < ApplicationController
       @geinin = Geinin.new(geinin_params)
 
     # タグを改行コードで分けるために別途変数に入れる
-      @geinin_tags = geinin_params[:geinin_tags_attributes]
-      @geinin_member_tags = geinin_params[:geinin_members_attributes]
+      geinin_tags = geinin_params[:geinin_tags_attributes]
+      geinin_members = geinin_params[:geinin_members_attributes]
+      # geinin_member_tags = geinin_members[:geinin_member_tags_attributes]
 
-    # Performerは別途作成するので空欄にする
+    # 芸人タグは別途作成するので空欄にする
       @geinin.geinin_tags.clear
-      @geinin.geinin_member_tags.clear
+
+      # @geinin.geinin_members.each do |geinin_member| 
+      #   geinin_member.geinin_member_tags.clear
+      # end
 
     # DB保存→詳細画面へリダイレクト
-    if @geinin.save
-        # Event_performersを1行ごとのレコードに分ける
-        GeininTagsSplitService.new(@geinin_tags,@geinin_member_tags,@geinin.id).execute
+    if @geinin.save!
+        # 芸人タグを1行ごとのレコードに分ける
+        GeininTagsSplitService.new(@geinin.id,geinin_tags).execute
+
+        # geinin_members.each do |geinin_member|
+        #   GeininMemberTagsSplitService.new(geinin_member.geinin_id,geinin_member.id,geinin_member_tags).execute
+        # end
 
         redirect_to geinin_path(@geinin.id), notice: 'ありがとうございます！芸人wiki登録が完了しました！'    
     else
@@ -40,11 +48,18 @@ class GeininsController < ApplicationController
     end
   end
 
-  def index 
+  def index
     results = SearchGeininByIndexService.new('a').execute
 
     @geinins_list = results[0]
     @indexes = results[1]
+    
+    # あいうえお行の最初の1文字を取得(%を抜く)
+    @a = @indexes[0][0]
+    @i = @indexes[1][0]
+    @u = @indexes[2][0]
+    @e = @indexes[3][0]
+    @o = @indexes[4][0]
 
     @geinin_tags = GeininTag.order("RANDOM()").limit(10)
     
@@ -148,12 +163,13 @@ class GeininsController < ApplicationController
                 :twitter_id,
                 :instagram_id,
                 :blog_url,
-                #   geinin_member_tags_attributes: [
-                #       :id,
-                #       :geinin_id,
-                #       :geinin_member_id,
-                #       :tag],
-                  ],
+                :_destroy,
+                # geinin_member_tags_attributes: [
+                #     :id,
+                #     :geinin_id,
+                #     :geinin_member_id,
+                #     :tag],
+                ],
         )
     end
 

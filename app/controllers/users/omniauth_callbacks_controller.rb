@@ -47,9 +47,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @user.persisted?
       if @user.sign_in_count == 0
         # 初回ログイン時のみ行いたい処理
-        @geinins = GetTwitterFollowingList.new(@user.nickname,@user.id).execute
+        @geinins = GetTwitterFollowingListService.new(@user.nickname,@user.id).execute
         sign_in @user
-        redirect_to following_url
+        redirect_to register_url
       else
         set_flash_message(:notice, :success, :kind => "Twitter") if is_navigational_format?
         sign_in_and_redirect @user, :event => :authentication
@@ -57,7 +57,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
     else
       session["devise.twitter_data"] = request.env["omniauth.auth"].except("extra")
-      redirect_to new_user_registration_url
+      redirect_to new_user_register_url
     end
   end
 

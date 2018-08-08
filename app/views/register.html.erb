@@ -1,0 +1,19 @@
+<section class="main">
+  <ul class="stepBar step3">
+    <li class="step current">STEP1</li>
+    <li class="step">STEP2</li>
+    <li class="step">STEP3</li>
+  </ul>
+  <div class="page-info hard-shadows">
+    <p>あなたの好きな芸人をフォローしてみましょう！</p>
+  </div>
+  <% if @geinins.nil? %>
+  <div class="posts">
+    <div class="post-wrapper">
+      <p>まだ誰もフォローしていません。新しくフォローしてみましょう！</p>
+    </div>
+  </div>
+   <% else %>
+    <%= render :partial=>"followings/following_list", locals:{ geinins: @geinins } %>
+  <% end %>
+</section>

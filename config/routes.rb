@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/survey', to: 'survey#index'
   get '/lp', to: 'root#lp'
   get '/notification', to: 'root#notification'
+  get '/register', to: 'root#register'
 
   # ユーザー管理
     resources :users, only: [:show, :edit, :update, :create, :destroy]

@@ -1,33 +1,38 @@
 class UsersController < ApplicationController
   before_action :ensure_correct_user, only: %i[destroy]
-  
+
   def new
 		@user = User.new
-	end
+  end
+  
 	def create
 		@user = User.new(user_params)
 		@user.save
-	end
-    def edit
-        @user = User.find(params[:id])
-    end
+  end
+  
+  def edit
+      @user = User.find(params[:id])
+  end
+
 	def update
 	    @user = User.find(params[:id])
 	    @user.update(user_params)
 	    redirect_to user_path(@user.id)
 	end
 
-	def show
-		@user = current_user
-		
-		# 自分の投稿を表示する
-		@events_user = EventChangeHistory.where(user_id: @user.id)
-		@events = Event.default.where(id: @events_user.pluck(:event_id).uniq)
+  def show
+    if current_user
+      @user = current_user
+      
+      # 自分の投稿を表示する
+      @events = Event.default.where(user_id: @user.id)
 
-    #　ユーザーがフォローしている芸人一覧を取得
-    @geinins = Geinin.default.where(followings: { user_id: current_user.id } )
+      #　ユーザーがフォローしている芸人一覧を取得
+      @geinins = Geinin.default.where(followings: { user_id: @user.id } )
 
-    @my_info = @events, @geinins
+    else
+      redirect_to lp_url
+    end
 	end
 
 	def ensure_correct_user

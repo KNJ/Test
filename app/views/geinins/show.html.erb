@@ -2,32 +2,7 @@
   <div class="page-info hard-shadows">
     <p>芸人詳細</p>
   </div>
-  
   <%= render 'geinins/geinin_info', geinin: @geinin, user: @user %>
-  
-  </div>
-  <% @geinin.geinin_members.each do |member| %>
-    <article class="post hard-shadows">
-        <div class="post-header">
-          <span class="geinin-name-title"><%= member.name %></span>
-          <span class="geinin-yomi"><%= member.yomi %></span>
-        </div>
-        <div class="post-wrapper">
-          <div class="post-content">
-            <% if member.twitter_id.present? %>
-              <div>Twitter: @<%= link_to member.twitter_id, member.twitter_id %></p></div>
-            <% end %>
-          <% if member.instagram_id.present? %>
-              <div>Instagram: @<%= link_to member.instagram_id, member.instagram_id %></p></div>
-            <% end %>
-            <% if member.blog_url.present? %>
-              <div>Blog: <%= link_to member.blog_url, member.blog_url %></p></div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-  </article>
-  <% end %>
 	<%= render :partial => "events/event_list", locals: { events: @events, user: @user  } %>
   <%= link_to new_geinin_path,:class=>"btn new pink" do %>
     <span class="fa fa-plus-circle"></span>

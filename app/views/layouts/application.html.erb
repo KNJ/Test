@@ -30,7 +30,6 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
-    <script src="https://unpkg.com/flatpickr"></script>
     <link rel="icon" href="s-favicon.png">
     <!-- Google Analytics
     <script>
@@ -88,29 +87,29 @@
                 <img src="<%= current_user.image_url %>" class="avater">
               </div>
               <div class="pulldown-content">
-                <p><%= current_user.nickname %></p>
-                <ul class="">
+                <p><%= current_user.name %></p>
+                <ul>
                   <li>
-                    <%= link_to user_path(current_user) do %>
-                      <i class="fa fa-user-o"></i> Myページ
+                    <%= link_to user_path(current_user.id) do %>
+                      <span class="fas fa-user icon"></span> Myページ
                     <% end %>
                   </li>
                   <li>
-                    <%= link_to logout_path, :method => :delete do %>
-                      <i class="fa fa-sign-out-alt"></i> ログアウト
+                    <%= link_to logout_path, :method => :delete, data: {confirm: "ログアウトしてもよろしいですか？"} do %>
+                      <span class="fa fa-sign-out-alt"></span>ログアウト
                     <% end %>
                   </li>
-                  <li>
+                  <li class="site-info">
                     <a href="/about" class="footer-menu">当サイトについて</a>
                   </li>
-                  <li>
+                  <li class="site-info">
                     <a href="/terms" class="footer-menu">利用規約</a>
                   </li>
-                  <li>
+                  <li class="site-info">
                     <a href="/privacy" class="footer-menu">プライバシーポリシー</a>
                   </li>
-                  <li>
-                    <a href="https://twitter.com/warally_info" class="footer-menu">Twitter</a>
+                  <li class="site-info">
+                    <a href="https://twitter.com/warally_info" class="footer-menu">wArally!公式Twitter</a>
                   </li>
                 </ul>
               </div>
@@ -137,6 +136,7 @@
       </div>
       <% end %>
     <%= yield %>
+    <div id="pageTop"><a href="#"><span class="fa fa-chevron-up"></span></a></div>
     <nav class="user-menu-sm">
       <ul class="user-menu-button-sm">
         <li>

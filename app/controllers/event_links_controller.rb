@@ -1,4 +1,0 @@
-class EventLinksController < ApplicationController
-
-
-end

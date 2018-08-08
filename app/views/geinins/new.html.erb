@@ -4,7 +4,7 @@
   </div>
   <div class="event-box">
     <%= form_for(@geinin, method: :post) do |f| %>
-      <%= render :partial => "geinin_edit", locals: { geinin: @geinin, f: f } %>
+      <%= render "geinin_edit", geinin: @geinin, f: f %>
     <% end %>
   </div>
 </section>

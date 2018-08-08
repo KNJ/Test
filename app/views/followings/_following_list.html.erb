@@ -3,17 +3,14 @@
       <div class="geinin-card">
         <div class="geinin-card-content">
           <div class="geinin-card-header">
-            <div class="geinin-card-image">
-              <img src="">
-            </div>
-            <div class="geinin-card-name"> 
-              <%= link_to geinin.name, "geinins/#{geinin.id}", :class=>"geinin-card-name" %>
+            <div class="geinin-name"> 
+              <%= link_to geinin.name, "geinins/#{geinin.id}", :class=>"geinin-name" %>
             </div>
             <div class="geinin-card-sns">
-              <%= render :partial => "geinins/geinin_sns", locals: { geinin: geinin } %>
+              <%= render "geinins/geinin_sns", geinin: geinin %>
             </div>
             <div class="following-box" id="following-button-<%= geinin.id %>">
-              <%= render :partial => "followings/following", locals: { geinin: geinin} %>	
+              <%= render "followings/following", geinin: geinin %>	
             </div>
           </div>
           <div class="geinin-card-descriptions">

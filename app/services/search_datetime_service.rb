@@ -10,7 +10,7 @@ class SearchDatetimeService
     @datetime = datetime_param
 
     # 今日の始まり
-    @today = DateTime.now.beginning_of_day
+    @today = Time.zone.now.beginning_of_day
 
     case @date
     when 'today' then
@@ -24,7 +24,7 @@ class SearchDatetimeService
         # 1週間後を取る
         @next_sat = @today + 7.day + 5.hour
       else
-        @day = DateTime.now.wday
+        @day = Time.zone.now.wday
         @next_sat = @today + (6-@day).day + 5.hour
       end
         @next_morning =  @next_sat + 1.day + 5.hour
@@ -33,7 +33,7 @@ class SearchDatetimeService
         # 1週間後を取る
         @next_sun = @today + 7.day + 5.hour
       else
-        @day = DateTime.now.wday
+        @day = Time.zone.now.wday
         @next_sun = @today + (7-@day).day + 5.hour
       end
       @next_morning = @next_sun + 1.day + 5.hour
@@ -55,7 +55,7 @@ class SearchDatetimeService
     case @date
     when 'today' then
       # Extract Event data from now until tomorrow 5am / 現在時刻から明日の朝5時までのデータを取得
-      @from = DateTime.now
+      @from = Time.zone.now
       @datetime = @today
     when 'tomorrow' then
       # Extract Event data on tomorrow (5am to 5am next day) / 明日のデータを取得(朝5時〜翌日朝5時)

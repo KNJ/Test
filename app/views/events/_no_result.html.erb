@@ -2,14 +2,14 @@
   <div class="post">
     <div class="post-wrapper">
       <div class="post-content typography">
-          <p>イベントの登録はまだありません。</p>
+          <p>お探しのライブの登録はまだありません。</p>
           <p>情報がまだありませんか？</p>
           <p>wArally!のライブ情報は誰でも登録することができます！</p>
+          <%= link_to new_event_path,:class=>"btn new green" do %>
+            <span class="fa fa-plus-circle"></span>
+            <span>今すぐライブを登録する</span>
+          <% end %>
       </div>
     </div>
   </div>
 </div>
-<%= link_to new_event_path,:class=>"btn new green" do %>
-  <span class="fa fa-plus-circle"></span>
-  <span>今すぐライブを登録する</span>
-<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180801191804) do
+ActiveRecord::Schema.define(version: 20180803074104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(version: 20180801191804) do
     t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "followings", force: :cascade do |t|
@@ -119,6 +121,8 @@ ActiveRecord::Schema.define(version: 20180801191804) do
     t.datetime "updated_at", null: false
     t.string "instagram_id"
     t.string "blog_url"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_geinins_on_user_id"
   end
 
   create_table "identities", force: :cascade do |t|
@@ -203,12 +207,14 @@ ActiveRecord::Schema.define(version: 20180801191804) do
   add_foreign_key "event_change_histories", "users"
   add_foreign_key "event_links", "events"
   add_foreign_key "event_performers", "events"
+  add_foreign_key "events", "users"
   add_foreign_key "followings", "geinins"
   add_foreign_key "followings", "users"
   add_foreign_key "geinin_member_tags", "geinin_members"
   add_foreign_key "geinin_member_tags", "geinins"
   add_foreign_key "geinin_members", "geinins"
   add_foreign_key "geinin_tags", "geinins"
+  add_foreign_key "geinins", "users"
   add_foreign_key "identities", "users"
   add_foreign_key "participates", "events"
   add_foreign_key "participates", "users"

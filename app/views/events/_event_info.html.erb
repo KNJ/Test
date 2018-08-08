@@ -21,7 +21,7 @@
     </div>
     <div class="post-place">
       <span class="fas fa-map-marker-alt icon"></span>
-      <%= link_to search_path(:place=>"#{event.place}") do %>
+      <%= link_to search_path(place: "#{event.place}") do %>
         <%= event.place %>
       <% end %>
     </div>

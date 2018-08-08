@@ -4,11 +4,14 @@
   </div>
   <% if current_user.present? %>
   <% else %>
-    <div class="post">
-      <div class="post-wrapper">
-        <p>スケジュール機能はログインすると使えます！</p>
-      </div>
+  <div class="long-post">
+    <div class="long-post-wrapper">
+      <p>スケジュール機能はログインすると使えます！</p>
+      <%= link_to user_twitter_omniauth_authorize_path,class: "btn twitter-fill radius new-login-s" do %>
+        <i class="fab fa-twitter"></i> Twitterでログイン
+      <% end %>
     </div>
+  </div>
   <% end %>
   <div class="tabs">
     <input id="following-tab" type="radio" name="tab_item" checked>

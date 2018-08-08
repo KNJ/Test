@@ -28,7 +28,7 @@ class GetFollowingEventsService
       end
 
       # 出演者とキーワードが一致するイベントIDを取得
-      @event_ids = Event.default.where(event_performers: { performer: "#{Event.escape_like([performers])}"} ).pluck(:id)                 
+      @event_ids = Event.default.where(event_performers: { performer: performers }).pluck(:id)                 
 
       # 全出演者を取得するため、もう1回idでイベントを検索
       @events_followings = Event.default.where(id: @event_ids.uniq).uniq      

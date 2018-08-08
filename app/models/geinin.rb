@@ -15,7 +15,6 @@ class Geinin < ApplicationRecord
   accepts_nested_attributes_for :followings, allow_destroy: true,reject_if: :all_blank
 
   #存在チェック
-  	validates :geinin_id, presence: true
     validates :name, presence: true
     validates :yomi, presence: true
 

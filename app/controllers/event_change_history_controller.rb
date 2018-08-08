@@ -1,3 +1,0 @@
-class EventChangeHistoryController < ApplicationController
-
-end

@@ -5,6 +5,6 @@ class GeininMember < ApplicationRecord
 
   scope :including_geinin_member_info, -> { includes(:geinin_members_tags).references(:geinin_member_tags)}
 
-  validates :geinin_id, presence: true
+  # validates :geinin_id, presence: true
   validates :family_name, presence: true
 end

@@ -1,13 +1,10 @@
-<% @events = @my_info[0] %>
-<% @geinins = @my_info[1] %>
-
 <section class="main">
   <div class="page-info hard-shadows">
     <p>Myページ</p>
   </div>
   <div class="posts">
     <div class="post hard-shadows">
-      <div class="post-wrapper">
+      <div class="profile-wrapper">
         <div class="profile-header">
           <div class="profile-image-box">
           <img src="<%= @user.image_url %>" class="profile-image">
@@ -24,14 +21,16 @@
         </div>
         <div class="post-content typography">
           <p><span class="fas fa-file-alt icon"></span><%= @user.description %></p>
-          <p><span class="fas fa-link icon"></span><%= link_to @user.url, @user.url %></p>
+          <% if @user.url %>
+            <p><span class="fas fa-link icon"></span><%= link_to @user.url, @user.url %></p>
+          <% end %>  
         </div>
 
         <div class="profile-nav">
           <input id="posted-event-tab" type="radio" name="profile-nav-item" checked>
           <label class="profile-nav-item" for="posted-event-tab">
             <span class="profile-nav-label">ライブ登録数</span>
-            <span class="profile-value"><%= EventChangeHistory.where(user_id: current_user.id).select(:event_id).uniq.count %></span>
+            <span class="profile-value"><%= Event.where(user_id: current_user.id).select(:id).count %></span>
           </label>
           <input id="following-geinin-tab" type="radio" name="profile-nav-item">
           <label class="profile-nav-item" for="following-geinin-tab">
@@ -48,7 +47,7 @@
           <div class="profile-nav-content">
             <div class="profile-nav-item-content" id="posted-event-tab-content">
               <% if @events.present? %>
-                <%= render :partial => 'events/event_list',  locals: { events: @events, user: @user } %>
+                <%= render 'events/event_list', events: @events, user: @user %>
               <% else %>
                 <%= render 'events/no_result' %>
               <% end %>
@@ -57,7 +56,7 @@
           <div class="profile-nav-content">
             <div class="profile-nav-item-content" id="following-geinin-tab-content">
               <% if @geinins.present? %>
-                <%= render :partial => 'followings/following_list', locals: { geinins: @geinins, user: @user } %>
+                <%= render 'followings/following_list', geinins: @geinins, user: @user %>
               <% else %>
                 <%= render 'geinins/no_result' %>
               <% end %>

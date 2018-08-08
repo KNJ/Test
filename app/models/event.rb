@@ -1,68 +1,67 @@
 class Event < ApplicationRecord
 	attachment :image
 
-	#一人のユーザーが複数のライブに参加できる
-    has_many :participates, dependent: :destroy
+	#一人のユーザーが複数のライブを「参加する」としてマークできる
+  has_many :participates, dependent: :destroy
 
-	#一人のユーザーが複数のライブを「検討中」にできる
-    has_many :pendings, dependent: :destroy
+	#一人のユーザーが複数のライブを「気になる」としてマークできる
+  has_many :pendings, dependent: :destroy
 
-  #複数のリンクを持てる
-    has_many :event_links, dependent: :destroy
-    accepts_nested_attributes_for :event_links, allow_destroy: true,reject_if: :all_blank
+  #一つのライブ記事が複数のリンクを持てる
+  has_many :event_links, dependent: :destroy
+  accepts_nested_attributes_for :event_links, allow_destroy: true,reject_if: :all_blank
 
-  #複数の変更履歴を持てる
-    has_many :event_change_histories, dependent: :destroy
-    accepts_nested_attributes_for :event_change_histories, allow_destroy: true,reject_if: :all_blank
+  #一つのライブ記事が複数の変更履歴を持てる
+  has_many :event_change_histories, dependent: :destroy
+  accepts_nested_attributes_for :event_change_histories, allow_destroy: true,reject_if: :all_blank
 
-  #複数の出演者を持てる
-    has_many :event_performers, dependent: :destroy
-    accepts_nested_attributes_for :event_performers, allow_destroy: true,reject_if: :all_blank
+  #一つのライブ記事が複数の出演者を持てる
+  has_many :event_performers, dependent: :destroy
+  accepts_nested_attributes_for :event_performers, allow_destroy: true,reject_if: :all_blank
 
-  #複数のカテゴリを持てる
-    has_many :event_categories, dependent: :destroy
-    accepts_nested_attributes_for :event_categories, allow_destroy: true,reject_if: :all_blank
+  #一つのライブ記事が複数のカテゴリを持てる
+  has_many :event_categories, dependent: :destroy
+  accepts_nested_attributes_for :event_categories, allow_destroy: true,reject_if: :all_blank
 
   #存在チェック
-    validates :event_id, presence: true
-    validates :datetime, presence: true
-    validates :title, presence: true
+  validates :datetime, presence: true
+  validates :title, presence: true
 
   # デフォルトの検索順序
     # 日付の昇順に並べ換える
       scope :order_by_datetime, -> { order(datetime: :asc) }
     # 常に本日以降の日付を表示する
-      scope :display_after_today, -> { where(arel_table[:datetime].gt Time.now) }
+      scope :display_after_today, -> { where(arel_table[:datetime].gt Time.zone.now) }
     # 子テーブルを常にInclude
       scope :including_event_info, -> { includes(:event_performers, :event_categories, :event_links, :participates, :pendings)
                                 .references(:event_performers, :event_categories, :event_links, :participates, :pendings) } 
     # 上記3つをまとめる
       scope :default, ->{ order_by_datetime.display_after_today.including_event_info }
     
-    #　参加するになってるかチェック
-    def participated_by?(event,user)
-      participates.where(event_id: event.id, user_id: user.id).exists?
-    end
+  #　参加するになってるかチェック
+  def participated_by?(event,user)
+    participates.where(event_id: event.id, user_id: user.id).exists?
+  end
 
-    # 検討中になってるかチェック
-    def pending_by?(event,user)
-      pendings.where(event_id: event.id,user_id: user.id).exists?
-    end
+  # 検討中になってるかチェック
+  def pending_by?(event,user)
+    pendings.where(event_id: event.id,user_id: user.id).exists?
+  end
 
-    # リンクの件数をチェック
-    def how_many_urls?(event)
-      event_links.where(event_id: event.id).count
-    end
+  # リンクの件数をチェック
+  def how_many_urls?(event)
+    event_links.where(event_id: event.id).count
+  end
 
-    def user_signed_in?
-         # Returns true if the user is logged in, false otherwise.
-         !current_user.nil?
-    end
+  def user_signed_in?
+        # Returns true if the user is logged in, false otherwise.
+        !current_user.nil?
+  end
 
-    # 日付で検索
-    def self.datetime_search(from,to)
-        Event.default.where(datetime: from..to)
-    end
+  # 日付で検索
+  def self.datetime_search(from,to)
+      Event.default.where(datetime: from..to)
+  end
 
     def self.lumine_urls
         links = []

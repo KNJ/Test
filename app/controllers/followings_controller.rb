@@ -1,5 +1,4 @@
- class FollowingsController < ApplicationController
-    before_action :authenticate_user 
+ class FollowingsController < ApplicationController 
     
     def create
         geinin = Geinin.find(params[:geinin_id])
@@ -20,7 +19,7 @@
         #　ユーザーがフォローしている芸人一覧を取得
         @geinins = Geinin.default.where(followings: { user_id: current_user.id } )
     end
-    
+
     private
     # 芸人情報
     def geinin_params

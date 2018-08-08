@@ -14,17 +14,19 @@ class SearchEventPerformerService
         @members_name = GeininMember.where(geinin_id: @geinin_id).pluck(:family_name)
         
         # 芸人が個人で出演する場合のライブ情報も検索に含める
-        @performers = ""
-        
+        @performers_list = []
+        @performers_list << @performer
+
         @members_name.each do |member_name|
-            @performer_member = @performer.concat(member_name)
-            @performers = @performers + @performer_member
+            @performer_member = @performer+member_name
+            @performers_list << @performer_member
+            @performer_member = ""
         end
+        
+        # 出演者が一致するイベントIDを取得
+        @event_ids = Event.default.where(event_performers: { performer: [@performers_list] } ).pluck(:id)                 
 
-        # 出演者とキーワードが一致するイベントIDを取得
-        @event_ids = Event.default.where(event_performers: { performer: [@performers] } ).pluck(:id)                 
-
-        # 全出演者を取得するため、もう1回idでイベントを検索
+        # イベントの全出演者を取得するため、もう1回idでイベントを検索
         @events = Event.default.where(id: @event_ids.uniq).uniq
        
         @results = @events, nil,@performer,@geinin

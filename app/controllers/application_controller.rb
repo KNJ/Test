@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  rescue_from ActionView::MissingTemplate, with: :lp
+  # rescue_from ActionView::MissingTemplate, with: :lp
 
   # 当サイトについての表示
   def about
@@ -31,8 +31,15 @@ class ApplicationController < ActionController::Base
   end
 
   # 通知ページの表示
-  def setting
+  def notification
     render '/notification'
+  end
+
+  # 初回ログイン時のみガイドページを表示
+  def register
+    #　ユーザーがフォローしている芸人一覧を取得
+    @geinins = Geinin.default.where(followings: { user_id: current_user.id } )   
+    render '/register'
   end
 
   def set_current_user
@@ -45,14 +52,10 @@ class ApplicationController < ActionController::Base
     !!session[:user_id]
   end
 
-  def authenticate
-    return if logged_in?
-    redirect_to root_path, alert: 'ログインしてください'
-  end
-
-  def escape_like(keyword)
-    string.gsub(/[\\%_]/){|m| "\\#{m}"}
-  end
+  # def authenticate
+  #   return if logged_in?
+  #   redirect_to root_path, alert: 'ログインしてください'
+  # end
 
   def set_remote_ip
      # ipアドレスを取得
@@ -70,8 +73,4 @@ class ApplicationController < ActionController::Base
     request.env['omniauth.origin'] || geinins_following_url(resource) || root_path
   end
 
-  private
-  def escape_like(string)
-    string.gsub(/[\\%_]/){|m| "\\#{m}"}
-  end
 end

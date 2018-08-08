@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :update, :edit, :destroy]
-  before_action :set_current_user, only: [:index, :show, :update, :edit, :destroy, :schedule]
-  before_action :set_remote_ip, only: [:create, :update]
+  before_action :set_event, only: %i[show update edit destroy]
+  before_action :set_current_user, only: %i[index show update edit destroy schedule]
+  before_action :set_remote_ip, only: %i[create update]
   before_action :ensure_correct_user, only: %i[destroy]
 
   def new
@@ -29,6 +29,8 @@ class EventsController < ApplicationController
     # 出演者とカテゴリは別途作成するので空欄にする
       @event.event_performers.clear
 
+      @event.user_id = @user.id
+
     # DB保存→詳細画面へリダイレクト
     if @event.save
         # イベントが登録されたら、変更履歴テーブルを更新
@@ -40,7 +42,7 @@ class EventsController < ApplicationController
         # カテゴリを1行ごとのレコードに分ける
         # EventPerformersSplitService.new(@event_performers,@event.id).execute
 
-        redirect_to event_path(@event.id), notice: 'ありがとうございます！ライブ登録が完了しました！'
+        redirect_to event_path(@event.id), notice: 'ありがとうございます！ライブの登録が完了しました！'
     else
         flash.now[:error] = 'ライブ登録に失敗しました...。お手数ですが最初からやり直してください。'
         render :new
@@ -49,7 +51,7 @@ class EventsController < ApplicationController
 
   def index
 
-    results = SearchDatetimeService.new('today',DateTime.now).execute
+    results = SearchDatetimeService.new('today',Time.zone.now).execute
     # tomorrow_results = SearchDatetimeService.new('tomorrow',DateTime.now + 1.day).execute
     # next_sat_results = SearchDatetimeService.new('next_sat',DateTime.now).execute
     # next_sun_results = SearchDatetimeService.new('next_sun',DateTime.now).execute
@@ -89,7 +91,7 @@ class EventsController < ApplicationController
 
   def edit
     # 出演者を取得する
-    event_performers_list = EventPerformer.where(event_id: @event.id).pluck(:performer)
+    event_performers_list = @event.event_performers.pluck(:performer)
     @event_performers = TextareaConcatService.new(event_performers_list).execute
 
     # カテゴリを取得する
@@ -110,7 +112,7 @@ class EventsController < ApplicationController
         # Event_performersを1行ごとのレコードに分ける
         EventPerformersSplitService.new(@event_performers,@event.id).execute
         
-        redirect_to event_path(id: @event.id, performer: @event_performers) , notice: 'ありがとうございます！ライブ登録が完了しました！'
+        redirect_to event_path(id: @event.id, performer: @event_performers) , notice: 'ありがとうございます！ライブの編集が完了しました！'
     else
         flash.now[:error] = 'ライブ編集に失敗しました...。お手数ですが最初からやり直してください。'
         render :edit
@@ -134,13 +136,9 @@ class EventsController < ApplicationController
    end
 
   def ensure_correct_user
-    if current_user
-      @event = Event.find(user_id: current_user.id)
-
-      if current_user.id != @event.user_id
-        flash[:notice] = I18n.t('errors.messages.no_authorization')
-        redirect_to event_path(@event.id)
-      end
+    if current_user.id != @event.user_id
+      flash[:notice] = I18n.t('errors.messages.no_authorization')
+      redirect_to event_path(@event.id)
     end
   end
   

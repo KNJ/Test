@@ -82,6 +82,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   gem 'masonry-rails'
   # datepicker
   gem 'flatpickr'
+  # フォームの動的追加
+  gem 'nested_form_fields'
 
   # WEBスクレイピング用
   gem 'mechanize'

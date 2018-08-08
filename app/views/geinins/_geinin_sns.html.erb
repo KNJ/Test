@@ -1,25 +1,25 @@
 <% if geinin.twitter_id.present? %>
-  <%= link_to "https://twitter.com/#{geinin.twitter_id}",:class => "geinin-icon" do %>
-    <span class="fab fa-twitter-square geinin-icon twitter"></span>
+  <%= link_to "https://twitter.com/#{geinin.twitter_id}" do %>
+    <span class="fab fa-twitter-square twitter"></span>
   <% end %>
 <% end %>
 <% if geinin.instagram_id.present? %>
-  <%= link_to "https://twitter.com/#{geinin.instagram_id}",:class => "geinin-icon" do %>
-    <span class="fab fa-instagram geinin-icon instagram"></span>
+  <%= link_to "https://twitter.com/#{geinin.instagram_id}" do %>
+    <span class="fab fa-instagram instagram"></span>
   <% end %>
 <% end %>
 <% if geinin.youtube_url.present? %>
-  <%= link_to geinin.youtube_url,:class => "geinin-icon" do %>
-    <span class="fab fa-youtube geinin-icon youtube"></span>
+  <%= link_to geinin.youtube_url do %>
+    <span class="fab fa-youtube youtube"></span>
   <% end %>
 <% end %>
 <% if geinin.facebook_url.present? %>
-  <%= link_to "https://www.facebook.com/#{geinin.facebook_url}",:class => "geinin-icon" do %>
-    <span class="fab fa-facebook-square geinin-icon facebook"></span>
+  <%= link_to "https://www.facebook.com/#{geinin.facebook_url}" do %>
+    <span class="fab fa-facebook-square facebook"></span>
   <% end %>
 <% end %>
 <% if geinin.blog_url.present? %>
-  <%= link_to geinin.blog_url,:class => "geinin-icon" do %>
+  <%= link_to geinin.blog_url do %>
     <span class="fab fa-blogger"></span>
   <% end %>
 <% end %>

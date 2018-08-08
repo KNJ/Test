@@ -3,6 +3,6 @@
     <p>芸人編集</p>
   </div>
   <%= form_for(@geinin) do |f| %>
-    <%= render :partial => "geinin_edit", locals: { geinin: @geinin, f: f } %>
+    <%= render "geinin_edit", geinin: @geinin, f: f %>
   <% end %>
 </section>
