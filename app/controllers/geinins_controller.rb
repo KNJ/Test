@@ -33,7 +33,7 @@ class GeininsController < ApplicationController
       # end
 
     # DB保存→詳細画面へリダイレクト
-    if @geinin.save!
+    if @geinin.save
         # 芸人タグを1行ごとのレコードに分ける
         GeininTagsSplitService.new(@geinin.id,geinin_tags).execute
 
