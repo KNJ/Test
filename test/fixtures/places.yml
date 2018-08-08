@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  station: MyString
+  prefecture: MyString
+  area: MyString
+  address: MyText
+  tel: 1
+  access: MyText
+  capacity: 1
+  map_url: MyString
+  twitter_id: MyString
+  blog_url: MyString
+  official_hp_url: MyString
+  remarks: MyText
+
+two:
+  name: MyString
+  station: MyString
+  prefecture: MyString
+  area: MyString
+  address: MyText
+  tel: 1
+  access: MyText
+  capacity: 1
+  map_url: MyString
+  twitter_id: MyString
+  blog_url: MyString
+  official_hp_url: MyString
+  remarks: MyText

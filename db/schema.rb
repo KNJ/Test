@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180803074104) do
+ActiveRecord::Schema.define(version: 20180808095859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20180803074104) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.string "place_free_entry"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -153,6 +154,24 @@ ActiveRecord::Schema.define(version: 20180803074104) do
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_pendings_on_event_id"
     t.index ["user_id"], name: "index_pendings_on_user_id"
+  end
+
+  create_table "places", force: :cascade do |t|
+    t.string "name"
+    t.string "station"
+    t.string "prefecture"
+    t.string "area"
+    t.text "address"
+    t.integer "tel"
+    t.text "access"
+    t.integer "capacity"
+    t.string "map_url"
+    t.string "twitter_id"
+    t.string "blog_url"
+    t.string "official_hp_url"
+    t.text "remarks"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "survey_answers", force: :cascade do |t|

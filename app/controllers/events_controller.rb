@@ -23,13 +23,21 @@ class EventsController < ApplicationController
     # イベント情報を取得
       @event = Event.new(event_params)
 
+    # ライブ会場の自由入力欄が入力されていたら、自由入力欄の値を優先して保存する
+      if @event.place_free_entry.present?
+        @event.place = @event.place_free_entry
+      end
+
     # 出演者とカテゴリを改行コードで分けるために変数に入れる
       @event_performers = event_params[:event_performers_attributes]
 
     # 出演者とカテゴリは別途作成するので空欄にする
       @event.event_performers.clear
 
-      @event.user_id = @user.id
+    # ログインしてたらユーザーIDを保存
+      if current_user
+        @event.user_id = current_user.id
+      end
 
     # DB保存→詳細画面へリダイレクト
     if @event.save
@@ -103,6 +111,11 @@ class EventsController < ApplicationController
   def update
     @event_performers = event_params[:event_performers_attributes]
 
+    # ライブ会場の自由入力欄が入力されていたら、自由入力欄の値を優先して保存する
+      if @event.place_free_entry
+        @event.place = @event.place_free_entry
+      end
+
     # エラーチェック＆DB保存→詳細画面へリダイレクト
     if @event.update(event_params)
         # イベントが編集されたら、変更履歴テーブルを更新
@@ -130,7 +143,7 @@ class EventsController < ApplicationController
 
       @events_participates = Event.default.where(participates: { user_id: current_user.id } )
       @events_pendings = Event.default.where(pendings: { user_id: current_user.id } )
-      @events_following = GetFollowingEventsService.new(current_user).execute
+      @events_followings = GetFollowingEventsService.new(current_user).execute
 
     end
    end
@@ -141,7 +154,7 @@ class EventsController < ApplicationController
       redirect_to event_path(@event.id)
     end
   end
-  
+
 private
   #ライブ情報
   def event_params
@@ -155,6 +168,7 @@ private
           :email,
           :image,
           :place,
+          :place_free_entry,
           :general_sale,
           :presale_start,
           :presale_end,

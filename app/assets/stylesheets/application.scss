@@ -619,6 +619,24 @@ footer{
     box-shadow: inner 0 0 4px rgba(0, 0, 0, 0.2);
     background-color:$white_background_color;
 }
+.event-select-form{
+    border:0;
+    height:40px;
+    padding:10px 5px;
+    font-size: $default_font_size;
+    font-family:'Quicksand', sans-serif;
+    color:#575757;
+    border:solid 1px #ccc;
+    display:inline-block;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
+    -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+    background-color:$white_background_color;
+    margin:0 5px 0 5px;
+    width:320px;
+}
 .form-long{
     width:72vw;
     margin:0 5px 0 5px;

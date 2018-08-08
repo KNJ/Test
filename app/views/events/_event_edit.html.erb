@@ -16,10 +16,17 @@
     </div>
     <div class="form-item">
       <div class="form-icon">
+      </div>
+      <div class="form">
+        <%= f.collection_select :place, Place.all, :name, :name,{:prompt => "ライブ会場を選択してください *"},{:class=>"event-select-form"} %>
+      </div>
+    </div>
+    <div class="form-item">
+      <div class="form-icon">
         <i class="fas fa-map-marker-alt"></i>
       </div>
       <div class="form">
-        <%= f.text_field :place,:placeholder => "ライブ会場(例:新宿バティオス) *",:class => "event-edit-form form-long",:required=>"true" %>
+         <%= f.text_field :place_free_entry,:placeholder => "ライブ会場(上のメニューにない場合) *",:class => "event-edit-form form-long" %>
       </div>
     </div>
     <div class="form-item">
@@ -74,7 +81,7 @@
         <i class="fas fa-phone"></i>
       </div>
       <div class="form">
-        <%= f.text_field :tel,:placeholder => "電話番号",:class => "event-edit-form form-long"  %>
+        <%= f.text_field :tel,:placeholder => "電話番号(ハイフンなし、例:0312345678)",:class => "event-edit-form form-long"  %>
       </div>
     </div>
     <div class="form-item">
@@ -103,4 +110,4 @@
         <%= f.text_field :presale_end,:placeholder => "終了日時",:class => "event-edit-form form-short-2" %>
       </div>
     </div>
-    <%= f.submit '投稿する！', :class => "btn new green create-post" %>
+    <%= f.submit '投稿する！', :class => "btn new green" %>

@@ -22,8 +22,6 @@ class SearchKeywordService
         end
 
         @events = Event.default.where(id:@events_ids)
-        
-        binding.pry
 
         @results = @events, nil,@keyword,nil
     end

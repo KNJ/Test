@@ -63,6 +63,38 @@ class Event < ApplicationRecord
       Event.default.where(datetime: from..to)
   end
 
+  # 出演者で検索
+  def self.performer_search(performer)
+    #　芸人情報を取得
+    geinin = Geinin.default.where(name: performer)
+    geinin_id = geinin.pluck(:id)
+
+    # 出演者の個人名を取得する
+    members_name = GeininMember.where(geinin_id: geinin_id).pluck(:family_name)
+    
+    # 芸人が個人で出演する場合のライブ情報も検索に含める
+    performers_list = []
+    performers_list << performer
+
+    members_name.each do |member_name|
+      performer_member = performer+member_name
+      performers_list << performer_member
+      performer_member = ""
+    end
+    
+    binding.pry
+
+    # 出演者が一致するイベントIDを取得
+    event_ids = Event.default.where(event_performers: { performer: [performers_list] } ).pluck(:id).uniq                 
+
+    # イベントの全出演者を取得するため、もう1回idでイベントを検索
+    @events = Event.default.where(id: event_ids)
+  end
+
+  def self.performer_search_count(performer)
+    @event_count = Event.performer_search(performer).count
+  end
+
     def self.lumine_urls
         links = []
         month = 1

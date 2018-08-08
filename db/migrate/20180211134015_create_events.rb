@@ -4,6 +4,7 @@ class CreateEvents < ActiveRecord::Migration[5.1]
       t.datetime :datetime
       t.string :title
       t.string :place
+      t.string :place_free_entry
       t.text :description
       t.string :tel
       t.string :email

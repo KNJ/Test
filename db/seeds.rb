@@ -8,6 +8,10 @@
 
 require "csv"
 
-CSV.foreach('db/Survey.csv') do |row|
-  SurveyAnswer.create(:survey_id => row[0].to_i, :rank => row[1].to_i, :answer => row[2],:votes => row[3].to_i)
+# CSV.foreach('db/Survey.csv') do |row|
+#   SurveyAnswer.create(:survey_id => row[0].to_i, :rank => row[1].to_i, :answer => row[2],:votes => row[3].to_i)
+# end
+
+CSV.foreach('db/Place.csv') do |row|
+  Place.create(:name => row[0], :station => row[1], :prefecture => row[2],:area => row[3])
 end
