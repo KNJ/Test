@@ -28,7 +28,6 @@
 
     <input id="index-tab-4" type="radio" name="index_item">
     <label class="index_item" for="index-tab-4"><%= @o %></label>
-  </div>
 	<% if @geinins_list.present? %>
 		<% @geinins_list.each_with_index do |geinins,i| %>
 			<div class="index-content" id="index-tab-<%= "#{i}" %>-content">
@@ -38,4 +37,5 @@
 	<% else %>
 			<%= render "geinins/no_result" %>
 	<% end %>
+	</div>
 </section>

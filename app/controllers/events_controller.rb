@@ -20,7 +20,7 @@ class EventsController < ApplicationController
 
   def create
 
-    # イベント情報を取得
+     # イベント情報を取得
       @event = Event.new(event_params)
 
     # ライブ会場の自由入力欄が入力されていたら、自由入力欄の値を優先して保存する
@@ -72,6 +72,8 @@ class EventsController < ApplicationController
 
   def search
 
+    binding.pry
+
     # 日付検索
     results = SearchDatetimeService.new(params[:date],params[:datetime]).execute if params[:date].present?
     
@@ -98,6 +100,22 @@ class EventsController < ApplicationController
   end
 
   def edit
+
+    # 出演者がなかったらビルドする
+    if @event.event_performers.blank?
+      @event.event_performers.build
+    end
+
+    # リンクがなかったらビルドする
+    if @event.event_links.blank?
+      @event.event_links.build
+    end
+
+    # カテゴリがなかったらビルドする
+    if @event.event_categories.blank?
+      @event.event_categories.build
+    end
+
     # 出演者を取得する
     event_performers_list = @event.event_performers.pluck(:performer)
     @event_performers = TextareaConcatService.new(event_performers_list).execute
@@ -112,8 +130,8 @@ class EventsController < ApplicationController
     @event_performers = event_params[:event_performers_attributes]
 
     # ライブ会場の自由入力欄が入力されていたら、自由入力欄の値を優先して保存する
-      if @event.place_free_entry
-        @event.place = @event.place_free_entry
+      if event_params[:place_free_entry].present?
+        event_params[:place] = event_params[:place_free_entry]
       end
 
     # エラーチェック＆DB保存→詳細画面へリダイレクト
@@ -133,8 +151,12 @@ class EventsController < ApplicationController
   end
 
   def destroy
-      @event.destroy
-      redirect_to events_path
+      if @event.destroy
+        redirect_to new_event_url, notice: 'ライブの削除が完了しました'
+      else
+        flash.now[:error] = 'ライブの削除に失敗しました'
+        render :show
+      end
   end
 
   # スケジュールの表示

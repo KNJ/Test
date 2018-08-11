@@ -14,23 +14,24 @@
     <meta property="og:url" content="https://warally.info/">
     <meta property="og:image" content="">
     <meta name="twitter:card" content="summary">
+    <meta property="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="">
     <meta name="twitter:site" content="@warally_info">
     <meta name="author" content="@warally_info">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="format-detection" content="telephone=no">
-    <meta name="csrf-param" content="authenticity_token" />
-    <meta name="csrf-token" content="" />
-
-  　<!-- CSSファイルの読込 -->
+    <meta name="csrf-param" content="authenticity_token">
+    <meta name="csrf-token" content="">
+    <!-- CSSファイルの読込 -->
     <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" rel="stylesheet">
     <!--Internet Explorerの互換性を無視-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
-    <link rel="icon" href="s-favicon.png">
+    <link rel="icon" href="/s-favicon.png">
+    <%= javascript_include_tag 'application' %>
     <!-- Google Analytics
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

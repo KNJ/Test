@@ -30,12 +30,12 @@
           <input id="posted-event-tab" type="radio" name="profile-nav-item" checked>
           <label class="profile-nav-item" for="posted-event-tab">
             <span class="profile-nav-label">ライブ登録数</span>
-            <span class="profile-value"><%= Event.where(user_id: current_user.id).select(:id).count %></span>
+            <span class="profile-value"><%= @events.count %></span>
           </label>
           <input id="following-geinin-tab" type="radio" name="profile-nav-item">
           <label class="profile-nav-item" for="following-geinin-tab">
             <span class="profile-nav-label">フォロー</span>
-            <span class="profile-value"><%= Following.where(user_id: current_user.id).count %></span>
+            <span class="profile-value"><%= @geinins.count %></span>
           </label>
           <li class="profile-nav-item">
             <%= link_to logout_path, :method => :delete,:class=>"profile-nav-btn" do %>
@@ -43,9 +43,8 @@
               <span class="profile-value fa fa-sign-out-alt"></span>
             <% end %>
           </li>
-        </div>
-          <div class="profile-nav-content">
-            <div class="profile-nav-item-content" id="posted-event-tab-content">
+          <div class="profile-nav-content" id="posted-event-tab-content">
+            <div class="profile-nav-item-content">
               <% if @events.present? %>
                 <%= render 'events/event_list', events: @events, user: @user %>
               <% else %>
@@ -53,8 +52,8 @@
               <% end %>
             </div>
           </div>
-          <div class="profile-nav-content">
-            <div class="profile-nav-item-content" id="following-geinin-tab-content">
+          <div class="profile-nav-content" id="following-geinin-tab-content">
+            <div class="profile-nav-item-content">
               <% if @geinins.present? %>
                 <%= render 'followings/following_list', geinins: @geinins, user: @user %>
               <% else %>

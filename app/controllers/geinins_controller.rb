@@ -121,7 +121,14 @@ class GeininsController < ApplicationController
     @geinins_list = results[0]
     @indexes = results[1]
     @keyword = results[2]
-    end
+
+    # あいうえお行の最初の1文字を取得(%を抜く)
+    @a = @indexes[0][0]
+    @i = @indexes[1][0]
+    @u = @indexes[2][0]
+    @e = @indexes[3][0]
+    @o = @indexes[4][0]    
+  end
 
   def ensure_correct_user
     if current_user

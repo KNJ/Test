@@ -81,7 +81,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   # タイル状のレイアウト
   gem 'masonry-rails'
   # datepicker
-  gem 'flatpickr'
+  gem 'flatpickr_rails'
   # フォームの動的追加
   gem 'nested_form_fields'
 

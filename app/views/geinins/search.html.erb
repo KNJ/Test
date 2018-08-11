@@ -12,7 +12,7 @@
 		<% end %>
 	<% else %>
 	<div class="page-info hard-shadows">
-		<span class="accent"><%= @indexes[0][0] %>行</span>の検索結果
+		<span class="accent"><%= @a %>行</span>の検索結果
 	</div>
 		<div class="indexes">	
 			<input id="index-tab-0" type="radio" name="index_item" checked>
@@ -29,7 +29,6 @@
 
 			<input id="index-tab-4" type="radio" name="index_item">
 			<label class="index_item" for="index-tab-4"><%= @o %></label>
-		</div>
 		<% if @geinins_list.present? %>
 			<% i = 0 %>
 			<% @geinins_list.each do |geinins| %>
@@ -42,4 +41,5 @@
 				<%= render :partial=>"geinins/no_result" %>
 		<% end %>
 	<% end %>
+	</div>
 </section>
