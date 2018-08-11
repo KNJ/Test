@@ -10,7 +10,8 @@ $(function () {
                 longhand: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
             },
         },
-        minDate: "today"
+        minDate: "today",
+        disableMobile: "true"
     });
     // 「開演日時」のフォームをカレンダ入力
     $('#EventStart').flatpickr({ enableTime: true, defaultHour: 19, time_24hr: true,
@@ -23,7 +24,8 @@ $(function () {
                 longhand: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
             },
         },
-        minDate: "today"
+        minDate: "today",
+        disableMobile: "true"
      });
     // 「一般発売開始」のフォームをカレンダ入力
      $('#GeneralSaleStart').flatpickr({ enableTime: true, defaultHour: 10, time_24hr: true,
@@ -36,7 +38,8 @@ $(function () {
                 longhand: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
             },
         },
-        minDate: "today"
+        minDate: "today",
+        disableMobile: "true"
      });
     // 「先行販売開始」のフォームをカレンダ入力
      $('#PreSaleStart').flatpickr({ enableTime: true, defaultHour: 12, time_24hr: true,
@@ -49,7 +52,8 @@ $(function () {
                 longhand: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
             },
         },
-        minDate: "today"
+        minDate: "today",
+        disableMobile: "true"
      });
     // 「先行販売終了」のフォームをカレンダ入力
      $('#PreSaleEnd').flatpickr({ enableTime: true, defaultHour: 18, time_24hr: true,
@@ -62,7 +66,8 @@ $(function () {
                 longhand: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
             },
         },
-        minDate: "today"
+        minDate: "today",
+        disableMobile: "true"
      });    
     //TOPに戻るボタン
     var topBtn = $('#pageTop');
@@ -85,3 +90,6 @@ $(function () {
         return false;
     });
 });
+function _submit() {
+    $("#search_event_by_date").submit();
+}

@@ -46,7 +46,8 @@ class SearchDatetimeService
       @prev_day = @datetime.prev_day.beginning_of_day
       @next_morning = @prev_day + 1.day + 5.hour
     else
-      @next_morning = @date.beginning_of_day + 1.day + 5.hour
+      @datetime = Date.strptime(@date,'%Y-%m-%d')
+      @next_morning = @datetime.beginning_of_day + 1.day + 5.hour
     end
 
   end
@@ -74,8 +75,8 @@ class SearchDatetimeService
       @from = @prev_day
       @datetime = @prev_day
     else
-      @from = @date
-      @datetime = @date
+      @from = @datetime
+      @datetime = @datetime
     end
 
     @to = @next_morning

@@ -3,7 +3,7 @@
         <i class="fas fa-calendar-alt"></i>
       </div>
       <div class="form">
-        <%= f.text_field :datetime, :placeholder =>"開演日時(カレンダーで選択) *", data: {min_date: 'today'},data:{ provide:'flatpickr' }, id:"EventStart",class:" event-edit-form form-long",:required=>"true" %>
+        <%= f.text_field :datetime, :placeholder =>"開演日時(カレンダーで選択) *", data:{ provide:'flatpickr' }, id:"EventStart", class:" event-edit-form form-long EventNew",:required=>"true" %>
       </div>
     </div>
     <div class="form-item">

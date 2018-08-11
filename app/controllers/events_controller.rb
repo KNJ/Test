@@ -72,8 +72,6 @@ class EventsController < ApplicationController
 
   def search
 
-    binding.pry
-
     # 日付検索
     results = SearchDatetimeService.new(params[:date],params[:datetime]).execute if params[:date].present?
     
